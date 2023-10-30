@@ -41,6 +41,7 @@ const searchanimepp = () =>{
 trendingload()
 recentlyupdatedload()
 </script>
+<div class="back">
     <Header/>
             <div class="main">
                 <p class="center">
@@ -102,12 +103,13 @@ recentlyupdatedload()
             </div>
 
             <Footer/>
+</div>
 <style>
     :root {
     --bcsecond: rgb(24, 25, 28);
     --backgrd: rgb(0, 0, 0);
 }
-hrml{
+.back{
     background-color: var(--backgrd);
 }
 .bar {
