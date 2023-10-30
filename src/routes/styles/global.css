@@ -3,45 +3,6 @@
     --backgrd: rgb(0, 0, 0);
 }
 
-.bar {
-    width: 100%;
-    background-color: transparent;
-    color: white;
-    border: 0;
-    height: 30px;
-    margin-left: 10px;
-}
-
-.imgres {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.resultlist {
-    display: flex;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #888;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.searchbar {
-    display: flex;
-    padding: 10px;
-    background-color: rgb(58, 56, 56);
-    border: 0;
-    width: 80%;
-    justify-content: center;
-    align-items: center;
-    margin-left: auto;
-    margin-right: auto;
-    height: 30px;
-    border-radius: 5px;
-    color: white;
-}
-
 body {
     background-color: var(--backgrd);
     box-sizing: border-box;
@@ -59,14 +20,6 @@ body {
 }
 
 .showlist {
-    width: 100px;
-    font-size: 20px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    /* optional: adds ellipsis for hidden text */
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
     padding: 10px;
 }
 
@@ -75,7 +28,6 @@ body {
 }
 
 .imgshow {
-    width: 110px;
     border: 1;
     border-radius: 5px;
 }
@@ -110,39 +62,12 @@ body {
     background: #68e8e6;
 }
 
-.gridshowlist {
-    width: 100px;
-    font-size: 20px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    /* optional: adds ellipsis for hidden text */
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    padding: 10px;
-}
-
-.recentmembers {
-    display: grid;
-    grid-gap: 0px;
-    grid-template-columns: repeat(6, 1fr);
-    margin-top: 10px;
-    border: 1;
-    border-radius: 10px;
-    white-space: nowrap;
-    overflow-x: 10px;
-}
-
 .members {
     display: flex;
-    flex-wrap: wrap;
     margin-top: 10px;
     border: 1;
     border-radius: 10px;
-    white-space: nowrap;
-    overflow-x: 10px;
 }
-
 
 .header {
     display: flex;
@@ -151,21 +76,17 @@ body {
     background-color: var(--bcsecond);
 }
 
-.toptext {
-    margin-left: auto;
-    margin-right: auto;
-}
+.toptext {}
 
 .logo {
     background-color: var(--bcsecond);
     display: flex;
     justify-content: center;
     height: 60px;
-    width: auto;
     cursor: pointer;
     margin-left: 15px;
-    margin-top: 5px;
-    margin-bottom: 70px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .imgcen {
@@ -176,13 +97,12 @@ body {
 
 .menuicon {
     display: none;
-    margin-right: 45%;
+    margin: 10px;
     padding: 10px;
 }
 
 li,
-a,
-ul {
+a {
     padding-left: 15px;
     align-items: center;
     font-family: Poppins;
@@ -196,7 +116,6 @@ ul {
     list-style: none;
     display: inline-flex;
     margin-bottom: 22px;
-    margin-right: 10px;
     background-color: var(--bcsecond);
 }
 
@@ -211,7 +130,7 @@ ul {
     margin-top: 10%;
 }
 
-.nav_links li a ul {
+.nav_links li a {
     background-color: var(--bcsecond);
     transition: all 0.3s ease 0s;
     text-align: center;
@@ -226,8 +145,6 @@ ul {
 }
 
 .nav_links_moble {
-    margin-left: auto;
-    margin-right: auto;
     background-color: var(--bcsecond);
     list-style: none;
     text-align: center;
@@ -260,10 +177,6 @@ ul {
         align-items: center;
     }
 
-    .recentmembers {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
     .head {
         background-color: var(--bcsecond);
         display: flex;
@@ -275,13 +188,8 @@ ul {
         background-color: var(--bcsecond);
         align-items: center;
         justify-content: center;
-        padding: 10px;
-        width: 80px;
-        margin-left: 0px;
-        margin-right: 50px;
-        margin-top: 8px;
-        margin-bottom: 5px;
-
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .menuicon {
@@ -295,4 +203,5 @@ ul {
         text-align: center;
         padding: 10px;
     }
+
 }
