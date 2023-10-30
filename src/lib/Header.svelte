@@ -21,9 +21,7 @@ function openmenu(){
             <div class="header">
                 <a href="/">
                     <div class="logo">
-                    <p class="center">
                         <img class="" src="/piratetokei.png" alt="" height="100px">
-                    </p>    
                 </div>
                 </a>
                 <div id="navpc" class="nav_links">
@@ -130,10 +128,9 @@ ul {
     cursor: pointer;
     display: flex;
     height: 60px;
-    justify-content: center;
-    margin-bottom: 70px;
+    margin-bottom:50px;
     margin-left: 15px;
-    margin-top: 5px;
+    margin-top: 25px;
     width: auto;
 }
     @media only screen and (max-width: 600px) {

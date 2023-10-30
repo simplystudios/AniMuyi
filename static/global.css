@@ -3,7 +3,7 @@
     --backgrd: rgb(0, 0, 0);
 }
 
-html,head,body {
+html {
     background-color: var(--backgrd);
     box-sizing: border-box;
     padding: 0;
