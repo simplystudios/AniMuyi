@@ -107,7 +107,9 @@ recentlyupdatedload()
     --bcsecond: rgb(24, 25, 28);
     --backgrd: rgb(0, 0, 0);
 }
-
+hrml{
+    background-color: var(--backgrd);
+}
 .bar {
     width: 100%;
     background-color: transparent;
