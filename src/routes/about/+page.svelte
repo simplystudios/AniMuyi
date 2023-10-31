@@ -3,13 +3,19 @@
     import Search from "../../lib/Search.svelte";
     import Footer from "../../lib/Footer.svelte";
     
-    let search = '';
 </script>
 <Header/>
-<input bind:value={search} type="text" placeholder="Search...">
-<h1 id="about">About Us {search}</h1>
+<h2 class="center" id="about">About Us</h2>
+<p class="centerbold">**Disclaimer: We do not store any data on our servers. We only display data that is freely available online from third-party sources. We are not responsible for the accuracy, completeness, or legality of the data displayed on our website.**</p>
+
 <Footer/>
 
 <style>
-
+    .center{
+        text-align: center;
+    }
+    .centerbold{
+        text-align: center;
+        font-weight: bolder;
+    }
 </style>

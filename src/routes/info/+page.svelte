@@ -4,15 +4,20 @@
   import { onMount } from "svelte";
   
   let data = {};
-  let id = 'unknown';
+  let id = '';
   let ep = [];
 
   onMount(async () => {
     id = window.location.search;
     id = id.replace("?id=", "");
     const resp = await fetch(`https://api.consumet.org/anime/gogoanime/info/${id}`);
-    data = await resp.json();
+    if (resp.ok) {
+      data = await resp.json();
     ep = data["episodes"];
+    }
+    else{
+      console.log("failed to fetch data")
+    }
   });
   const watchepid = (epid,id) =>{
     window.open(`/watch?${epid}&${id}`,"_self")
@@ -52,6 +57,11 @@
     background-color: rgb(46, 46, 46);
     border: 1;
     border-radius: 6px;
+  }
+  .eps:hover{
+    background-color: #d9f520;
+    color: black;
+    box-shadow: #d9f520;
   }
   .center {
     text-align: center;

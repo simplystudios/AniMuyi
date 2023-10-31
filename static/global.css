@@ -1,5 +1,5 @@
 :root {
-    --bcsecond: rgb(24, 25, 28);
+    --bcsecond: #d9f520;
     --backgrd: rgb(0, 0, 0);
 }
 
@@ -59,7 +59,7 @@ html {
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #68e8e6;
+    background: #d9f520;
 }
 
 .members {

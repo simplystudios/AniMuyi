@@ -21,7 +21,6 @@
     
     if (resp.ok) {
       responseData = await resp.json();
-      console.log(responseData);
       responseData = responseData.headers ? responseData.headers.Referer : 'N/A'
       responseData = responseData.replace("Referer:","")
     } else {

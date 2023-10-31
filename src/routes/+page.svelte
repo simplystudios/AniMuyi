@@ -9,6 +9,7 @@ const trendingload = async() => {
     let data = await response.json();
     data = data['results'];
     return data;
+    console.log(data);
 }
 
 const recentlyupdatedload = async() => {
@@ -106,8 +107,8 @@ recentlyupdatedload()
 </div>
 <style>
     :root {
-    --bcsecond: rgb(24, 25, 28);
-    --backgrd: rgb(0, 0, 0);
+    --bcsecond: rgb(112, 0, 198);
+    --backgrd: rgb(37, 39, 38);
 }
 .back{
     background-color: var(--backgrd);
@@ -119,6 +120,9 @@ recentlyupdatedload()
     border: 0;
     height: 30px;
     margin-left: 10px;
+}
+.bar:focus{
+    outline: none;
 }
 
 .imgres {
@@ -168,15 +172,20 @@ body {
 }
 
 .showlist {
-    width: 100px;
+    width: 200px;
     font-size: 20px;
+    cursor: pointer;
     overflow: hidden;
-    text-overflow: ellipsis;
+    text-overflow: clip;
     /* optional: adds ellipsis for hidden text */
     margin-left: auto;
     margin-right: auto;
     text-align: center;
     padding: 10px;
+}
+.showlist:hover{
+    color: #d9f520;
+    box-shadow: #d9f520;
 }
 
 .center {
@@ -184,10 +193,11 @@ body {
 }
 
 .imgshow {
-    width: 110px;
+    width: 210px;
     border: 1;
     border-radius: 5px;
 }
+
 
 .crc {
     padding: 5px;
@@ -216,25 +226,29 @@ body {
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #68e8e6;
+    background: #d9f520;
 }
 
 .gridshowlist {
-    width: 100px;
+    width: 200px;
     font-size: 20px;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    overflow:hidden;
+    text-overflow:clip;
+    cursor: pointer;
     /* optional: adds ellipsis for hidden text */
     margin-left: auto;
     margin-right: auto;
     text-align: center;
     padding: 10px;
 }
+.gridshowlist:hover{
+    color: #d9f520;
+}
 
 .recentmembers {
     display: grid;
     grid-gap: 0px;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 3fr);
     margin-top: 10px;
     border: 1;
     border-radius: 10px;
@@ -275,6 +289,7 @@ body {
     margin-left: 15px;
     margin-top: 5px;
     margin-bottom: 70px;
+    padding: 10px;
 }
 
 .imgcen {
@@ -368,7 +383,11 @@ ul {
         justify-content: space-between;
         align-items: center;
     }
-
+    .imgshow {
+    width: 110px;
+    border: 1;
+    border-radius: 5px;
+}
     .recentmembers {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -392,7 +411,12 @@ ul {
         margin-bottom: 5px;
 
     }
-
+    .showlist {
+        width: 100px;
+    }
+    .gridshowlist {
+        width: 100px;
+    }
     .menuicon {
         background-color: var(--bcsecond);
         display: inline-flex;

@@ -21,7 +21,7 @@ function openmenu(){
             <div class="header">
                 <a href="/">
                     <div class="logo">
-                        <img class="" src="/piratetokeirenew.png" alt="" height="60px" width="285">
+                        <img class="" src="/piratetokei renew.png" alt="" height="90px" width="285">
                 </div>
                 </a>
                 <div id="navpc" class="nav_links">
@@ -45,8 +45,8 @@ function openmenu(){
 
 <style>
     :root {
-    --backgrd: rgb(37, 39, 38);
-    --bcsecond: rgb(112, 0, 198);
+    --backgrd: rgb(0, 0, 0);
+    --bcsecond: rgb(24, 25, 28);
 }
     /* Navigation Links Styles */
 li,
@@ -120,7 +120,7 @@ ul {
 }
 
 .nav_links_moble li a:hover {
-    color: #d9f520;
+    color: rgb(94, 232, 124);
 }
 .menuicon {
     display: none;
@@ -131,12 +131,10 @@ ul {
     background-color: var(--bcsecond);
     cursor: pointer;
     display: flex;
-    height: 80px;
-    width: 200px;
+    height: 60px;
+    width: auto;
     position: relative;
-    margin-left: 30px;
-    margin-top: 30px;
-    padding-bottom: 0px;
+    padding-bottom: 30px;
 }
     @media only screen and (max-width: 600px) {
     .header {
@@ -154,15 +152,15 @@ ul {
     }
 
     .logo {
+        align-items: center;
         background-color: var(--bcsecond);
-        cursor: pointer;
-        display: flex;
-        height: 20px;
-        width: 20px;
-        position: relative;
-        margin-top: 30px;
-        margin-right: 80px;
-        padding-bottom: 30px;
+        justify-content: center;
+        margin-left: 0px;
+        margin-right: 50px;
+        margin-top: 8px;
+        margin-bottom: 5px;
+        padding: 10px;
+        width: 80px;
     }
 
     .menuicon {
