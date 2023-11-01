@@ -2,14 +2,13 @@
   import { onMount } from "svelte";
   import Header from "../../lib/Header.svelte";
   import Footer from "../../lib/Footer.svelte";
-  import Hls from 'hls.js';
+  import MuxVideo from '../../lib/Videoplayer.svelte'
 
   let eps = []
   let responseData = {}; // Initialize a variable to store the response data
   let animeid;
   let epdata = {}
   onMount(async () => {
-    console.log(window.location)
     let id = window.location.search;
     id = id.replace("?", "");
     const regex = /^.+&/;
@@ -24,11 +23,14 @@
     if (resp.ok) {
       responseData = await resp.json();
       responseData = responseData["sources"]
-      if(responseData.length <= 4){
-        responseData = responseData[4]
+      console.log(responseData)
+      if(responseData.length === 5){
+        responseData = responseData[5]
+        console.log(responseData)
       }
       else{
-        responseData = responseData[3]
+        responseData = responseData[4]
+        console.log(responseData)
       }
     } else {
       console.error("Failed to fetch data");
@@ -47,21 +49,12 @@
   const watchepid = (epid,id) =>{
     window.open(`/watch?${epid}&${id}`,"_self")
   }
-  
 </script>
 <Header/>
-<div class="message">
-<p class="centerr">*If the video player is taking long to load refresh the page*</p>  
-</div>
 <p class="center">
-    <vm-player playsinline>
-        <vm-hls version="latest" poster={epdata.image}>
-          <source data-src={responseData.url} type="application/x-mpegURL" />
-        </vm-hls>
-
-        <vm-default-ui></vm-default-ui>
-      </vm-player>
-    
+    <player>
+        <MuxVideo poster={epdata.image} src={responseData.url} />
+    </player>
 </p>
 <div class="ep">
 
