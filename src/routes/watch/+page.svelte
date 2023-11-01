@@ -2,6 +2,8 @@
   import { onMount } from "svelte";
   import Header from "../../lib/Header.svelte";
   import Footer from "../../lib/Footer.svelte";
+  import Hls from 'hls.js';
+
   let eps = []
   let responseData = {}; // Initialize a variable to store the response data
   let animeid;
@@ -18,11 +20,16 @@
     console.log(id);
 
     const resp = await fetch(`https://api.consumet.org/anime/gogoanime/watch/${id}?server=gogocdn`);
-    
+     
     if (resp.ok) {
       responseData = await resp.json();
-      responseData = responseData.headers ? responseData.headers.Referer : 'N/A'
-      responseData = responseData.replace("Referer:","")
+      responseData = responseData["sources"]
+      if(responseData.length <= 4){
+        responseData = responseData[4]
+      }
+      else{
+        responseData = responseData[3]
+      }
     } else {
       console.error("Failed to fetch data");
     }
@@ -40,14 +47,26 @@
   const watchepid = (epid,id) =>{
     window.open(`/watch?${epid}&${id}`,"_self")
   }
+  
 </script>
 <Header/>
-<div class="ep">
+<div class="message">
+<p class="centerr">*If the video player is taking long to load refresh the page*</p>  
+</div>
 <p class="center">
-    <iframe allow="fullscreen;" class="frame" title="episode" src={responseData} frameborder="0"></iframe>
+    <vm-player playsinline>
+        <vm-hls version="latest" poster={epdata.image}>
+          <source data-src={responseData.url} type="application/x-mpegURL" />
+        </vm-hls>
+
+        <vm-default-ui></vm-default-ui>
+      </vm-player>
+    
 </p>
+<div class="ep">
+
 <div class="epi">
-    <h4>More Episodes of {epdata.title} : </h4>
+    <h4>More Episodes of {epdata.title} - </h4>
     {#if eps.length > 0}
     {#each eps as episode}
       <div on:click={() => watchepid(episode.id,epdata.id)}  class="eps">
@@ -69,16 +88,24 @@
     margin: 10px;
     background-color: rgb(46, 46, 46);
     border: 1;
+    cursor: pointer;
     border-radius: 6px;
+  }
+  .eps:hover{
+    background-color: rgb(112, 0, 198);
+    color: white;
+  }
+  .message{
+    background-color: rgb(112, 0, 198);
+    color: white;
   }
   .centerr{
     text-align: center;
   }
     .center{
-        position: relative;
+        position:relative;
         overflow: hidden;
         width: 100%;
-        padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
     }
     .frame{
          position: absolute;

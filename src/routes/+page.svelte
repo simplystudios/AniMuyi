@@ -9,7 +9,6 @@ const trendingload = async() => {
     let data = await response.json();
     data = data['results'];
     return data;
-    console.log(data);
 }
 
 const recentlyupdatedload = async() => {
@@ -154,6 +153,7 @@ recentlyupdatedload()
     border-radius: 5px;
     color: white;
 }
+
 
 body {
     background-color: var(--backgrd);

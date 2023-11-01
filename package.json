@@ -13,5 +13,10 @@
 		"svelte": "^4.0.5",
 		"vite": "^4.5.0"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"@vime/core": "^5.4.1",
+		"@vime/svelte": "^5.4.1",
+		"hls.js": "^1.5.0-alpha.1.0.canary.9685"
+	}
 }

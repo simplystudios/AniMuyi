@@ -57,11 +57,11 @@
     background-color: rgb(46, 46, 46);
     border: 1;
     border-radius: 6px;
+    cursor: pointer;
   }
   .eps:hover{
-    background-color: #d9f520;
-    color: black;
-    box-shadow: #d9f520;
+    background-color: rgb(112, 0, 198);
+    color: white;
   }
   .center {
     text-align: center;
