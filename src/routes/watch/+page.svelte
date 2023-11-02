@@ -8,9 +8,11 @@
   let responseData = {}; // Initialize a variable to store the response data
   let animeid;
   let epdata = {}
+  let episodeid = ''
   onMount(async () => {
     let id = window.location.search;
     id = id.replace("?", "");
+    episodeid = id;
     const regex = /^.+&/;
     let text = id
     const result = text.replace(regex, '');
@@ -52,8 +54,8 @@
 </script>
 <Header/>
 <p class="center">
-    <player>
-        <MuxVideo poster={epdata.image} src={responseData.url} />
+    <player class="player">
+        <MuxVideo src={responseData.url} />
     </player>
 </p>
 <div class="ep">

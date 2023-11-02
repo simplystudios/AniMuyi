@@ -1,11 +1,11 @@
 <svelte:head>
-<script src="https://unpkg.com/@mux-elements/mux-video@0.2.0/dist/index.js" on:load={renderMuxVideo}></script>
+<script src="https://unpkg.com/@mux/mux-video@0.17.0/dist/mux-video.js" on:load={renderMuxVideo}></script>
 </svelte:head>
 
 <script>
 // import '@mux-elements/mux-video'
 export let src = ''
-export let poster = ''
+// export let onend = {}
 let duration
 let videoWidth
 let videoHeight
@@ -30,11 +30,10 @@ if (scriptId) {
 </script>
 
 {#if renderTag}
-<mux-video
+    <mux-video
   bind:this="{muxVideoEl}"
   src="{src}"
   controls
-  poster="{poster}"
   preload="metadata"
   autoplay
   on:play
