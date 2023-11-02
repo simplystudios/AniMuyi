@@ -26,9 +26,7 @@
 
 <Header />
 <div class="info">
-  <p class="center">
-  <img src={data.image} alt="" width="300px">    
-  </p>
+  <img class="cover" src={data.image} alt="" height="450px">    
   <div class="data">
     <h2 class="title">{data.title}</h2>
     <h4 class="center">{data.otherName}</h4>
@@ -47,38 +45,4 @@
 {/if}
 
 <Footer />
-<style>
-  .title {
-    text-align: center;
-  }
-  .eps{
-    padding: 1px;
-    margin: 10px;
-    background-color: rgb(46, 46, 46);
-    border: 1;
-    border-radius: 6px;
-    cursor: pointer;
-  }
-  .eps:hover{
-    background-color: rgb(112, 0, 198);
-    color: white;
-  }
-  .center {
-    text-align: center;
-  }
-  .centerp {
-    text-align: center;
-    font-size: 18px;
-  }
-  .info{
-    display: flex;
-  }
-  .data{
-    padding: 10px;
-  }
-  @media only screen and (max-width : 700px) {
-    .info{
-    display: block;
-  }
-  }
-</style>
+
