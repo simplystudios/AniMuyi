@@ -52,6 +52,12 @@
     window.open(`/watch?${epid}&${id}`,"_self")
   }
 </script>
+
+<svelte:head>
+	<title>Pirate Tokei &bull; {epdata.title}</title>
+	<html lang="en" />
+</svelte:head>
+
 <Header/>
 <p class="center">
     <player class="player">

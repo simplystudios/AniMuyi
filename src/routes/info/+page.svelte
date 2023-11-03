@@ -24,13 +24,18 @@
   }
 </script>
 
+<svelte:head>
+	<title>Pirate Tokei &bull; {data.title}</title>
+	<html lang="en" />
+</svelte:head>
+
 <Header />
 <div class="info">
   <img class="cover" src={data.image} alt="" height="450px">    
   <div class="data">
-    <h2 class="title">{data.title}</h2>
-    <h4 class="center">{data.otherName}</h4>
-    <p class="centerp">{data.description}</p>
+      <h2 class="title">{data.title}</h2>
+      <h4 class="center">{data.otherName}</h4>
+      <p class="centerp">{data.description}</p>
   </div>
 </div>
 <h2 class="center">Episodes - {data.totalEpisodes}</h2>

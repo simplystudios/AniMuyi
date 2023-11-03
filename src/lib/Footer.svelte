@@ -1,10 +1,20 @@
 <footer>
-     <div class="foot">
-        <h3 class="center">
-           <img src="/piratetokei.png" alt="" width="230px">
-        </h3>
-        <p class="centerbold">*PirateTokei does not store any files on our server, we only link to the media which is hosted on 3rd party services.*</p>
+<div class="foot">
+    <div class="">
+        <a class="center" href="./"><img src="/piratetokeirenew.png" alt="" width="230px"></a>
     </div>
+    <div class="right">
+        <nav class="nav_links">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/">Trending</a></li>
+                <li><a href="/">Top</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+        </nav>
+    </div>
+    
+</div>
 </footer>
 <style>
     .foot {
@@ -15,8 +25,9 @@
     text-align: center;
 }
 .centerbold {
-    font-size: 15px;
+    font-size: 10px;
     font-weight: bold;
+    padding: 5px;
     text-align: center;
 }
 </style>

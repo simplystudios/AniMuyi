@@ -119,11 +119,34 @@ a {
 
 .logo:hover {}
 
-.foot {
-    margin: 10px;
-    margin-top: 10%;
+.footer-nav{
+    list-style: none;
+        display: inline-flex;
+        background-color: var(--bcsecond);
 }
-
+footer{
+    background-color: rgb(112, 0, 198);
+}
+.social-icons{
+    font-size: 40px;
+}
+.social-icons a :hover{
+    color: #d9f520;
+}
+.foot {
+    background-color: rgb(112, 0, 198);
+    display: flex;
+    color: white;
+    position: relative;
+    height: auto;
+    background-color: var(--backcolor);
+    padding: 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+.right{
+    display: block;
+}
 .nav_links li a {
     background-color: var(--bcsecond);
     transition: all 0.3s ease 0s;
