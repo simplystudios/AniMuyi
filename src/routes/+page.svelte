@@ -46,6 +46,14 @@ onMount(async()=>{
 </script>
 
 <svelte:head>
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-SDZHWZSFCG"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() { dataLayer.push(arguments); }
+			gtag('js', new Date());
+
+			gtag('config', 'G-SDZHWZSFCG');
+		</script>
 	<title>Pirate Tokei &bull; Home</title>
 	<html lang="en" />
 </svelte:head>

@@ -7,6 +7,15 @@
 <svelte:head>
 	<title>Pirate Tokei &bull; About</title>
 	<html lang="en" />
+    <!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-SDZHWZSFCG"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() { dataLayer.push(arguments); }
+			gtag('js', new Date());
+
+			gtag('config', 'G-SDZHWZSFCG');
+		</script>
 </svelte:head>
 <Header/>
 <h2 class="center" id="about">About Us</h2>

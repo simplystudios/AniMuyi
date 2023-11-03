@@ -27,6 +27,14 @@
 <svelte:head>
 	<title>Pirate Tokei &bull; {data.title}</title>
 	<html lang="en" />
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-SDZHWZSFCG"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() { dataLayer.push(arguments); }
+			gtag('js', new Date());
+
+			gtag('config', 'G-SDZHWZSFCG');
+		</script>
 </svelte:head>
 
 <Header />
