@@ -26,12 +26,16 @@
       responseData = await resp.json();
       responseData = responseData["sources"]
       console.log(responseData)
-      if(responseData.length === 5){
-        responseData = responseData[5]
+      if(responseData.length == 5){
+        responseData = responseData[4]
+        console.log(responseData)
+      }
+      else if(responseData.length== 4){
+        responseData = responseData[3]
         console.log(responseData)
       }
       else{
-        responseData = responseData[4]
+        responseData = responseData[2]
         console.log(responseData)
       }
     } else {
