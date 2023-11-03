@@ -1,7 +1,7 @@
 <footer>
 <div class="foot">
     <div class="">
-        <a class="center" href="./"><img src="/piratetokeirenew.png" alt="" width="230px"></a>
+        <img href="/" src="/piratetokeirenew.png" alt="" width="200px">
     </div>
     <div class="right">
         <nav class="nav_links">

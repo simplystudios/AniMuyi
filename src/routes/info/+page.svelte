@@ -31,7 +31,9 @@
 
 <Header />
 <div class="info">
-  <img class="cover" src={data.image} alt="" height="450px">    
+  <div class="cover">
+    <img src={data.image} alt="" height="450px">  
+  </div> 
   <div class="data">
       <h2 class="title">{data.title}</h2>
       <h4 class="center">{data.otherName}</h4>
