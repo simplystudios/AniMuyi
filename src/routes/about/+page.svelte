@@ -1,6 +1,5 @@
 <script>
     import Header from "../../lib/Header.svelte";
-    import Search from "../../lib/Search.svelte";
     import Footer from "../../lib/Footer.svelte";
     
 </script>
