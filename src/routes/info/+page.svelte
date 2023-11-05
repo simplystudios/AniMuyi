@@ -45,10 +45,23 @@
         nextime = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min;
         }
   
-      const repo = await fetch(`https://api.consumet.org/anime/gogoanime/info/${pro.idGogo}`)
-      repod = await repo.json();
+        const repo = await fetch(`https://api.consumet.org/anime/gogoanime/info/${pro.idGogo}`)
+      if(repo.ok){
+        repod = await repo.json();
       ep = repod["episodes"];
       console.log(ep)
+      }
+      else{
+        const repo = await fetch(`https://api.consumet.org/anime/gogoanime/info/${pro.idGogoDub}`)
+      if(repo.ok){
+        repod = await repo.json();
+      ep = repod["episodes"];
+      console.log(ep)
+      }
+      else{
+        console.log("dead")
+      }
+      }
     }
     else{
       console.log("failed to fetch data")

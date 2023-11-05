@@ -114,6 +114,7 @@ onMount(async()=>{
                     
                 </div>
                 <br>
+                
                 <h1 class="center">
                     Trending
                 </h1>
@@ -133,6 +134,15 @@ onMount(async()=>{
         </div>
             <div class="recentmain">
                 <br>
+<div class="butshare">
+                        <div class="butflex">
+                            <h3 class="centershare">Share PirateTokei Your Friends </h3>
+                            <br>
+                            <img src="/chibi.gif" alt="" height="70px">
+                        </div>
+                        <p class="center">It motivates us to keep developing the site and adding more awesome content for you all</p>
+                    </div>
+<br>
                 <h1 class="center">
                     Popular
                 </h1>
