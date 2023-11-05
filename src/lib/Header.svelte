@@ -26,7 +26,7 @@ function openmenu(){
                 </a>
                 <div id="navpc" class="nav_links">
                     <ul style="background-color: var(--bcsecond)">
-                        <li><a href="/">Home</a></li>
+                        <li><a href="/home">Home</a></li>
                         <li><a href="/">Trending</a></li>
                         <li><a href="/">Top</a></li>
                         <li><a href="/about">About</a></li>
@@ -36,7 +36,7 @@ function openmenu(){
     </div>
             <div id="nav" class="nav_links_moble">
                 <ul>
-                    <li><a href="/">Home</a></li>
+                    <li><a href="/home">Home</a></li>
                     <li><a href="/">Trending</a></li>
                     <li><a href="/">Top</a></li>
                     <li><a href="/about">About</a></li>

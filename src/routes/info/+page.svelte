@@ -4,16 +4,51 @@
   import { onMount } from "svelte";
   
   let data = {};
+  let infonew
   let id = '';
+  let repod = {};
   let ep = [];
-
+  let titles = {};
+  let images = {};
+  let pro = {};
+  let air = {};
+  let nextime = '';
+  let dateair = '';
+  let status = '';
   onMount(async () => {
     id = window.location.search;
     id = id.replace("?id=", "");
-    const resp = await fetch(`https://api.consumet.org/anime/gogoanime/info/${id}`);
+    console.log(id)
+    const resp = await fetch(`https://api-amvstrm.nyt92.eu.org/api/v2/info/${id}`);
     if (resp.ok) {
       data = await resp.json();
-    ep = data["episodes"];
+      titles = data.title;
+      images = data.coverImage;
+      pro = data.id_provider;
+      status = data.status;
+      if(status=="FINISHED"){
+        air = "completed"
+        dateair = "completed"
+        infonew.innerHTML = "Status : Completed"
+      }
+      else{
+        air = data.nextair;
+        dateair = air.airingAt;
+        let unixTimestamp = dateair;
+        var a = new Date(unixTimestamp * 1000);
+        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        var year = a.getFullYear();
+        var month = months[a.getMonth()];
+        var date = a.getDate();
+        var hour = a.getHours();
+        var min = a.getMinutes();
+        nextime = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min;
+        }
+  
+      const repo = await fetch(`https://api.consumet.org/anime/gogoanime/info/${pro.idGogo}`)
+      repod = await repo.json();
+      ep = repod["episodes"];
+      console.log(ep)
     }
     else{
       console.log("failed to fetch data")
@@ -25,7 +60,7 @@
 </script>
 
 <svelte:head>
-	<title>Pirate Tokei &bull; {data.title}</title>
+	<title>Pirate Tokei &bull; {titles.english}</title>
 	<html lang="en" />
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-SDZHWZSFCG"></script>
 		<script>
@@ -40,24 +75,25 @@
 <Header />
 <div class="info">
   <div class="cover">
-    <img src={data.image} alt="" height="450px">  
+    <img src={images.large} alt="" height="450px">  
   </div> 
   <div class="data">
-      <h2 class="title">{data.title}</h2>
-      <h4 class="center">{data.otherName}</h4>
+      <h2 class="title">{titles.english}</h2>
+      <h4 class="center">{titles.native}</h4>
+      <h4 bind:this={infonew} class="center">New Episode {air.episode} on : {nextime}</h4>
       <p class="centerp">{data.description}</p>
   </div>
 </div>
-<h2 class="center">Episodes - {data.totalEpisodes}</h2>
+<h2 class="center">Episodes - {repod.totalEpisodes}</h2>
 {#if ep.length > 0}
   {#each ep as episode}
-  <div on:click={() => watchepid(episode.id,data.id)}  class="eps">
+  <div on:click={() => watchepid(episode.id,pro.idGogo)}  class="eps">
     <h4 class="center">episode : {episode.number}</h4>
   </div>
   {/each}
 {:else}
-  <p class="center">Loading episodes...</p>
+  <h2 class="center">Loading episodes...</h2>
 {/if}
 
 <Footer />
-
+   

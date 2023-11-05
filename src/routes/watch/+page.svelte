@@ -20,26 +20,14 @@
 
     console.log(id);
 
-    const resp = await fetch(`https://api.consumet.org/anime/gogoanime/watch/${id}?server=gogocdn`);
+    const resp = await fetch(`https://api-amvstrm.nyt92.eu.org/api/v2/stream/${id}`);
      
     if (resp.ok) {
       responseData = await resp.json();
-      responseData = responseData["sources"]
-      console.log(responseData)
-      if(responseData.length == 5){
-        responseData = responseData[4]
-        console.log(responseData)
-      }
-      else if(responseData.length== 4){
-        responseData = responseData[3]
-        console.log(responseData)
-      }
-      else{
-        responseData = responseData[2]
-        console.log(responseData)
-      }
-    } else {
-      console.error("Failed to fetch data");
+      responseData = responseData['plyr']
+    }
+    else{
+      console.log("error")
     }
 
     const res = await fetch(`https://api.consumet.org/anime/gogoanime/info/${animeid}`);
@@ -72,9 +60,7 @@
 
 <Header/>
 <p class="center">
-    <player class="player">
-        <MuxVideo src={responseData.url} />
-    </player>
+    <iframe allowfullscreen class="frame" src={responseData.main} frameborder="0"></iframe>
 </p>
 <div class="ep">
 
@@ -87,7 +73,7 @@
       </div>
     {/each}
 {:else}
-  <p class="centerr">Loading episodes...</p>
+  <h2 class="centerr">Loading episodes...</h2>
 {/if}
 </div>
 <div class="eplist">
