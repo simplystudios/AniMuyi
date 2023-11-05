@@ -32,7 +32,7 @@ const getid = (id) =>{
     window.open(`/info?id=${id}`,"_self")
 }
 const searchanime = async() =>{
-    const searchr = await fetch(`https://api.consumet.org/anime/gogoanime/${search}?page=1`)
+    const searchr = await fetch(`https://api-amvstrm.nyt92.eu.org/api/v2/search?q=${search}`)
     searchdata = await searchr.json();
     searchdata = searchdata['results'];
     console.log(searchdata)
@@ -99,18 +99,19 @@ onMount(async()=>{
                     {#each searchdata as searchitem }
                         <div on:click={() => getid(searchitem.id)}>
                             <div class="resultlist">
-                                <img class="imgres" src={searchitem.image} alt="" width="100px">
+                                <img class="imgres" src={searchitem.coverImage.medium} alt="" width="100px">
                                 <div class="datali">
-                                    <h4 class="datalitxt">{searchitem.title}</h4>
-                                    <h5>{searchitem.releaseDate}</h5>
-                                    <h5>{searchitem.subOrDub}</h5>
+                                    <h4 class="datalitxt">{searchitem.title.english}</h4>
+                                    <h5>Episodes : {searchitem.episodes}</h5>
+                                    <h5>Mal Score : {searchitem.averageScore}</h5>
                                 </div>
                             </div>
                         </div>
                     {/each}    
                     {:else}
-                        <h2 class="center">Loading Resutls...</h2>
+                        <h2>Loading Resutls...</h2>
                     {/if}
+                    
                 </div>
                 <br>
                 <h1 class="center">
