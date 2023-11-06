@@ -44,11 +44,11 @@ const searchanimepp = () =>{
             <div class="header">
                 <a href="/">
                     <div class="logo">
-                        <img class="" src="/piratetokeirenew.png" alt="" height="60px" width="285">
+                        <img class="" src="/piratetokeirenew.png" alt="" height="60px" width="285px">
                 </div>
                 </a>
                 <div id="navpc" class="nav_links">
-                    <ul style="background-color: var(--bcsecond)">
+                    <ul>
                         <li><a href="/home">Home</a></li>
                         <li><a href="/home">Trending</a></li>
                         <li><a href="/home">Top</a></li>
@@ -61,6 +61,7 @@ const searchanimepp = () =>{
                 </div>
         </div>
     </div>
+        
             <div id="nav" class="nav_links_moble">
                 <ul>
                     <li><a href="/home">Home</a></li>

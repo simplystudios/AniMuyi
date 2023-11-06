@@ -78,21 +78,27 @@ onMount(async()=>{
                 <swiper-container>
                     {#if data.length > 0}
                     {#each data as slidedata }
-                    <swiper-slide  class="slide" data-swiper-autoplay="2000" on:click={()=> getid(slidedata.id)} style="height: 500px; magrin:0;">
+                    <swiper-slide loop="true"  class="slide" data-swiper-autoplay="2000" on:click={()=> getid(slidedata.id)} style="height: 500px; magrin:0;">
                             <div class="container">
                             <img class="imgslide" src={slidedata.bannerImage} alt="Cinque Terre" width="100%" height="400px">
                             <div class="bottomleft">
-                                <h2 style="color: #ffffff; font-size: bolder;">{slidedata.title.english}</h2>
+                                <h1 style="color: #ffffff; font-size: 180%;">{slidedata.title.english}</h1>
                                 <div class="infoslide">
-                                    <p><i class="fa-solid fa-closed-captioning" style="color: #ffffff;"></i> {slidedata.totalEpisodes}</p>
+                                    <p style="margin: 5px;"><i class="fa-solid fa-closed-captioning" style="color: #ffffff;"></i> {slidedata.totalEpisodes}</p>
                                     <br>
-                                    <p><i class="fa-solid fa-star" style="color: #ff3d64;"></i> {slidedata.averageRating}</p>
+                                    <p style="margin: 5px;"><i class="fa-solid fa-star" style="color: #ff3d64;"></i> {slidedata.averageRating}</p>
                                     <br>
                                     <p style="margin: 5px;"><i class="fa-solid fa-calendar" style="color: #ffffff;"></i> {slidedata.year}</p>
                                     <br>
-                                    <p style="margin: 5px;"><i class="fa-solid fa-clock" style="color: #ffffff;"></i> {slidedata.duration} mins</p>
+                                    <p style="font-weight:100;  margin: 5px;"><i class="fa-solid fa-clock" style="color: #ffffff;"></i> {slidedata.duration} mins</p>
                                 </div>
                                 <h5 class="descr">{slidedata.description}</h5>
+                                <div class="infoslide">
+                                    <button class="watchbut"><i class="fa-solid fa-play" style="color: #ffffff;"></i> Watch Now</button>
+                                    <button class="morebut"><i class="fa-solid fa-circle-info" style="color: #2e2c2c;"></i> More Info</button>
+                                </div>
+                                
+
                             </div>
                             </div>
                     </swiper-slide>
@@ -114,8 +120,10 @@ onMount(async()=>{
                     {:then data}
                     {#each data as item}
                             <div on:click={() => getid(item.id)} class="showlist">
-                                <img class="imgshow" src={item.coverImage} alt="" width="100px">
+                                <div class="container">
+                                    <img class="imgshow" src={item.coverImage} alt="" width="100px">
                                 <p class="center">{item.title.english}</p>
+                                </div>
                             </div>
                     {/each}
                 {/await}
