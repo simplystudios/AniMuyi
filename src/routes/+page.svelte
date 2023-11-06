@@ -55,7 +55,7 @@ onMount(async()=>{
                      <img class="toptext" src="/piratetokei.png" alt="" width="330px">
                 </p>
                
-                <div class="searchbar">
+                <div class="searchbarmain">
                     <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
                     <input class="bar" on:change={searchanimepp} type="text" bind:value={search} placeholder="Search Anime"> 
                 </div>

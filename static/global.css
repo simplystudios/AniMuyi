@@ -18,9 +18,7 @@ html {
 }
 
 .main {
-    padding: 10px;
-    margin-top: 1%;
-    margin-bottom: 15px;
+    padding: 0px
 }
 
 .showlist {
@@ -317,6 +315,19 @@ footer{
     padding: 10px;
     background-color: rgb(58, 56, 56);
     border: 0;
+    width: 300px;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    height: 30px;
+    border-radius: 5px;
+    color: white;
+}
+.searchbarmain {
+    display: flex;
+    padding: 10px;
+    background-color: rgb(58, 56, 56);
+    border: 0;
     width: 80%;
     justify-content: center;
     align-items: center;
@@ -580,6 +591,64 @@ body {
     width: 100%;
     height: 500px;
 }
+.container {
+    position: relative;
+    border-radius: 5px;
+}
+
+.bottomleft {
+    position: absolute;
+    bottom: 6%;
+    color: rgb(250, 243, 255);
+    left: 2%;
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+    width: 77%;
+    
+        letter-spacing: 0.1em;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+    
+        @media (min-width: 768px) {
+            gap: 6px;
+        }
+    
+        bottom: 6%;
+    
+        @media (min-width: 768px) {
+            bottom: 10%;
+        }
+    
+        left: 5%;
+    
+        @media (min-width: 992px) {
+            left: 8%;
+        }
+    width: 77%;
+}
+.infoslide{
+ display: flex;
+ align-items: center;
+ padding: 2px;
+ gap: 2px;
+}
+.descr{
+    font-style: italic;
+    width: 100ch;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.imgslide {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    opacity: 0.5;
+}
 
 .epi {
     top: 0;
@@ -595,6 +664,9 @@ body {
         width: 100%;
         height: 200px;
     }
+        .descr {
+            display: none;
+        }
 
     .epi {
         top: 0;
@@ -646,6 +718,7 @@ body {
 
 .info {
     display: flex;
+    margin-bottom: 100px;
 }
 
 .data {
@@ -685,6 +758,13 @@ body {
     --backgrd: rgb(37, 39, 38);
     --bcsecond: rgb(112, 0, 198);
 }
+.slided{
+    background-color: #2e2c2c;
+    padding: 0;
+}
+.slide:hover{
+    cursor: pointer;
+}
 
 /* Navigation Links Styles */
 li,
@@ -701,7 +781,10 @@ ul {
     text-decoration: none;
 }
 
-.head {}
+.head {
+    background-color: transparent;
+    display: relative;
+}
 
 .nav_links {
     background-color: var(--bcsecond);
@@ -766,7 +849,9 @@ ul {
     margin-right: 45%;
     padding: 10px;
 }
-
+.searchbarmob{
+    display: none;
+}
 .logo {
     background-color: var(--bcsecond);
     cursor: pointer;
@@ -793,7 +878,24 @@ ul {
         justify-content: center;
         align-items: center;
     }
-
+    .searchbar{
+        display: none;
+    }
+        .searchbarmob {
+            display: flex;
+            padding: 10px;
+            background-color: rgb(58, 56, 56);
+            border: 0;
+            margin-top: 10px;
+            width: 90%;
+            justify-content: center;
+            align-items: center;
+            margin-left: auto;
+            margin-right: auto;
+            height: 30px;
+            border-radius: 5px;
+            color: white;
+        }
     .logo {
         background-color: var(--bcsecond);
         cursor: pointer;

@@ -86,7 +86,9 @@
 </svelte:head>
 
 <Header />
-<div class="info">
+<img src={data.bannerImage} alt="" width="100%" height="">
+<div style="bottom: 5%;">
+  <div class="info">
   <div class="cover">
     <img src={images.large} alt="" height="450px">  
   </div> 
@@ -96,6 +98,7 @@
       <h4 bind:this={infonew} class="center">New Episode {air.episode} on : {nextime}</h4>
       <p class="centerp">{data.description}</p>
   </div>
+</div>
 </div>
 <h2 class="center">Episodes - {repod.totalEpisodes}</h2>
 {#if ep.length > 0}

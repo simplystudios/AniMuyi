@@ -1,5 +1,8 @@
 <script>
 let num = 0
+let search = '';
+let searchdata = [];
+let stylesfordiv = 'display: none; margin-left: auto; margin-right: auto; background-color: #2d2a2a; border-radius: 5px; padding: 10px; margin: 10px;';
 
 function openmenu(){
     if (num == 0){
@@ -12,6 +15,26 @@ function openmenu(){
     }
 
 }
+const getid = (id) =>{
+    window.open(`/info?id=${id}`,"_self")
+}
+const searchanime = async() =>{
+    const searchr = await fetch(`https://api-amvstrm.nyt92.eu.org/api/v2/search?q=${search}`)
+    searchdata = await searchr.json();
+    searchdata = searchdata['results'];
+    console.log(searchdata)
+    return searchdata
+}
+const searchanimepp = () =>{
+    if (search.length>0){
+        searchanime()
+    stylesfordiv = 'width: auto; display: block; background-color: #2d2a2a; border-radius: 5px; padding: 10px; margin: 10px;';
+    }
+    else{
+        stylesfordiv = 'display: none; background-color: #2d2a2a; border-radius: 5px; padding: 10px; margin: 10px;';
+    }
+}
+
 </script>
 
 <div class="head">  
@@ -32,6 +55,10 @@ function openmenu(){
                         <li><a href="/about">About</a></li>
                     </ul>
              </div>
+                              <div class="searchbar">
+                    <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+                    <input class="bar" on:change={searchanimepp} type="text" bind:value={search} placeholder="Search Anime"> 
+                </div>
         </div>
     </div>
             <div id="nav" class="nav_links_moble">
@@ -42,4 +69,28 @@ function openmenu(){
                     <li><a href="/about">About</a></li>
                 </ul>
             </div>
+             <div class="searchbarmob">
+                    <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+                    <input class="bar" on:change={searchanimepp} type="text" bind:value={search} placeholder="Search Anime"> 
+                </div>
+<div style={stylesfordiv} id="results">
+                    <h3 class="center">Results</h3>
+                    {#if searchdata.length > 0}
+                    {#each searchdata as searchitem }
+                        <div on:click={() => getid(searchitem.id)}>
+                            <div class="resultlist">
+                                <img class="imgres" src={searchitem.coverImage.medium} alt="" width="100px">
+                                <div class="datali">
+                                    <h4 class="datalitxt">{searchitem.title.userPreferred}</h4>
+                                    <h5>Episodes : {searchitem.episodes}</h5>
+                                    <h5>Mal Score : {searchitem.averageScore}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    {/each}    
+                    {:else}
+                        <h2>Loading Resutls...</h2>
+                    {/if}
+                    
+                </div>
 

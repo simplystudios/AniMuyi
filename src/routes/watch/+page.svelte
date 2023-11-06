@@ -7,6 +7,7 @@
   let eps = []
   let responseData = {}; // Initialize a variable to store the response data
   let animeid;
+  let epsd = '';
   let search = '';
   let epdata = {}
   let episodeid = ''
@@ -25,6 +26,7 @@
      
     if (resp.ok) {
       responseData = await resp.json();
+      epsd = responseData['info'].episode;
       responseData = responseData['plyr']
     }
     else{
@@ -41,6 +43,9 @@
       console.error("Failed to fetch data");
     }
   });
+  const watchepid = (epid,id) =>{
+    window.open(`/watch?${epid}&${id}`,"_self")
+  }
 
 </script>
 
@@ -53,7 +58,7 @@
 
 			gtag('config', 'G-SDZHWZSFCG');
 		</script>
-	<title>Pirate Tokei &bull; {epdata.title}</title>
+	<title>{epdata.title} &bull; episode : {epsd}</title>
 	<html lang="en" />
 </svelte:head>
 
