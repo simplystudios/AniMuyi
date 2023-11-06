@@ -96,7 +96,7 @@
       <h2 class="title">{titles.english}</h2>
       <h4 class="center">{titles.native}</h4>
       <h4 bind:this={infonew} class="center">New Episode {air.episode} on : {nextime}</h4>
-      <p class="centerp">{data.description}</p>
+      <p class="descrinfo">{data.description}</p>
   </div>
 </div>
 </div>

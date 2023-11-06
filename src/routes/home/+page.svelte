@@ -89,6 +89,8 @@ onMount(async()=>{
                                     <p><i class="fa-solid fa-star" style="color: #ff3d64;"></i> {slidedata.averageRating}</p>
                                     <br>
                                     <p style="margin: 5px;"><i class="fa-solid fa-calendar" style="color: #ffffff;"></i> {slidedata.year}</p>
+                                    <br>
+                                    <p style="margin: 5px;"><i class="fa-solid fa-clock" style="color: #ffffff;"></i> {slidedata.duration} mins</p>
                                 </div>
                                 <h5 class="descr">{slidedata.description}</h5>
                             </div>
