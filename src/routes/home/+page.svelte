@@ -2,6 +2,9 @@
   import Header from "../../lib/Header.svelte";
   import Footer from "../../lib/Footer.svelte";
   import { onMount } from "svelte";
+  // import function to register Swiper custom elements
+import { register } from 'swiper/element/bundle';
+// register Swiper custom elements
   import { slide } from "svelte/transition";
     let search = '';
     let searchdata = [];
@@ -51,7 +54,7 @@ const searchanimepp = () =>{
 }
 
 onMount(async()=>{
-    
+    register();
     recentlyupdatedload()
 })
 </script>
