@@ -75,7 +75,7 @@ onMount(async()=>{
                 <swiper-container>
                     {#if data.length > 0}
                     {#each data as slidedata }
-                    <swiper-slide class="slide" on:click={()=> getid(slidedata.id)} style="height: 500px; magrin:0;">
+                    <swiper-slide  class="slide" data-swiper-autoplay="2000" on:click={()=> getid(slidedata.id)} style="height: 500px; magrin:0;">
                             <div class="container">
                             <img class="imgslide" src={slidedata.bannerImage} alt="Cinque Terre" width="100%" height="400px">
                             <div class="bottomleft">
