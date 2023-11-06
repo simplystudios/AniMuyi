@@ -42,11 +42,9 @@ const searchanimepp = () =>{
                 <i on:click={openmenu} id="menubut" class="fa-solid fa-bars fa-xl" style=" margin-top: 10px; color: #ffffff;"></i>
             </div>
             <div class="header">
-                <a href="/">
-                    <div class="logo">
+                <div class="logo">
                         <img class="" src="/piratetokeirenew.png" alt="" height="60px" width="285px">
                 </div>
-                </a>
                 <div id="navpc" class="nav_links">
                     <ul>
                         <li><a href="/home">Home</a></li>
@@ -74,6 +72,7 @@ const searchanimepp = () =>{
                     <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
                     <input class="bar" on:change={searchanimepp} type="text" bind:value={search} placeholder="Search Anime"> 
                 </div>
+                <br>
 <div style={stylesfordiv} id="results">
                     <h3 class="center">Results</h3>
                     {#if searchdata.length > 0}
