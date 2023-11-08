@@ -2,9 +2,12 @@
   import { onMount } from "svelte";
   import Header from "../../lib/Header.svelte";
   import Footer from "../../lib/Footer.svelte";
+  // import { LocalStorageStore } from "../../stores/store"
   import MuxVideo from '../../lib/Videoplayer.svelte'
 
   let eps = []
+  // let currentlywatching = LocalStorageStore('currentlywatch',[])
+  // export let currentw = currentlywatching.get(); // This will log the data stored in 'myDataKey' in localStorage, or the initial value if not found.
   let responseData = {}; // Initialize a variable to store the response data
   let animeid;
   let epsd = '';
@@ -38,6 +41,10 @@
       epdata = await res.json();
       eps = epdata["episodes"];
       console.log(eps);
+      // setcurrentwatch(epdata.title,episodeid)
+      currentw = currentlywatching.get();
+      console.log(currentw);   
+      
       
     } else {
       console.error("Failed to fetch data");
@@ -46,7 +53,15 @@
   const watchepid = (epid,id) =>{
     window.open(`/watch?${epid}&${id}`,"_self")
   }
-
+//   export function setcurrentwatch(title, epsode){
+//   $currentlywatching = [
+//     {
+//       title:`${title}`,
+//       episode:`${epsode}`
+//     },
+//     ...$currentlywatching
+//   ]
+// }
 </script>
 
 <svelte:head>

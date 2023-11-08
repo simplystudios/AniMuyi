@@ -45,24 +45,24 @@
         nextime = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min;
         }
   
-        const repo = await fetch(`https://api.consumet.org/anime/gogoanime/info/${pro.idGogo}`)
+      const repo = await fetch(`https://api.consumet.org/anime/gogoanime/info/${pro.idGogo}`)
       if(repo.ok){
         repod = await repo.json();
-      ep = repod["episodes"];
-      console.log(ep)
+        ep = repod["episodes"];
+        console.log(ep)
       }
       else{
         const repo = await fetch(`https://api.consumet.org/anime/gogoanime/info/${pro.idGogoDub}`)
       if(repo.ok){
         repod = await repo.json();
-      ep = repod["episodes"];
-      console.log(ep)
+        ep = repod["episodes"];
+        console.log(ep)
       }
       else{
         console.log("dead")
       }
-      }
     }
+  }
     else{
       console.log("failed to fetch data")
     }
@@ -86,18 +86,20 @@
 </svelte:head>
 
 <Header />
-<img src={data.bannerImage} alt="" width="100%" height="">
-<div style="bottom: 5%;">
-  <div class="info">
-  <div class="cover">
-    <img src={images.large} alt="" height="450px">  
-  </div> 
-  <div class="data">
-      <h2 class="title">{titles.english}</h2>
-      <h4 class="center">{titles.native}</h4>
-      <h4 bind:this={infonew} class="center">New Episode {air.episode} on : {nextime}</h4>
-      <p class="center">{data.description}</p>
-  </div>
+<div class="container">
+  <img src={data.bannerImage} alt="" width="100%" height="">
+  <div>
+    <div class="info">
+      <div class="cover">
+        <img src={images.large} alt="" height="450px">  
+      </div> 
+      <div class="data">
+        <h2 class="title">{titles.english}</h2>
+        <h4 class="center">{titles.native}</h4>
+        <h4 bind:this={infonew} class="center">New Episode {air.episode} on : {nextime}</h4>
+        <p class="center">{data.description}</p>
+    </div>
+</div>
 </div>
 </div>
 <h2 class="center">Episodes - {repod.totalEpisodes}</h2>

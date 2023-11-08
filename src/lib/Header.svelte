@@ -68,11 +68,12 @@ const searchanimepp = () =>{
                     <li><a href="/about">About</a></li>
                 </ul>
             </div>
+            <br class="bod">
              <div class="searchbarmob">
                     <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
                     <input class="bar" on:change={searchanimepp} type="text" bind:value={search} placeholder="Search Anime"> 
                 </div>
-                <br>
+                <br class="bod">
 <div style={stylesfordiv} id="results">
                     <h3 class="center">Results</h3>
                     {#if searchdata.length > 0}

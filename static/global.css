@@ -647,12 +647,12 @@ body {
 }
 
 .container {
-    position: relative;
+    position:static;
     border-radius: 5px;
 }
 
 .bottomleft {
-    position: absolute;
+    position: relative;
     bottom: 6%;
     color: rgb(250, 243, 255);
     left: 2%;
@@ -862,7 +862,18 @@ body {
 
 :root {
     --backgrd: rgb(37, 39, 38);
-    --bcsecond: rgb(112, 0, 198);
+    --bcsecond: transparent;
+}
+
+.centered-bot {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.bod{
+    display: none;
 }
 
 .slided {
@@ -890,6 +901,7 @@ ul {
 }
 
 .head {
+    z-index: 1;
     width: 100%;
     height: 150px;
     position: relative;
@@ -975,6 +987,9 @@ ul {
         display: flex;
         justify-content: space-between;
     }
+        .bod {
+            display: block;
+        }
 
     .head {
         background-color: var(--bcsecond);

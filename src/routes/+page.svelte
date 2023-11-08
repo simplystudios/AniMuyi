@@ -1,7 +1,7 @@
 <script>
     import Header from "../lib/Header.svelte";
     import Footer from "../lib/Footer.svelte";
-  import { onMount } from "svelte";
+    import { onMount } from "svelte";
     let search = '';
     let searchdata = [];
     let stylesfordiv = 'display: none; margin-left: auto; margin-right: auto; background-color: #2d2a2a; border-radius: 5px; padding: 10px; margin: 10px;';

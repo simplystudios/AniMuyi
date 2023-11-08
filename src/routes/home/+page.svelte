@@ -71,7 +71,6 @@ onMount(async()=>{
 	<title>Pirate Tokei &bull; Home</title>
 	<html lang="en" />
 </svelte:head>
-
 <div class="back">
     <Header/>
             <div class="main">
