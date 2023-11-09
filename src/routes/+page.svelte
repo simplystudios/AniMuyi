@@ -50,6 +50,12 @@ onMount(async()=>{
 
 <div class="back">
     <Header/>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
             <div class="main">
                 <p class="center">
                      <img class="toptext" src="/piratetokei.png" alt="" width="330px">

@@ -37,13 +37,13 @@ const searchanimepp = () =>{
 
 </script>
 
-<div class="head">  
-        <div class="menuicon">
+<div class="head">
+    <div class="menuicon">
                 <i on:click={openmenu} id="menubut" class="fa-solid fa-bars fa-xl" style=" margin-top: 10px; color: #ffffff;"></i>
             </div>
             <div class="header">
                 <div class="logo">
-                        <img class="" src="/piratetokeirenew.png" alt="" height="60px" width="285px">
+                        <img class="" src="/piratelogo.png" alt="" height="60px" width="285px">
                 </div>
                 <div id="navpc" class="nav_links">
                     <ul>
@@ -58,23 +58,25 @@ const searchanimepp = () =>{
                     <input class="bar" on:change={searchanimepp} type="text" bind:value={search} placeholder="Search Anime"> 
                 </div>
         </div>
-    </div>
-        
-            <div id="nav" class="nav_links_moble">
+        <div id="nav" class="nav_links_moble">
                 <ul>
                     <li><a href="/home">Home</a></li>
                     <li><a href="/home">Trending</a></li>
                     <li><a href="/home">Top</a></li>
                     <li><a href="/about">About</a></li>
                 </ul>
-            </div>
-            <br class="bod">
-             <div class="searchbarmob">
-                    <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+                 <div class="searchbarmob">
+                    <i class="fa-solid fa-magnifying-glass" style="font-size: 5px; color: #ffffff;"></i>
                     <input class="bar" on:change={searchanimepp} type="text" bind:value={search} placeholder="Search Anime"> 
                 </div>
-                <br class="bod">
+            </div>
+    </div>
 <div style={stylesfordiv} id="results">
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
                     <h3 class="center">Results</h3>
                     {#if searchdata.length > 0}
                     {#each searchdata as searchitem }
@@ -90,7 +92,7 @@ const searchanimepp = () =>{
                         </div>
                     {/each}    
                     {:else}
-                        <h2>Loading Resutls...</h2>
+                        <h2 class="center">Loading Resutls...</h2>
                     {/if}
                     
                 </div>

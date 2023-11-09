@@ -1,6 +1,9 @@
 <script>
   import Header from "../../lib/Header.svelte";
   import Footer from "../../lib/Footer.svelte";
+  import Swiper from 'swiper';
+  import 'swiper/swiper-bundle.css'; // Import the Swiper CSS
+
   import { onMount } from "svelte";
   // import function to register Swiper custom elements
 import { register } from 'swiper/element/bundle';
@@ -9,6 +12,7 @@ import { register } from 'swiper/element/bundle';
     let search = '';
     let searchdata = [];
     let trendslide = [];
+    let swiper;
     let data = {};
     let recentdata = {};
     let stylesfordiv = 'display: none; margin-left: auto; margin-right: auto; background-color: #2d2a2a; border-radius: 5px; padding: 10px; margin: 10px;';
@@ -52,13 +56,18 @@ const searchanimepp = () =>{
         stylesfordiv = 'display: none; background-color: #2d2a2a; border-radius: 5px; padding: 10px; margin: 10px;';
     }
 }
-
 onMount(async()=>{
+    swiper = new Swiper('.swiper-container', {
+    autoplay: {
+      delay: 3000, // Adjust the delay as needed (2 seconds in this example)
+      disableOnInteraction: false,
+    },
+    loop: true, // Enable loop
+  });
     register();
     recentlyupdatedload()
 })
 </script>
-
 <svelte:head>
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-SDZHWZSFCG"></script>
 		<script>
@@ -71,42 +80,44 @@ onMount(async()=>{
 	<title>Pirate Tokei &bull; Home</title>
 	<html lang="en" />
 </svelte:head>
+
 <div class="back">
-    <Header/>
             <div class="main">
-                <swiper-container>
-                    {#if data.length > 0}
-                    {#each data as slidedata }
-                    <swiper-slide loop="true"  class="slide" data-swiper-autoplay="2000" on:click={()=> getid(slidedata.id)} style="height: 500px; magrin:0;">
+                <Header/>
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        {#if data.length > 0}
+                        {#each data as slidedata }
+                    <div class="swiper-slide" on:click={()=> getid(slidedata.id)}  style="height: 500px; magrin:0;">
                             <div class="container">
                             <img class="imgslide" src={slidedata.bannerImage} alt="Cinque Terre" width="100%" height="400px">
                             <div class="bottomleft">
                                 <h1 style="color: #ffffff; font-size: 180%;">{slidedata.title.english}</h1>
                                 <div class="infoslide">
-                                    <p style="margin: 5px;"><i class="fa-solid fa-closed-captioning" style="color: #ffffff;"></i> {slidedata.totalEpisodes}</p>
+                                    <p style="margin: 5px; font-size:15px;"><i class="fa-solid fa-closed-captioning" style="color: #ffffff;"></i> {slidedata.totalEpisodes}</p>
                                     <br>
-                                    <p style="margin: 5px;"><i class="fa-solid fa-star" style="color: #ff3d64;"></i> {slidedata.averageRating}</p>
+                                    <p style="margin: 5px; font-size:15px;"><i class="fa-solid fa-star" style="color: #ff3d64;"></i> {slidedata.averageRating}</p>
                                     <br>
-                                    <p style="margin: 5px;"><i class="fa-solid fa-calendar" style="color: #ffffff;"></i> {slidedata.year}</p>
+                                    <p style="margin: 5px; font-size:15px;"><i class="fa-solid fa-calendar" style="color: #ffffff;"></i> {slidedata.year}</p>
                                     <br>
-                                    <p style="font-weight:100;  margin: 5px;"><i class="fa-solid fa-clock" style="color: #ffffff;"></i> {slidedata.duration} mins</p>
+                                    <p style="font-weight:100; font-size:15px; margin: 5px;"><i class="fa-solid fa-clock" style="color: #ffffff;"></i> {slidedata.duration} mins</p>
                                 </div>
-                                <h5 class="descr">{slidedata.description}</h5>
+                                <p class="descr">{slidedata.description}</p>
                                 <div class="infoslide">
-                                    <button class="watchbut"><i class="fa-solid fa-play" style="color: #ffffff;"></i> Watch Now</button>
+                                    <!-- <button class="watchbut"><i class="fa-solid fa-play" style="color: #ffffff;"></i> Watch Now</button> -->
                                     <button class="morebut"><i class="fa-solid fa-circle-info" style="color: #2e2c2c;"></i> More Info</button>
                                 </div>
                                 
 
                             </div>
-                            </div>
-                    </swiper-slide>
-                    {/each}    
+                        </div>
+                    </div>
+                    {/each}
                     {:else}
                         <h2>Loading Resutls...</h2>
                     {/if}
-                    
-                </swiper-container>
+                    </div>
+                </div>
                <br>
                 
                 

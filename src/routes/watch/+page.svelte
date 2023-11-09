@@ -78,6 +78,10 @@
 </svelte:head>
 
 <Header/>
+<br>
+<br>
+<br>
+<br>
 <p class="center">
     <iframe allow="autoplay; fullscreen; picture-in-picture; xr-spatial-tracking; clipboard-write" allowfullscreen class="frame" src={responseData.main} frameborder="0"></iframe>
 </p>
