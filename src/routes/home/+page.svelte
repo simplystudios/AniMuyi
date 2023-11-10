@@ -23,13 +23,6 @@ import { register } from 'swiper/element/bundle';
 //     return data;
 // }
 
-const recentlyupdatedload = async() => {
-    const response = await fetch('https://paahe.vercel.app/home');
-    data = await response.json();
-    recentdata = data['popular'];
-    data = data['trending'];
-    return data;
-}
 
 // const trendingslide = async() =>{
 //     const rep = await fetch("https://api-amvstrm.nyt92.eu.org/api/v2/trending");
@@ -65,7 +58,11 @@ onMount(async()=>{
     loop: true, // Enable loop
   });
     register();
-    recentlyupdatedload()
+    const response = await fetch('https://paahe.vercel.app/home');
+    data = await response.json();
+    recentdata = data['popular'];
+    data = data['trending'];
+    return data;
 })
 </script>
 <svelte:head>
@@ -125,9 +122,7 @@ onMount(async()=>{
                     Trending
                 </h2>
                 <div class="members">
-                {#await recentlyupdatedload()}
-                    <h2 class="center">Loading trending animes</h2>
-                    {:then data}
+                {#if data.length > 0}
                     {#each data as item}
                             <div on:click={() => getid(item.id)} class="showlist">
                                 <div class="container">
@@ -136,7 +131,9 @@ onMount(async()=>{
                                 </div>
                             </div>
                     {/each}
-                {/await}
+                    {:else}
+                    <h2 class="center">Loading trending animes</h2>
+                {/if}
             </div>
         </div>
             <div class="recentmain">
@@ -153,16 +150,16 @@ onMount(async()=>{
                     Popular
                 </h2>
                 <div class="recentmembers">
-                   {#await recentlyupdatedload()}
-                    <h2 class="center">Loading Popular Animes...</h2>
-                    {:then recentdata}
+                   {#if recentdata.length > 0}
                     {#each recentdata as item}
                             <div on:click={() => getid(item.id)} id="animeitem" class="gridshowlist">
                                 <img class="gridimgshow" src={item.coverImage} alt="" width="100px">
                                 <p class="center">{item.title.english}</p>
                         </div>
                     {/each}
-                {/await}
+                    {:else}
+                    <h2 class="center">Loading Popular Animes...</h2>
+                {/if}
                 </div>
             </div>
 

@@ -121,6 +121,8 @@ html {
 .header {
     display: flex;
     align-items: center;
+    backdrop-filter: saturate(180%) blur(2px);
+        -webkit-backdrop-filter: saturate(180%) blur(2px);
     justify-content: space-between;
     background-color: var(--bcsecond);
 }
@@ -678,7 +680,22 @@ body {
     padding: 2px;
     gap: 2px;
 }
-
+.animeinfo{
+    display: block;
+}
+.animed{
+    display: block;
+    margin-left: 10px;
+    margin-bottom: 0px;
+}
+.anime{
+    display: flex;
+    background-color: #221f1f;
+    border-radius: 10px;
+    border: 1;
+    padding: 10px;
+    border-color: #d9f520;
+}
 .descr {
     max-width: 22rem;
     line-height: var(--lh);
@@ -689,6 +706,17 @@ body {
     font-style: italic;
     font-size: 15px;
     padding-right: 1rem;
+}
+.desp{
+    max-width: 22rem;
+        line-height: var(--lh);
+        --max-lines: 4;
+        position: relative;
+        max-height: calc(var(--lh) * var(--max-lines));
+        overflow: hidden;
+        font-style: italic;
+        font-size: 15px;
+        padding-right: 1rem;
 }
 
 .descrinfo {
@@ -776,12 +804,32 @@ body {
     text-align: center;
 }
 
+.newep{
+    background-color: rgb(112, 0, 198);
+    color: #ffffff;
+    border-radius: 3px;
+    width: auto;
+    padding: 5px;
+    border: 10px;
+    border-color: #d9f520;
+}
+.reld{
+    display: flex;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+}
 .cover {
     margin-top: 10px;
     margin-bottom: auto;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+}
+.coveriframe {
+display: block;
+ width: 1080px;
+ height: 500px;
 }
 
 .centerimg {}
@@ -812,8 +860,11 @@ body {
 .info {
       display: flex;
 }
-
+.watchinfo {
+    display: flex;
+}
 .data {
+    width: 30%;
     padding: 10px;
 }
 
@@ -829,7 +880,18 @@ body {
     .info {
         display: block;
     }
+        .data {
+            width: auto;
+            padding: 10px;
+        }
 
+    .watchinfo{
+        display:block;
+    }
+    .coveriframe{
+        width: 100%;
+        height: auto;
+    }
     .centerimg {
         text-align: center;
     }

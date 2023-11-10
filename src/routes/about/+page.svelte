@@ -22,9 +22,11 @@
 <br>
 <br>
 <h2 class="center" id="about">About Us</h2>
-<p class="center">Made as a side project</p>
+<h3 class="center">Made By Punchoneman</h3>
 <p class="centerbold">**Disclaimer: We do not store any data on our servers. We only display data that is freely available online from third-party sources. We are not responsible for the accuracy, completeness, or legality of the data displayed on our website.**</p>
 <div class="butshare">
+    <br>
+    <br>
                         <div class="butflex">
                             <h3 class="centershare">Share With Your Friends </h3>
                             <br>

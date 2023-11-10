@@ -30,8 +30,7 @@ const openhome = () =>{
 }
 
 onMount(async()=>{
-    trendingload()
-    recentlyupdatedload()
+    
 })
 </script>
 

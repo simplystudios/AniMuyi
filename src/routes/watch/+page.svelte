@@ -11,9 +11,16 @@
   let responseData = {}; // Initialize a variable to store the response data
   let animeid;
   let epsd = '';
+  let totalep = '';
+  let subdub = '';
+  let desc = '';
+  let release = '';
+  let images = '';
   let search = '';
+  let title = '';
   let epdata = {}
   let episodeid = ''
+  let d = {}
   onMount(async () => {
     let id = window.location.search;
     id = id.replace("?", "");
@@ -40,6 +47,12 @@
     if (res.ok) {
       epdata = await res.json();
       eps = epdata["episodes"];
+      title = epdata.title;
+      images = epdata.image;
+      totalep = epdata.totalEpisodes;
+      release = epdata.releaseDate;
+      subdub = epdata.subOrDub;
+      desc = epdata.description;
       console.log(eps);
       // setcurrentwatch(epdata.title,episodeid)
       currentw = currentlywatching.get();
@@ -73,7 +86,7 @@
 
 			gtag('config', 'G-SDZHWZSFCG');
 		</script>
-	<title>{epdata.title} &bull; episode : {epsd}</title>
+	<title>{title} &bull; episode : {epsd}</title>
 	<html lang="en" />
 </svelte:head>
 
@@ -82,10 +95,28 @@
 <br>
 <br>
 <br>
-<p class="center">
+<div class="watchinfo">
+  <div class="coveriframe">
     <iframe allow="autoplay; fullscreen; picture-in-picture; xr-spatial-tracking; clipboard-write" allowfullscreen class="frame" src={responseData.main} frameborder="0"></iframe>
-</p>
-<div class="ep">
+     <div class="animeinfo">
+    <div class="anime"> 
+      <img src={images} alt="" height="200px">
+      <div class="animed">
+        <h2 style="margin: 0;">{title}</h2> 
+        <div class="reld">
+          <p>{subdub}</p>
+          <p>&bull;</p>
+          <p>{totalep} episodes</p>
+          <p>&bull;</p>
+          <p>{release}</p>
+        </div>
+        <p class="desp">{desc}</p>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="data">
+    <div class="ep">
 
 <div class="epi">
   <br>
@@ -114,8 +145,8 @@
   <h2 class="centerr">Loading episodes...</h2>
 {/if}
 </div>
-<div class="eplist">
+  </div>
+</div>
+</div>
 
-</div>
-</div>
 <Footer/>
