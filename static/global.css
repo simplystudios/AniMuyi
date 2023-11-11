@@ -411,7 +411,7 @@ body {
 }
 
 ::-webkit-scrollbar {
-    width: 0px;
+    width: 3px;
 }
 
 /* Track */
@@ -431,6 +431,22 @@ body {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #d9f520;
+}
+.watchgridshowlist {
+    width: 180px;
+    font-size: 20px;
+    overflow: hidden;
+    text-overflow: clip;
+    cursor: pointer;
+    /* optional: adds ellipsis for hidden text */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding: 10px;
+}
+
+.watchgridshowlist:hover {
+    color: #d9f520;
 }
 
 .gridshowlist {
@@ -454,6 +470,16 @@ body {
     display: grid;
     grid-gap: 0px;
     grid-template-columns: repeat(5, 3fr);
+    margin-top: 10px;
+    border: 1;
+    border-radius: 10px;
+    white-space: nowrap;
+    overflow-x: 10px;
+}
+.relatedanimes {
+    display: grid;
+    grid-gap: 0px;
+    grid-template-columns: repeat(3, 3fr);
     margin-top: 10px;
     border: 1;
     border-radius: 10px;
@@ -532,6 +558,9 @@ body {
     .gridshowlist {
         width: 150px;
     }
+        .watchgridshowlist {
+            width: 150px;
+        }
 
     .menuicon {
         background-color: var(--bcsecond);
@@ -557,6 +586,9 @@ body {
     .recentmembers {
         grid-template-columns: repeat(2, 1fr);
     }
+    .relatedanimes {
+            grid-template-columns: repeat(2, 1fr);
+     }
 
 }
 
@@ -690,11 +722,15 @@ body {
 }
 .anime{
     display: flex;
-    background-color: #221f1f;
+    background-color: #2e2c2c;
     border-radius: 10px;
     border: 1;
     padding: 10px;
+    margin: 5px;
     border-color: #d9f520;
+}
+.anime:hover{
+    cursor: pointer;
 }
 .descr {
     max-width: 22rem;
@@ -711,12 +747,27 @@ body {
     max-width: 22rem;
         line-height: var(--lh);
         --max-lines: 4;
-        position: relative;
+        position: absolute;
         max-height: calc(var(--lh) * var(--max-lines));
         overflow: hidden;
         font-style: italic;
         font-size: 15px;
-        padding-right: 1rem;
+        padding-right: 0;
+}
+.desp::before {
+    position:absolute;
+    content: "...";
+    bottom: 0;
+    right: 0;
+}
+
+.desp::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    width: 0;
+    height: 1rem;
+    background: white;
 }
 
 .descrinfo {
@@ -788,6 +839,17 @@ body {
     .descr {
         display: none;
     }
+    .desp{
+        max-width: 22rem;
+            line-height: var(--lh);
+            --max-lines: 2;
+            position: absolute;
+            max-height: calc(var(--lh) * var(--max-lines));
+            overflow: hidden;
+            font-style: italic;
+            font-size: 10px;
+            padding-right: 0;
+    }
 
     .epi {
         top: 0;
@@ -815,9 +877,10 @@ body {
 }
 .reld{
     display: flex;
-    gap: 10px;
+    gap: 2px;
+    font-size: 12px;
     margin: 0;
-    padding: 0;
+    padding: 5px;
 }
 .cover {
     margin-top: 10px;
@@ -862,9 +925,13 @@ display: block;
 }
 .watchinfo {
     display: flex;
+    margin-bottom: 50%;
+}
+.wdata {
+    width: 30%;
+    padding: 10px;
 }
 .data {
-    width: 30%;
     padding: 10px;
 }
 
@@ -885,6 +952,13 @@ display: block;
             padding: 10px;
         }
 
+        .wdata {
+                    width: auto;
+                    padding: 10px;
+         }
+         .reld{
+            font-size: 10px;
+         }
     .watchinfo{
         display:block;
     }

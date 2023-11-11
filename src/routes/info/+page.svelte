@@ -18,7 +18,6 @@
   onMount(async () => {
     id = window.location.search;
     id = id.replace("?id=", "");
-    console.log(id)
     const resp = await fetch(`https://api-amvstrm.nyt92.eu.org/api/v2/info/${id}`);
     if (resp.ok) {
       data = await resp.json();
@@ -49,14 +48,12 @@
       if(repo.ok){
         repod = await repo.json();
         ep = repod["episodes"];
-        console.log(ep)
       }
       else{
         const repo = await fetch(`https://api.consumet.org/anime/gogoanime/info/${pro.idGogoDub}`)
       if(repo.ok){
         repod = await repo.json();
         ep = repod["episodes"];
-        console.log(ep)
       }
       else{
         console.log("dead")
@@ -107,7 +104,7 @@
 <h2 class="center">Episodes - {repod.totalEpisodes}</h2>
 {#if ep.length > 0}
   {#each ep as episode}
-  <div on:click={() => watchepid(episode.id,pro.idGogo)}  class="eps">
+  <div on:click={() => watchepid(episode.id,id)}  class="eps">
     <h4 class="center">episode : {episode.number}</h4>
   </div>
   {/each}

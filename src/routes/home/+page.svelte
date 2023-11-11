@@ -37,7 +37,6 @@ const searchanime = async() =>{
     const searchr = await fetch(`https://api-amvstrm.nyt92.eu.org/api/v2/search?q=${search}`)
     searchdata = await searchr.json();
     searchdata = searchdata['results'];
-    console.log(searchdata)
     return searchdata
 }
 const searchanimepp = () =>{
