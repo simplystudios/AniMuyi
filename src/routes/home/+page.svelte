@@ -73,7 +73,7 @@ onMount(async()=>{
 
 			gtag('config', 'G-SDZHWZSFCG');
 		</script>
-	<title>Pirate Tokei &bull; Home</title>
+	<title>AniMuyi &bull; Home</title>
 	<html lang="en" />
 </svelte:head>
 
@@ -139,7 +139,7 @@ onMount(async()=>{
                 <br>
 <div class="butshare">
                         <div class="butflex">
-                            <h3 class="centershare">Share PirateTokei Your Friends </h3>
+                            <h3 class="centershare">Share AniMuyi Your Friends </h3>
                             <br>
                             <img src="/chibi.gif" alt="" height="70px">
                         </div>

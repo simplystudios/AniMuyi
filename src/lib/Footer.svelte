@@ -1,7 +1,7 @@
 <footer>
 <div class="foot">
     <div class="">
-        <img href="/" src="/piratetokeirenew.png" alt="" width="200px">
+        <img href="/" src="/animuyi.png" alt="" width="200px">
     </div>
     <div class="right">
         <nav class="nav_links">
@@ -18,8 +18,6 @@
 </footer>
 <style>
     .foot {
-    margin: 10px;
-    margin-top: 10%;
 }
 .center {
     text-align: center;

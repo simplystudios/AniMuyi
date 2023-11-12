@@ -43,7 +43,7 @@ const searchanimepp = () =>{
             </div>
             <div class="header">
                 <div class="logo">
-                        <img class="" src="/piratelogo.png" alt="" height="60px" width="285px">
+                        <img class="" src="/animuyi.png" alt="" height="60px" width="285px">
                 </div>
                 <div id="navpc" class="nav_links">
                     <ul>

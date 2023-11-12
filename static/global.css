@@ -134,7 +134,7 @@ html {
     justify-content: center;
     height: 60px;
     cursor: pointer;
-    margin-left: 15px;
+    margin-left: 25px;
 }
 
 .imgcen {
@@ -177,7 +177,7 @@ a {
 }
 
 footer {
-    background-color: rgb(112, 0, 198);
+    background-color: #221f1f;
 }
 
 .social-icons {
@@ -195,7 +195,6 @@ footer {
     position: relative;
     height: auto;
     background-color: var(--backcolor);
-    padding: 10px;
     justify-content: space-between;
     align-items: center;
 }
@@ -760,6 +759,7 @@ body {
         overflow: hidden;
         font-style: italic;
         font-size: 15px;
+        background-color: #221f1f;
         padding-right: 0;
 }
 .desp::before {

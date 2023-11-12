@@ -52,7 +52,7 @@
         var date = a.getDate();
         var hour = a.getHours();
         var min = a.getMinutes();
-        nextime = date + ' ' + month + ' ' + year + ' ' + hour + ' : ' + min;
+        nextime = date + ' ' + month + ' ' + year + '   ' + hour + ':' + min;
         }
   
       const repo = await fetch(`https://api.consumet.org/anime/gogoanime/info/${pro.idGogo}`)
@@ -82,7 +82,7 @@
 </script>
 
 <svelte:head>
-	<title>Pirate Tokei &bull; {titles.english}</title>
+	<title>AniMuyi &bull; {titles.english}</title>
 	<html lang="en" />
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-SDZHWZSFCG"></script>
 		<script>
