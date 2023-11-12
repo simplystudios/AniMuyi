@@ -118,7 +118,7 @@ onMount(async()=>{
                 
                 
                 <h2 style="margin-left: 2%;">
-                    Trending
+                    <i class="fa-solid fa-arrow-trend-up" style="color: #ffffff;"></i> Trending
                 </h2>
                 <div class="members">
                 {#if data.length > 0}
@@ -146,7 +146,7 @@ onMount(async()=>{
                         <p class="center">It motivates us to keep developing the site and adding more awesome content for you all</p>
                     </div>
                 <h2 style="margin-left: 2%;">
-                    Popular
+                   <i class="fa-solid fa-fire" style="color: #ffffff;"></i> Popular
                 </h2>
                 <div class="recentmembers">
                    {#if recentdata.length > 0}

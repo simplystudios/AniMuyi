@@ -3,10 +3,16 @@
   import Footer from "../../lib/Footer.svelte";
   import { onMount } from "svelte";
   
+  export let color = '';
   let data = {};
   let infonew
   let id = '';
   let repod = {};
+  let stat = '';
+  let subdub = '';
+  let totalep = '';
+  let dura = '';
+  let release = '';
   let ep = [];
   let titles = {};
   let images = {};
@@ -23,8 +29,13 @@
       data = await resp.json();
       titles = data.title;
       images = data.coverImage;
+      color = data.coverImage.color;
       pro = data.id_provider;
       status = data.status;
+      release = data.year;
+      subdub = data.format;
+      dura = data.duration;
+      stat = data.score.decimalScore;
       if(status=="FINISHED"){
         air = "completed"
         dateair = "completed"
@@ -41,13 +52,14 @@
         var date = a.getDate();
         var hour = a.getHours();
         var min = a.getMinutes();
-        nextime = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min;
+        nextime = date + ' ' + month + ' ' + year + ' ' + hour + ' : ' + min;
         }
   
       const repo = await fetch(`https://api.consumet.org/anime/gogoanime/info/${pro.idGogo}`)
       if(repo.ok){
         repod = await repo.json();
         ep = repod["episodes"];
+        totalep = repod.totalEpisodes;
       }
       else{
         const repo = await fetch(`https://api.consumet.org/anime/gogoanime/info/${pro.idGogoDub}`)
@@ -81,36 +93,51 @@
 			gtag('config', 'G-SDZHWZSFCG');
 		</script>
 </svelte:head>
-
 <Header />
 <div class="container">
-  <img src={data.bannerImage} alt="" width="100%" height="">
+  <div class="banner">
+    <img src={data.bannerImage} alt="" width="100%" height="">
+  </div>
   <div>
     <div class="info">
       <div class="cover">
-        <img src={images.large} alt="" height="450px">  
-      </div> 
-      <div class="data">
+          <img style="border-radius: 5px;" src={images.large} alt="" height="auto">  
+        
         <h2 class="title">{titles.english}</h2>
         <h4 class="center">{titles.native}</h4>
-        <div class="newep">
-            <h4 bind:this={infonew} class="center">New Episode {air.episode} on : {nextime}</h4>
+        <div class="ireld">
+          <p style="margin-right: 10px;"><i class="fa-solid fa-closed-captioning" style="color: #ffffff;"></i> {repod.totalEpisodes} </p>
+          <br>
+          <p style="margin-right: 10px;"><i class="fa-solid fa-star" style="color: #ff3d64;"></i> {stat} </p>
+          <br>
+          <p style="margin-right: 10px;"><i class="fa-regular fa-clock" style="color: #ffffff;"></i> {dura}m </p>
+          <br>
+          <p>{release} </p>
+        </div>
+        <div class="newep" style={`background-color:${images.color};`}>
+            <h4 style="color: white;" bind:this={infonew} class="center"><i class="fa-solid fa-certificate" style="color: #ffffff;"></i> New Episode {air.episode} on : {nextime}</h4>
         </div>
         <p class="center">{data.description}</p>
+      </div> 
+      <div class="data">
+        <h2 class="center">Episodes - {repod.totalEpisodes}</h2>
+        {#if ep.length > 0}
+          {#each ep as episode}
+          <div style="--hoverc:{color}" on:click={() => watchepid(episode.id,id)}  class="eps">
+            <h4 class="center">episode : {episode.number}</h4>
+          </div>
+          {/each}
+        {:else}
+          <h2 class="center">Loading episodes...</h2>
+        {/if}
     </div>
 </div>
 </div>
 </div>
-<h2 class="center">Episodes - {repod.totalEpisodes}</h2>
-{#if ep.length > 0}
-  {#each ep as episode}
-  <div on:click={() => watchepid(episode.id,id)}  class="eps">
-    <h4 class="center">episode : {episode.number}</h4>
-  </div>
-  {/each}
-{:else}
-  <h2 class="center">Loading episodes...</h2>
-{/if}
-
 <Footer />
    
+<style>
+  eps:hover{
+    background-color: var(--hoverc) ;
+  }
+</style>

@@ -636,7 +636,7 @@ body {
 }
 
 .eps:hover {
-    background-color: rgb(112, 0, 198);
+    background-color:var(--hoverc);
     color: white;
 }
 
@@ -669,6 +669,14 @@ body {
 .container {
     position:relative;
     border-radius: 5px;
+}
+
+.banner{
+    opacity: 0.4;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
 }
 
 .bottomleft {
@@ -882,12 +890,22 @@ body {
     margin: 0;
     padding: 5px;
 }
+.ireld {
+    display: flex;
+    gap: 2px;
+    font-size: 18px;
+    justify-content: center;
+    margin: 0;
+    padding: 10px;
+}
 .cover {
-    margin-top: 10px;
-    margin-bottom: auto;
+    z-index: 9;
+    width: 50%;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: auto;
+    margin-top: 100px;
 }
 .coveriframe {
 display: block;
@@ -907,7 +925,7 @@ display: block;
 }
 
 .eps:hover {
-    background-color: rgb(112, 0, 198);
+    background-color: var(--hoverc);
     color: white;
 }
 
@@ -921,7 +939,9 @@ display: block;
 }
 
 .info {
+    background-color: var(--hoverc);
       display: flex;
+
 }
 .watchinfo {
     display: flex;
@@ -931,7 +951,11 @@ display: block;
     width: 30%;
     padding: 10px;
 }
+
 .data {
+    z-index: 9;
+    margin-top: 260px;
+    width: 70%;
     padding: 10px;
 }
 
@@ -965,6 +989,13 @@ display: block;
     .coveriframe{
         width: 100%;
         height: auto;
+    }
+    .cover{
+        margin-top: 0;
+        width: 100%;
+    }
+    .banner{
+        position: relative;
     }
     .centerimg {
         text-align: center;

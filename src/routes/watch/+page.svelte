@@ -11,18 +11,18 @@
   // export let currentw = currentlywatching.get(); // This will log the data stored in 'myDataKey' in localStorage, or the initial value if not found.
   let responseData = {}; // Initialize a variable to store the response data
   let animeid;
-  let dura = '';
   let epsd = '';
-  let totalep = '';
   let animecolor = '';
   let epd = {}
   let related = {};
   let searchep = '';
   let stat = '';
   let subdub = '';
+  let totalep = '';
+  let dura = '';
+  let release = '';
   let gogo = {};
   let desc = '';
-  let release = '';
   let images = '';
   let search = '';
   let title = '';
@@ -67,10 +67,10 @@
       totalep = epdata.episodes;
       release = epdata.year;
       subdub = epdata.format;
-      gogo = epdata.id_provider;
-      desc = epdata.description;
       dura = epdata.duration;
       stat = epdata.score.decimalScore;
+      gogo = epdata.id_provider;
+      desc = epdata.description;
       // console.log(eps);
       let epres = await fetch(`https://api.consumet.org/anime/gogoanime/info/${gogo.idGogo}`);
     if(epres.ok){
