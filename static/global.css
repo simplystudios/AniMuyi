@@ -280,7 +280,7 @@ footer {
 
 /* homepage css */
 :root {
-    --bcsecond: rgb(112, 0, 198);
+    --bcsecond: #51afe4;
     --backgrd: rgb(37, 39, 38);
 }
 
@@ -759,7 +759,6 @@ body {
         overflow: hidden;
         font-style: italic;
         font-size: 15px;
-        background-color: #221f1f;
         padding-right: 0;
 }
 .desp::before {
@@ -858,7 +857,6 @@ body {
             font-size: 10px;
             padding-right: 0;
     }
-
     .epi {
         top: 0;
         margin-left: 10px;
