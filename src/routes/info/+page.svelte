@@ -39,7 +39,7 @@
 }
 
     let resp = await fetch(`https://api.amvstr.me/api/v2/info/${id}`);
-    if (resp.length>0) {
+    if (resp.ok) {
       data = await resp.json();
       titles = data.title;
       images = data.coverImage;
