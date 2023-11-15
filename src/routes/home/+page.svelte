@@ -57,7 +57,7 @@ onMount(async()=>{
     loop: true, // Enable loop
   });
     register();
-    const response = await fetch('https://paahe.vercel.app/home');
+    const response = await fetch('https://pahe.up.railway.app/home');
     data = await response.json();
     recentdata = data['popular'];
     data = data['trending'];

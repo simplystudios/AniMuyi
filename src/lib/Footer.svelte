@@ -1,7 +1,7 @@
 <footer>
 <div class="foot">
     <div class="">
-        <img href="/" src="/animuyi.png" alt="" width="200px">
+        <img loading="lazy" href="/" src="/animuyi.png" alt="" width="200px">
     </div>
     <div class="right">
         <nav class="nav_links">

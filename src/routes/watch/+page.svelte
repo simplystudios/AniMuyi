@@ -131,7 +131,7 @@
     <iframe allow="autoplay; fullscreen; picture-in-picture; xr-spatial-tracking; clipboard-write" allowfullscreen class="frame" src={responseData.main} frameborder="0"></iframe>
     <div class="animeinfo">
     <div class="anime" on:click={() => infopg(animeid)}>
-      <img src={images} alt="" style="border: 1; border-radius: 3px;" height="200px">
+      <img loading="lazy" src={images} alt="" style="border: 1; border-radius: 3px;" height="200px">
       <div class="animed">
         <h2 style="margin: 0;">{title} </h2> 
         <div class="reld">
@@ -154,7 +154,7 @@
                    {#if related.length > 0}
                     {#each related as item}
                             <div on:click={() => getid(item.id)} id="animeitem" class="watchgridshowlist">
-                                <img class="gridimgshow" src={item.coverImage.large} alt="" width="100px">
+                                <img loading="lazy" class="gridimgshow" src={item.coverImage.large} alt="" width="100px">
                                 <p class="center">{item.title.userPreferred}</p>
                         </div>
                     {/each}
@@ -174,7 +174,7 @@
                         <div class="butflex">
                             <h3 class="centershare">Share PirateTokei With Your Friends </h3>
                             <br>
-                            <img src="/chibi.gif" alt="" height="70px">
+                            <img loading="lazy" src="/chibi.gif" alt="" height="70px">
                         </div>
                         <p class="center">It motivates us to keep developing the site and adding more awesome content for you all</p>
                     </div>
@@ -185,8 +185,7 @@
       <input bind:value={searchep} on:input={() => sortbyname()} class="bar" type="text" placeholder="Jump to an Episode...">
       
     </div>
-    <br>
-    {#if eps.length > 0}
+      {#if eps.length > 0}
     {#each eps as episode}
       <div class="eps" on:click={() => watchepid(episode.id,epdata.id)}>
         <h4 class="centerr">episode : {episode.number}</h4>
@@ -195,6 +194,7 @@
 {:else}
   <h2 class="centerr">Loading episodes...</h2>
 {/if}
+    <br>
 </div>
   </div>
 </div>

@@ -57,7 +57,7 @@ onMount(async()=>{
     <br>
             <div class="main">
                 <p class="center">
-                     <img class="toptext" src="/animuyi.png" alt="" width="330px">
+                     <img loading="lazy" class="toptext" src="/animuyi.png" alt="" width="330px">
                 </p>
                
                 <div class="searchbarmain">
@@ -70,7 +70,7 @@ onMount(async()=>{
                     {#each searchdata as searchitem }
                         <div on:click={() => getid(searchitem.id)}>
                             <div class="resultlist">
-                                <img class="imgres" src={searchitem.coverImage.medium} alt="" width="100px">
+                                <img loading="lazy" class="imgres" src={searchitem.coverImage.medium} alt="" width="100px">
                                 <div class="datali">
                                     <h4 class="datalitxt">{searchitem.title.english}</h4>
                                     <h5>Episodes : {searchitem.episodes}</h5>
@@ -95,7 +95,7 @@ onMount(async()=>{
                         <div class="butflex">
                             <h3 class="centershare">Share With Your Friends </h3>
                             <br>
-                            <img src="/chibi.gif" alt="" height="70px">
+                            <img loading="lazy" src="/chibi.gif" alt="" height="70px">
                         </div>
                         <p class="center">It motivates us to keep developing the site and adding more awesome content for you all</p>
                     </div>

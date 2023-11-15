@@ -810,6 +810,17 @@ body {
     bottom: 0;
     right: 0;
 }
+.lazyblur{
+    background-position: center;
+    background-size: cover;
+    margin-left: auto;
+    border-radius: 5px;
+    height: 100px; ;
+    margin-right: auto;
+}
+.lazyblur {
+
+}
 
 .descrinfo::after {
     content: "";
@@ -823,8 +834,8 @@ body {
 .imgslide {
     width: 100%;
     height: 500px;
-    object-fit: cover;
-    background-color: #2e2c2c;
+    object-fit:cover;
+    background-color: #221f1f;
     opacity: 0.39;
 }
 
@@ -948,13 +959,19 @@ display: block;
 .wdata {
     width: 30%;
     padding: 10px;
+    overflow: auto;
+    max-height: 1000px;
 }
 
 .data {
+  width: 100%;
+  max-height: 1000px;
+  overflow:auto;
+  gap: .4rem;
+  padding: 1px;
     z-index: 9;
     margin-top: 260px;
     width: 70%;
-    padding: 10px;
 }
 
 .datali {
@@ -971,7 +988,7 @@ display: block;
     }
         .data {
             width: auto;
-            padding: 10px;
+            margin-top: 0px;
         }
 
         .wdata {

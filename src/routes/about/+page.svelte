@@ -23,7 +23,7 @@
 <br>
 <h1 class="center" id="about">About Us</h1>
 <p class="center">
-    <img src="/animuyi.png" alt="" width="300px">
+    <img loading="lazy" src="/animuyi.png" alt="" width="300px">
 </p>
 <p class="centerbold">**Disclaimer: We do not store any data on our servers. We only display data that is freely available online from third-party sources. We are not responsible for the accuracy, completeness, or legality of the data displayed on our website.**</p>
                 <div class="content">
@@ -42,7 +42,7 @@
                         <div class="butflex">
                             <h3 class="centershare">Share With Your Friends </h3>
                             <br>
-                            <img src="/chibi.gif" alt="" height="70px">
+                            <img loading="lazy" src="/chibi.gif" alt="" height="70px">
                         </div>
                         <p class="center">It motivates us to keep developing the site and adding more awesome content for you all</p>
                     </div>

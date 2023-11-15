@@ -19,11 +19,28 @@
   let pro = {};
   let air = {};
   let nextime = '';
+  let rdata = {};
+  let ranimes = [];
   let dateair = '';
+  let getid;
   let status = '';
   onMount(async () => {
     id = window.location.search;
     id = id.replace("?id=", "");
+
+    getid = (id) =>{
+    window.open(`/info?id=${id}`,"_self")
+}
+
+    const relatedanimes = await fetch(`https://api.jikan.moe/v4/anime/${id}/recommendations`)
+    if (relatedanimes.ok){
+      rdata = await relatedanimes.json();
+      ranimes = rdata['data'];
+      console.log(ranimes,rdata)
+    }
+    else{
+      console.log("failed to load related animes")
+    }
     const resp = await fetch(`https://api-amvstrm.nyt92.eu.org/api/v2/info/${id}`);
     if (resp.ok) {
       data = await resp.json();
@@ -96,12 +113,12 @@
 <Header />
 <div class="container">
   <div class="banner">
-    <img src={data.bannerImage} alt="" width="100%" height="">
+    <img loading="lazy" src={data.bannerImage} alt="" width="100%" height="">
   </div>
   <div>
     <div class="info">
       <div class="cover">
-          <img style="border-radius: 5px;" src={images.large} alt="" height="auto">  
+          <img loading="lazy" style="border-radius: 5px;" src={images.large} alt="" height="auto">  
         
         <h2 class="title">{titles.english}</h2>
         <h4 class="center">{titles.native}</h4>
@@ -133,6 +150,21 @@
     </div>
 </div>
 </div>
+<div class="relations">
+      <h2>For You</h2>
+      <div class="relatedanimes">
+                   {#if ranimes.length > 0}
+                    {#each ranimes as item}
+                            <div on:click={() => getid(item.entry.mal_id)} id="animeitem" class="watchgridshowlist">
+                                <img loading="lazy" class="gridimgshow" src={item.entry.images.webp.image_url} alt="" width="100px">
+                                <p class="center">{item.entry.title}</p>
+                        </div>
+                    {/each}
+                    {:else}
+                    <h2 class="center">Loading Related Animes/Mangas...</h2>
+                {/if}
+                </div>
+    </div>
 </div>
 <Footer />
    

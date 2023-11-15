@@ -43,7 +43,7 @@ const searchanimepp = () =>{
             </div>
             <div class="header">
                 <div class="logo">
-                        <img class="" src="/animuyi.png" alt="" height="60px" width="285px">
+                        <img loading="lazy" class="" src="/animuyi.png" alt="" height="60px" width="285px">
                 </div>
                 <div id="navpc" class="nav_links">
                     <ul>
@@ -82,7 +82,7 @@ const searchanimepp = () =>{
                     {#each searchdata as searchitem }
                         <div on:click={() => getid(searchitem.id)}>
                             <div class="resultlist">
-                                <img class="imgres" src={searchitem.coverImage.medium} alt="" width="100px">
+                                <img loading="lazy" class="imgres" src={searchitem.coverImage.medium} alt="" width="100px">
                                 <div class="datali">
                                     <h4 class="datalitxt">{searchitem.title.userPreferred}</h4>
                                     <h5>Episodes : {searchitem.episodes}</h5>
