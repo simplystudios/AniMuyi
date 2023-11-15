@@ -102,22 +102,7 @@
         }
       }
     else{
-      resp = await fetch(`https://api.jikan.moe/v4/anime/${id}`)
-      data = await resp.json();
-      data = data['data'];
-      titles = data.title;
-      title_eng = data.title;
-      title_nav = data.title_japanese;
-      img_large = data.images.webp.image_url;
-      color = 'rgb(112, 0, 198)';
-      pro = data.id_provider;
-      malid = data.mal_id;
-      status = data.status;
-      release = data.year;
-      subdub = data.type;
-      dura = data.duration;
-      desc = data.synopsis;
-      stat = data.score;
+      console.log("error")
     }
   });
   const watchepid = (epid,id) =>{
