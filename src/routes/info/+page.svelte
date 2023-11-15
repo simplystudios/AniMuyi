@@ -3,15 +3,21 @@
   import Footer from "../../lib/Footer.svelte";
   import { onMount } from "svelte";
   
-  export let color = '';
+  let color = '';
   let data = {};
   let infonew
   let id = '';
+  let stylefordiv = 'display:block;'
   let repod = {};
+  let img_large = '';
+  let desc = '';
+  let malid = '';
   let stat = '';
   let subdub = '';
   let totalep = '';
   let dura = '';
+  let title_eng = '';
+  let title_nav = '';
   let release = '';
   let ep = [];
   let titles = {};
@@ -32,23 +38,19 @@
     window.open(`/info?id=${id}`,"_self")
 }
 
-    const relatedanimes = await fetch(`https://api.jikan.moe/v4/anime/${id}/recommendations`)
-    if (relatedanimes.ok){
-      rdata = await relatedanimes.json();
-      ranimes = rdata['data'];
-      console.log(ranimes,rdata)
-    }
-    else{
-      console.log("failed to load related animes")
-    }
-    const resp = await fetch(`https://api-amvstrm.nyt92.eu.org/api/v2/info/${id}`);
-    if (resp.ok) {
+    let resp = await fetch(`https://api.amvstr.me/api/v2/info/${id}`);
+    if (resp.length>0) {
       data = await resp.json();
       titles = data.title;
       images = data.coverImage;
       color = data.coverImage.color;
       pro = data.id_provider;
+      malid = data.idMal
       status = data.status;
+      title_eng = data.title.english;
+      desc = data.description;
+      title_nav = data.title.native;
+      img_large = data.coverImage.large;
       release = data.year;
       subdub = data.format;
       dura = data.duration;
@@ -71,26 +73,51 @@
         var min = a.getMinutes();
         nextime = date + ' ' + month + ' ' + year + '   ' + hour + ':' + min;
         }
-  
-      const repo = await fetch(`https://api.consumet.org/anime/gogoanime/info/${pro.idGogo}`)
-      if(repo.ok){
-        repod = await repo.json();
-        ep = repod["episodes"];
-        totalep = repod.totalEpisodes;
+        let relatedanimes = await fetch(`https://api.jikan.moe/v4/anime/${malid}/recommendations`)
+        if (!relatedanimes.length==0){
+          stylefordiv = 'display:none;'
+        }
+        else{
+          stylefordiv = 'display:block;'
+          rdata = await relatedanimes.json();
+          ranimes = rdata['data'];
+          console.log(ranimes,rdata)
+        }
+
+        const repo = await fetch(`https://api.amvstr.me/api/v2/episode/${id}`)
+        if(repo.ok){
+          repod = await repo.json();
+          ep = repod["episodes"];
+          totalep = ep.length;
+        }
+        else{
+          const repo = await fetch(`https://api.consumet.org/anime/gogoanime/info/${pro.idGogo}`)
+          if(repo.ok){
+            repod = await repo.json();
+            ep = repod["episodes"];
+          }
+          else{
+            console.log("not able to find episodes")
+          }
+        }
       }
-      else{
-        const repo = await fetch(`https://api.consumet.org/anime/gogoanime/info/${pro.idGogoDub}`)
-      if(repo.ok){
-        repod = await repo.json();
-        ep = repod["episodes"];
-      }
-      else{
-        console.log("dead")
-      }
-    }
-  }
     else{
-      console.log("failed to fetch data")
+      resp = await fetch(`https://api.jikan.moe/v4/anime/${id}`)
+      data = await resp.json();
+      data = data['data'];
+      titles = data.title;
+      title_eng = data.title;
+      title_nav = data.title_japanese;
+      img_large = data.images.webp.image_url;
+      color = 'rgb(112, 0, 198)';
+      pro = data.id_provider;
+      malid = data.mal_id;
+      status = data.status;
+      release = data.year;
+      subdub = data.type;
+      dura = data.duration;
+      desc = data.synopsis;
+      stat = data.score;
     }
   });
   const watchepid = (epid,id) =>{
@@ -99,7 +126,7 @@
 </script>
 
 <svelte:head>
-	<title>AniMuyi &bull; {titles.english}</title>
+	<title>AniMuyi &bull; {title_eng}</title>
 	<html lang="en" />
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-SDZHWZSFCG"></script>
 		<script>
@@ -118,12 +145,12 @@
   <div>
     <div class="info">
       <div class="cover">
-          <img loading="lazy" style="border-radius: 5px;" src={images.large} alt="" height="auto">  
+          <img loading="lazy" style="border-radius: 5px;" src={img_large} alt="" height="auto">  
         
-        <h2 class="title">{titles.english}</h2>
-        <h4 class="center">{titles.native}</h4>
+        <h2 class="title">{title_eng}</h2>
+        <h4 class="center">{title_nav}</h4>
         <div class="ireld">
-          <p style="margin-right: 10px;"><i class="fa-solid fa-closed-captioning" style="color: #ffffff;"></i> {repod.totalEpisodes} </p>
+          <p style="margin-right: 10px;"><i class="fa-solid fa-closed-captioning" style="color: #ffffff;"></i> {totalep} </p>
           <br>
           <p style="margin-right: 10px;"><i class="fa-solid fa-star" style="color: #ff3d64;"></i> {stat} </p>
           <br>
@@ -131,13 +158,13 @@
           <br>
           <p>{release} </p>
         </div>
-        <div class="newep" style={`background-color:${images.color};`}>
+        <div class="newep" style={`background-color:${color};`}>
             <h4 style="color: white;" bind:this={infonew} class="center"><i class="fa-solid fa-certificate" style="color: #ffffff;"></i> New Episode {air.episode} on : {nextime}</h4>
         </div>
-        <p class="center">{data.description}</p>
+        <p class="center">{desc}</p>
       </div> 
       <div class="data">
-        <h2 class="center">Episodes - {repod.totalEpisodes}</h2>
+        <h2 class="center">Episodes - {totalep}</h2>
         {#if ep.length > 0}
           {#each ep as episode}
           <div style="--hoverc:{color}" on:click={() => watchepid(episode.id,id)}  class="eps">
@@ -150,7 +177,7 @@
     </div>
 </div>
 </div>
-<div class="relations">
+<div style={stylefordiv}>
       <h2>For You</h2>
       <div class="relatedanimes">
                    {#if ranimes.length > 0}
@@ -163,9 +190,9 @@
                     {:else}
                     <h2 class="center">Loading Related Animes/Mangas...</h2>
                 {/if}
-                </div>
-    </div>
-</div>
+              </div>
+        </div>
+  </div>
 <Footer />
    
 <style>

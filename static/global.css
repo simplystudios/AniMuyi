@@ -24,6 +24,9 @@ html {
     padding: 0px;
     margin:0px;
 }
+.mains{
+    margin-bottom: 20%;
+}
 
 .showlist {
     padding: 10px;
@@ -626,7 +629,10 @@ body {
 }
 
 .eps {
+    display: flex;
     padding: 1px;
+    align-items: center;
+    justify-content: center;
     margin: 10px;
     background-color: rgb(46, 46, 46);
     border: 1;

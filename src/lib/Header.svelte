@@ -18,6 +18,9 @@ function openmenu(){
 const getid = (id) =>{
     window.open(`/info?id=${id}`,"_self")
 }
+const opensearch = () =>{
+    window.open('/search', '_self')
+}
 const searchanime = async() =>{
     const searchr = await fetch(`https://api-amvstrm.nyt92.eu.org/api/v2/search?q=${search}`)
     searchdata = await searchr.json();
@@ -65,11 +68,12 @@ const searchanimepp = () =>{
                     <li><a href="/home">Top</a></li>
                     <li><a href="/about">About</a></li>
                 </ul>
-                 <div class="searchbarmob">
-                    <i class="fa-solid fa-magnifying-glass" style="font-size: 5px; color: #ffffff;"></i>
-                    <input class="bar" on:change={searchanimepp} type="text" bind:value={search} placeholder="Search Anime"> 
-                </div>
+                 <button class="buthome" on:click={() => opensearch()}>
+                    Search
+                </button>
+                <br>
             </div>
+            <br>
     </div>
 <div style={stylesfordiv} id="results">
                         <br>

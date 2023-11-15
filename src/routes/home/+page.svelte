@@ -57,7 +57,7 @@ onMount(async()=>{
     loop: true, // Enable loop
   });
     register();
-    const response = await fetch('https://pahe.up.railway.app/home');
+    const response = await fetch('https://api.anify.tv/seasonal/anime?fields=[title,bannerImage,coverImage,id,duration,totalEpisodes,description,averageRating,year]&page=1&perPage=1');
     data = await response.json();
     recentdata = data['popular'];
     data = data['trending'];
