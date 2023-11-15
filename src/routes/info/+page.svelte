@@ -45,7 +45,7 @@
       images = data.coverImage;
       color = data.coverImage.color;
       pro = data.id_provider;
-      malid = data.idMal
+      malid = data.idMal;
       status = data.status;
       title_eng = data.title.english;
       desc = data.description;
