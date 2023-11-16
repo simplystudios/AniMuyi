@@ -21,12 +21,16 @@
   let totalep = '';
   let dura = '';
   let release = '';
+  let malid = '';
+  let ranimes = [];
+  let rdata = {};
   let gogo = {};
   let desc = '';
   let images = '';
   let search = '';
   let title = '';
   let epdata = {}
+  let stylefordiv = 'display:block;'
   let episodeid = ''
   let d = {}
 
@@ -67,6 +71,7 @@
       totalep = epdata.episodes;
       release = epdata.year;
       subdub = epdata.format;
+      malid = epdata.idMal;
       dura = epdata.duration;
       stat = epdata.score.decimalScore;
       gogo = epdata.id_provider;
@@ -89,6 +94,17 @@
     } else {
       console.error("Failed to fetch data");
     }
+    let relatedanimes = await fetch(`https://api.jikan.moe/v4/anime/${malid}/recommendations`)
+        if (relatedanimes.ok){
+          stylefordiv = 'display:block;'
+          rdata = await relatedanimes.json();
+          ranimes = rdata['data'];
+          console.log(ranimes,rdata)
+        }
+        else{
+          stylefordiv = 'display:none;'
+        }
+          
   });
 
   const watchepid = (epid,id) =>{
@@ -148,21 +164,21 @@
         <p class="desp">{desc}</p>
       </div>
     </div>
-    <div class="relations">
-      <h2>Related Animes And Manga</h2>
+    <div style={stylefordiv}>
+      <h2>For You</h2>
       <div class="relatedanimes">
-                   {#if related.length > 0}
-                    {#each related as item}
-                            <div on:click={() => getid(item.id)} id="animeitem" class="watchgridshowlist">
-                                <img loading="lazy" class="gridimgshow" src={item.coverImage.large} alt="" width="100px">
-                                <p class="center">{item.title.userPreferred}</p>
+                   {#if ranimes.length > 0}
+                    {#each ranimes as item}
+                            <div on:click={() => getid(item.entry.mal_id)} id="animeitem" class="watchgridshowlist">
+                                <img loading="lazy" class="gridimgshow" src={item.entry.images.webp.image_url} alt="" width="100px">
+                                <p class="center">{item.entry.title}</p>
                         </div>
                     {/each}
                     {:else}
                     <h2 class="center">Loading Related Animes/Mangas...</h2>
                 {/if}
-                </div>
-    </div>
+              </div>
+      </div>
   </div>
   </div>
   <div class="wdata">
@@ -201,3 +217,7 @@
 </div>
 
 <Footer/>
+
+
+
+

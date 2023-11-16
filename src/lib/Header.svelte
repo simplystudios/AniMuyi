@@ -39,7 +39,6 @@ const searchanimepp = () =>{
 }
 
 </script>
-
 <div class="head">
     <div class="menuicon">
                 <i on:click={openmenu} id="menubut" class="fa-solid fa-bars fa-xl" style=" margin-top: 10px; color: #ffffff;"></i>
@@ -100,4 +99,3 @@ const searchanimepp = () =>{
                     {/if}
                     
                 </div>
-

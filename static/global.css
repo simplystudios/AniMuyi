@@ -336,6 +336,8 @@ footer {
     width: 300px;
     justify-content: center;
     align-items: center;
+    align-self: center;
+    justify-self: center;
     margin-right: 10px;
     height: 20px;
     border-radius: 5px;
@@ -1095,7 +1097,7 @@ ul {
 .head {
     z-index: 1000;
     width: 100%;
-    height: 150px;
+    height: 150px;;
     align-items: center;
     position: fixed;
     background-color: var(--bctext);
