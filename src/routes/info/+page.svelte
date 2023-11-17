@@ -11,6 +11,7 @@
   let repod = {};
   let img_large = '';
   let searchep = '';
+  let loadingtxt = 'Loading...';
   let desc = '';
   let malid = '';
   let stat = '';
@@ -39,43 +40,76 @@
     window.open(`/info?id=${id}`,"_self")
 }
 
-    let resp = await fetch(`https://api.amvstr.me/api/v2/info/${id}`);
+    let resp = await fetch(`https://api.anify.tv/info/${id}`);
     if (resp.ok) {
       data = await resp.json();
       titles = data.title;
       images = data.coverImage;
-      color = data.coverImage.color;
-      pro = data.id_provider;
-      malid = data.idMal;
+      color = data.color;
+      let maltemp = await fetch(`https://api-amvstrm.nyt92.eu.org/api/v2/info/${id}`);
+      let mald = await maltemp.json()
+      malid = mald.idMal;
+
       status = data.status;
       title_eng = data.title.english;
       desc = data.description;
       title_nav = data.title.native;
-      img_large = data.coverImage.large;
+      img_large = data.coverImage;
       release = data.year;
       subdub = data.format;
+      totalep = data.totalEpisodes;
       dura = data.duration;
-      stat = data.score.decimalScore;
+      let episodesd = data.episodes.data;
+      episodesd = episodesd.filter((episode) => episode.providerId === "gogoanime");
+
+// Assuming episodesd is an array of objects with an 'episodes' property
+if(episodesd.length>0){
+  ep = episodesd.map((episode) => episode.episodes).flat();
+  console.log(ep);
+}
+else{
+          const repo = await fetch(`https://api.amvstr.me/api/v2/episode/${id}`)
+          if(repo.ok){
+            repod = await repo.json();
+            ep = repod['episodes'];
+          }
+          else{
+            loadingtxt = "No Episodes For This Anime..."
+          }
+        }
+      stat = data.averageRating;
       if(status=="FINISHED"){
         air = "completed"
         dateair = "completed"
         infonew.innerHTML = "Status : Completed"
       }
       else{
-        air = data.nextair;
-        dateair = air.airingAt;
+        air = data.episodes.latest;
+        dateair = air.updatedAt;
         let unixTimestamp = dateair;
         var a = new Date(unixTimestamp * 1000);
+        var hour = a.getHours();
+        var min = a.getMinutes();
         var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        var ampm = hour >= 12 ? 'pm' : 'am';
         var year = a.getFullYear();
         var month = months[a.getMonth()];
         var date = a.getDate();
-        var hour = a.getHours();
-        var min = a.getMinutes();
-        nextime = date + ' ' + month + ' ' + year + '   ' + hour + ':' + min;
+        nextime = date + ' ' + month + ' ' + hour + ':' + min + ' ' +ampm;
         }
-        let relatedanimes = await fetch(`https://api.jikan.moe/v4/anime/${malid}/recommendations`)
-        if (!relatedanimes.length==0){
+
+        // const repo = await fetch(`https://api.anify.tv/episodes/${id}`)
+        // if(repo.ok){
+        //   repod = await repo.json();
+        //   console.log(repod)
+        //   ep = repod[0].episodes;
+        // }
+      }
+    else{
+      console.log("error")
+    }
+    let relatedanimes = await fetch(`https://api.jikan.moe/v4/anime/${malid}/recommendations`)
+        if (!relatedanimes.ok){
           stylefordiv = 'display:none;'
         }
         else{
@@ -84,29 +118,21 @@
           ranimes = rdata['data'];
           console.log(ranimes,rdata)
         }
-
-        const repo = await fetch(`https://api.amvstr.me/api/v2/episode/${id}`)
-        if(repo.ok){
-          repod = await repo.json();
-          ep = repod["episodes"];
-          totalep = ep.length;
-        }
-        else{
-          const repo = await fetch(`https://api.consumet.org/anime/gogoanime/info/${pro.idGogo}`)
-          if(repo.ok){
-            repod = await repo.json();
-            ep = repod["episodes"];
-          }
-          else{
-            console.log("not able to find episodes")
-          }
-        }
-      }
-    else{
-      console.log("error")
-    }
+        
   });
+  function sortbyname() {
+    const searchTerm = parseInt(searchep);
+    console.log(searchTerm)
+    let epn = ep;
+    ep = epn.filter((a)=>{
+      return a<searchTerm;
+    })
+    console.log(ep);
+
+
+  }
   const watchepid = (epid,id) =>{
+    epid = epid.replace("/","")
     window.open(`/watch?${epid}&${id}`,"_self")
   }
 </script>
@@ -126,12 +152,12 @@
 <Header />
 <div class="container">
   <div class="banner">
-    <img loading="lazy" src={data.bannerImage} alt="" width="100%" height="">
+    <img class="bannerimg" loading="lazy" src={data.bannerImage} alt="" width="100%" height="100%">
   </div>
   <div>
     <div class="info">
       <div class="cover">
-          <img loading="lazy" style="border-radius: 5px;" src={img_large} alt="" height="auto">  
+          <img loading="lazy" style="border-radius: 5px;" src={img_large} alt="" height="280px">  
         
         <h2 class="title">{title_eng}</h2>
         <h4 class="center">{title_nav}</h4>
@@ -145,12 +171,18 @@
           <p>{release} </p>
         </div>
         <div class="newep" style={`background-color:${color};`}>
-            <h4 style="color: white;" bind:this={infonew} class="center"><i class="fa-solid fa-certificate" style="color: #ffffff;"></i> New Episode {air.episode} on : {nextime}</h4>
+            <h4 style="color: white;" bind:this={infonew} class="center"><i class="fa-solid fa-certificate" style="color: #ffffff;"></i> New Episode {air.latestEpisode} on : {nextime}</h4>
         </div>
         <p class="center">{desc}</p>
       </div> 
       <div class="data">
         <h2 class="center">Episodes - {totalep}</h2>
+        <br>
+        <div style="margin-left:auto; margin-right:auto; width: 30rem;" class="searchbar">
+          <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+          <input bind:value={searchep} on:input={() => sortbyname()} class="bar" type="text" placeholder="Jump to an Episode...">
+        </div>
+        <br>
         {#if ep.length > 0}
           {#each ep as episode}
           <div style="--hoverc:{color}" on:click={() => watchepid(episode.id,id)}  class="eps">
@@ -158,7 +190,7 @@
           </div>
           {/each}
         {:else}
-          <h2 class="center">Loading episodes...</h2>
+          <h2 class="center">{loadingtxt}</h2>
         {/if}
     </div>
 </div>

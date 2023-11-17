@@ -3,6 +3,8 @@
     import Footer from "../lib/Footer.svelte";
     import { onMount } from "svelte";
     let search = '';
+    let rep;
+    let stats = {};
     let searchdata = [];
     let stylesfordiv = 'display: none; margin-left: auto; margin-right: auto; background-color: #2d2a2a; border-radius: 5px; padding: 10px; margin: 10px;';
 
@@ -16,6 +18,7 @@ const searchanime = async() =>{
     console.log(searchdata)
     return searchdata
 }
+
 const searchanimepp = () =>{
     if (search.length>0){
         searchanime()
@@ -30,7 +33,8 @@ const openhome = () =>{
 }
 
 onMount(async()=>{
-    
+    rep = await fetch('https://api.anify.tv/stats');
+    stats = await rep.json();
 })
 </script>
 
@@ -49,16 +53,15 @@ onMount(async()=>{
 
 <div class="back">
     <Header/>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
             <div class="main">
-                <p class="center">
+                <div class="s">
+                    <br>
+                    <br>
+                    <p class="center">
                      <img loading="lazy" class="toptext" src="/animuyi.png" alt="" width="330px">
                 </p>
+                <blockquote style="text-align:center;  font-style: italic;">"Animuyi Has More Than {stats.anime} Animes..."</blockquote>
+                <br>
                
                 <div class="searchbarmain">
                     <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
@@ -90,7 +93,7 @@ onMount(async()=>{
                 <br>
                 <br>
                 <br>
-
+                
                     <div class="butshare">
                         <div class="butflex">
                             <h3 class="centershare">Share With Your Friends </h3>
@@ -99,6 +102,7 @@ onMount(async()=>{
                         </div>
                         <p class="center">It motivates us to keep developing the site and adding more awesome content for you all</p>
                     </div>
+                </div>
                 <div class="content">
                     <br>
                     <h2 class="center">What is AniMuyi and what does it offer?</h2>

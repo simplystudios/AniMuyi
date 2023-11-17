@@ -1,6 +1,6 @@
 :root {
     --bcsecond: #d9f520;
-    --backgrd: rgb(0, 0, 0);
+    --backgrd: #221f1f;
     --lh: 1.4rem;
 }
 
@@ -23,6 +23,17 @@ html {
 .main {
     padding: 0px;
     margin:0px;
+}
+.s{
+    padding: 20px;
+    background:linear-gradient(to bottom, transparent, #221f1f), url("animebackbw.png") rgb(15, 15, 15) 50% / cover no-repeat;
+    background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: top;
+        /*background-attachment: fixed;*/
+        backdrop-filter: blur(3px);
+        background-color: #000;
 }
 .mains{
     margin-bottom: 20%;
@@ -130,7 +141,9 @@ html {
     background-color: var(--bcsecond);
 }
 
-.toptext {}
+.toptext {
+    width: 300px;
+}
 
 .logo {
     display: flex;
@@ -284,7 +297,7 @@ footer {
 /* homepage css */
 :root {
     --bcsecond: #51afe4;
-    --backgrd: rgb(37, 39, 38);
+    --backgrd: #221f1f;
 }
 
 .title {
@@ -396,15 +409,19 @@ body {
 }
 
 .imgshow {
-    width: 210px;
+    width: 160px;
+    height: 230px;
     border: 1;
     border-radius: 5px;
+    background:  50% / cover no-repeat;
 }
 
 .gridimgshow {
-    width: 210px;
+    height: 230px;
+    width: 160px;
     border: 1;
     border-radius: 5px;
+    background: 50% / cover no-repeat;
 }
 
 .crc {
@@ -483,7 +500,7 @@ body {
 .relatedanimes {
     display: grid;
     grid-gap: 0px;
-    grid-template-columns: repeat(3, 3fr);
+    grid-template-columns: repeat(5, 5fr);
     margin-top: 10px;
     border: 1;
     border-radius: 10px;
@@ -636,7 +653,7 @@ body {
     align-items: center;
     justify-content: center;
     margin: 10px;
-    background-color: rgb(46, 46, 46);
+    background-color: rgba(46, 46, 46, 0.566);
     border: 1;
     cursor: pointer;
     border-radius: 6px;
@@ -684,6 +701,12 @@ body {
     top: 0;
     left: 0;
     width: 100%;
+}
+.bannerimg{
+    filter: blur(1px);
+    background: cover no-repeat;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
 .bottomleft {
@@ -741,6 +764,7 @@ body {
     border-radius: 10px;
     border: 1;
     padding: 10px;
+    height: auto;
     margin: 5px;
     border-color: #d9f520;
 }
@@ -748,7 +772,7 @@ body {
     cursor: pointer;
 }
 .descr {
-    max-width: 22rem;
+    max-width: 500px;
     line-height: var(--lh);
     --max-lines: 4;
     position: relative;
@@ -866,16 +890,11 @@ body {
         display: none;
     }
     .desp{
-        max-width: 22rem;
-            line-height: var(--lh);
-            --max-lines: 2;
-            position: absolute;
-            max-height: calc(var(--lh) * var(--max-lines));
-            overflow: hidden;
-            font-style: italic;
-            font-size: 10px;
-            padding-right: 0;
+        display: none;
     }
+        .animeimg {
+            height: 100px;
+        }
     .epi {
         top: 0;
         margin-left: 10px;
@@ -935,7 +954,7 @@ display: block;
 .eps {
     padding: 1px;
     margin: 10px;
-    background-color: rgb(46, 46, 46);
+    background-color: rgba(46, 46, 46, 0.564);
     border: 1;
     border-radius: 6px;
     cursor: pointer;
@@ -962,24 +981,23 @@ display: block;
 }
 .watchinfo {
     display: flex;
-    margin-bottom: 50%;
 }
 .wdata {
     width: 30%;
     padding: 10px;
     overflow: auto;
-    max-height: 1000px;
+    max-height: 700px;
 }
 
 .data {
   width: 100%;
-  max-height: 1000px;
+  max-height: 700px;
   overflow:auto;
   gap: .4rem;
   padding: 1px;
-    z-index: 9;
-    margin-top: 260px;
-    width: 70%;
+  z-index: 9;
+  margin-top: 100px;
+  width: 70%;
 }
 
 .datali {
@@ -1039,7 +1057,7 @@ display: block;
 /* header css */
 
 :root {
-    --backgrd: rgb(39, 37, 37);
+    --backgrd: #221f1f;
     --bcsecond: #1412087f;
     --bctext : transparent;
 }

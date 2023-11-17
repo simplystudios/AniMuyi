@@ -142,12 +142,13 @@
 <br>
 <br>
 <br>
-<div class="watchinfo">
+<div>
+  <div class="watchinfo">
   <div class="coveriframe">
     <iframe allow="autoplay; fullscreen; picture-in-picture; xr-spatial-tracking; clipboard-write" allowfullscreen class="frame" src={responseData.main} frameborder="0"></iframe>
     <div class="animeinfo">
     <div class="anime" on:click={() => infopg(animeid)}>
-      <img loading="lazy" src={images} alt="" style="border: 1; border-radius: 3px;" height="200px">
+      <img class="animeimg" loading="lazy" src={images} alt="" style="border: 1; border-radius: 3px;" height="200px">
       <div class="animed">
         <h2 style="margin: 0;">{title} </h2> 
         <div class="reld">
@@ -164,21 +165,7 @@
         <p class="desp">{desc}</p>
       </div>
     </div>
-    <div style={stylefordiv}>
-      <h2>For You</h2>
-      <div class="relatedanimes">
-                   {#if ranimes.length > 0}
-                    {#each ranimes as item}
-                            <div on:click={() => getid(item.entry.mal_id)} id="animeitem" class="watchgridshowlist">
-                                <img loading="lazy" class="gridimgshow" src={item.entry.images.webp.image_url} alt="" width="100px">
-                                <p class="center">{item.entry.title}</p>
-                        </div>
-                    {/each}
-                    {:else}
-                    <h2 class="center">Loading Related Animes/Mangas...</h2>
-                {/if}
-              </div>
-      </div>
+
   </div>
   </div>
   <div class="wdata">
@@ -214,6 +201,22 @@
 </div>
   </div>
 </div>
+</div>
+<div style={stylefordiv}>
+      <h2>For You</h2>
+      <div class="relatedanimes">
+                   {#if ranimes.length > 0}
+                    {#each ranimes as item}
+                            <div on:click={() => infopg(item.entry.mal_id)} id="animeitem" class="watchgridshowlist">
+                                <img loading="lazy" class="gridimgshow" src={item.entry.images.webp.image_url} alt="" width="100px">
+                                <p class="center">{item.entry.title}</p>
+                        </div>
+                    {/each}
+                    {:else}
+                    <h2 class="center">Loading Related Animes/Mangas...</h2>
+                {/if}
+              </div>
+      </div>
 </div>
 
 <Footer/>
