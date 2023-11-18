@@ -157,7 +157,7 @@ else{
   <div>
     <div class="info">
       <div class="cover">
-          <img loading="lazy" style="border-radius: 5px;" src={img_large} alt="" height="280px">  
+          <img class="aimg" loading="lazy" style="border-radius: 5px;" src={img_large} alt="" height="280px">  
         
         <h2 class="title">{title_eng}</h2>
         <h4 class="center">{title_nav}</h4>

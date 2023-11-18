@@ -29,11 +29,10 @@ html {
     background:linear-gradient(to bottom, transparent, #221f1f), url("animebackbw.png") rgb(15, 15, 15) 50% / cover no-repeat;
     background-position: center;
         background-repeat: no-repeat;
-        background-size: contain;
+        background-size: cover;
         background-position: top;
         /*background-attachment: fixed;*/
-        backdrop-filter: blur(3px);
-        background-color: #000;
+        background-color: #221f1f;
 }
 .mains{
     margin-bottom: 20%;
@@ -148,9 +147,10 @@ html {
 .logo {
     display: flex;
     justify-content: center;
-    height: 60px;
+    align-items: center;
+    height: 20px;
     cursor: pointer;
-    margin-left: 25px;
+    margin-left: 40px;
 }
 
 .imgcen {
@@ -696,17 +696,25 @@ body {
 }
 
 .banner{
-    opacity: 0.4;
     position: absolute;
     top: 0;
+    opacity: 0.4;
+    background-color: #221f1f;
     left: 0;
+    background: linear-gradient(to bottom, transparent, #221f1f), rgb(15, 15, 15) 50% / cover no-repeat;
+        background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: top;
     width: 100%;
 }
 .bannerimg{
     filter: blur(1px);
-    background: cover no-repeat;
-    background-repeat: no-repeat;
-    background-size: contain;
+    background: linear-gradient(to bottom, transparent, #221f1f), rgb(15, 15, 15) 50% / cover no-repeat;
+    background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: top;
 }
 
 .bottomleft {
@@ -788,7 +796,7 @@ body {
         --max-lines: 4;
         position: absolute;
         max-height: calc(var(--lh) * var(--max-lines));
-        overflow: hidden;
+        overflow:hidden;
         font-style: italic;
         font-size: 15px;
         padding-right: 0;
@@ -890,10 +898,15 @@ body {
         display: none;
     }
     .desp{
-        display: none;
+        --max-lines:2;
+        margin: 0;
+        max-width: 60%;
+        padding: 0;
+        font-style: normal;
+        font-size: 10px;
     }
         .animeimg {
-            height: 100px;
+            height: 120px;
         }
     .epi {
         top: 0;
@@ -954,7 +967,7 @@ display: block;
 .eps {
     padding: 1px;
     margin: 10px;
-    background-color: rgba(46, 46, 46, 0.564);
+    background-color: rgb(46, 46, 46);
     border: 1;
     border-radius: 6px;
     cursor: pointer;
@@ -1008,7 +1021,7 @@ display: block;
 
 .datalitxt {}
 
-@media only screen and (max-width : 700px) {
+@media only screen and (max-width : 780px) {
     .info {
         display: block;
     }
@@ -1035,12 +1048,26 @@ display: block;
         margin-top: 0;
         width: 100%;
     }
-    .banner{
+    .aimg{
         position: relative;
+        z-index: 9;
+        margin-top: 85px;
+    }
+    .banner{
+
+        position: absolute;
+        z-index: 0;
     }
     .centerimg {
         text-align: center;
     }
+}
+@media only screen and (max-width:320px) {
+
+    .relatedanimes{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    
 }
 
 /* about page css */

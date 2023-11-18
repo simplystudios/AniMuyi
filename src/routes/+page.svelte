@@ -57,8 +57,14 @@ onMount(async()=>{
                 <div class="s">
                     <br>
                     <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
                     <p class="center">
-                     <img loading="lazy" class="toptext" src="/animuyi.png" alt="" width="330px">
+                     <img loading="lazy" class="toptext" src="/crampedanimuyi.png" alt="" width="230px">
                 </p>
                 <blockquote style="text-align:center;  font-style: italic;">"Animuyi Has More Than {stats.anime} Animes..."</blockquote>
                 <br>
@@ -93,15 +99,10 @@ onMount(async()=>{
                 <br>
                 <br>
                 <br>
-                
-                    <div class="butshare">
-                        <div class="butflex">
-                            <h3 class="centershare">Share With Your Friends </h3>
-                            <br>
-                            <img loading="lazy" src="/chibi.gif" alt="" height="70px">
-                        </div>
-                        <p class="center">It motivates us to keep developing the site and adding more awesome content for you all</p>
-                    </div>
+                <br>
+                <br>
+                <br>
+                <br>
                 </div>
                 <div class="content">
                     <br>
@@ -118,6 +119,14 @@ onMount(async()=>{
                         You can contribute to AniMuyi by joining its community and providing feedback, suggestions, bug reports, or feature requests. You can also help by translating, coding, designing, or testing its website or app. You can support its development by donating or sharing it with your friends and fellow anime fans.
                     </p>
                 </div>
+                <div class="butshare">
+                        <div class="butflex">
+                            <h3 class="centershare">Share With Your Friends </h3>
+                            <br>
+                            <img loading="lazy" src="/chibi.gif" alt="" height="70px">
+                        </div>
+                        <p class="center">It motivates us to keep developing the site and adding more awesome content for you all</p>
+                    </div>
         </div>
             <Footer/>
 </div>
