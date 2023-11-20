@@ -10,6 +10,8 @@ import { register } from 'swiper/element/bundle';
 // register Swiper custom elements
   import { slide } from "svelte/transition";
     let search = '';
+    let divmain = 'display: block';
+    let divload = 'display:none';
     let searchdata = [];
     let trendslide = [];
     let swiper;
@@ -57,10 +59,28 @@ onMount(async()=>{
     loop: true, // Enable loop
   });
     register();
+        divload = 'display:block'
+    divmain = 'display:none'
     const response = await fetch('https://api.anify.tv/seasonal/anime?fields=[title,bannerImage,coverImage,id,duration,totalEpisodes,description,averageRating,year]&page=1&perPage=1');
-    data = await response.json();
-    recentdata = data['popular'];
-    data = data['trending'];
+    try{
+        if(response.ok){
+            data = await response.json();
+        recentdata = data['popular'];
+        data = data['trending'];
+        divload = 'display:none';
+        divmain = 'display:block';
+        }
+        else{
+                       divload = 'display:block';
+    divmain = 'display:none';
+        }
+    }
+    catch(error){
+        console.log(error)
+            divload = 'display:block';
+    divmain = 'display:none';
+    }
+    
     return data;
 })
 </script>
@@ -76,8 +96,10 @@ onMount(async()=>{
 	<title>AniMuyi &bull; Home</title>
 	<html lang="en" />
 </svelte:head>
-
-<div class="back">
+    <div style={divload} class="loadingb">
+                <span class="loader"></span>
+            </div>
+<div style={divmain} class="back">
             <div class="main">
                 <Header/>
                 <div class="swiper-container">

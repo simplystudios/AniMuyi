@@ -11,6 +11,8 @@
   let repod = {};
   let img_large = '';
   let searchep = '';
+  let divmain = 'display: block';
+    let divload = 'display:none';
   let loadingtxt = 'Loading...';
   let desc = '';
   let malid = '';
@@ -38,10 +40,13 @@
 
     getid = (id) =>{
     window.open(`/info?id=${id}`,"_self")
-}
-
+} 
+            divload = 'display:block'
+        divmain = 'display:none'
     let resp = await fetch(`https://api.anify.tv/info/${id}`);
     if (resp.ok) {
+      divload = 'display:none'
+      divmain = 'display:block'
       data = await resp.json();
       titles = data.title;
       images = data.coverImage;
@@ -60,18 +65,19 @@
       totalep = data.totalEpisodes;
       dura = data.duration;
       let episodesd = data.episodes.data;
-      episodesd = episodesd.filter((episode) => episode.providerId === "gogoanime");
-
-// Assuming episodesd is an array of objects with an 'episodes' property
-if(episodesd.length>0){
-  ep = episodesd.map((episode) => episode.episodes).flat();
-  console.log(ep);
-}
-else{
-          const repo = await fetch(`https://api.amvstr.me/api/v2/episode/${id}`)
+      episodesd = episodesd.filter((episode) => episode.providerId === "gogo")
+      episodesd = episodesd.map((episode) => episode.episodes).flat();
+      // Assuming episodesd is an array of objects with an 'episodes' property
+      if(episodesd.length>0){
+        ep = episodesd;
+        console.log(ep);
+      }
+      else{
+          const repo = await fetch(`https://api-amvstrm.nyt92.eu.org/api/v2/episode/${id}`)
           if(repo.ok){
             repod = await repo.json();
-            ep = repod['episodes'];
+            ep = repod.episodes;
+            console.log(ep)
           }
           else{
             loadingtxt = "No Episodes For This Anime..."
@@ -96,7 +102,7 @@ else{
         var month = months[a.getMonth()];
         var date = a.getDate();
         nextime = date + ' ' + month + ' ' + hour + ':' + min + ' ' +ampm;
-        }
+      }
 
         // const repo = await fetch(`https://api.anify.tv/episodes/${id}`)
         // if(repo.ok){
@@ -104,7 +110,9 @@ else{
         //   console.log(repod)
         //   ep = repod[0].episodes;
         // }
-      }
+              divload = 'display:none'
+        divmain = 'display:block'   
+    }
     else{
       console.log("error")
     }
@@ -118,7 +126,6 @@ else{
           ranimes = rdata['data'];
           console.log(ranimes,rdata)
         }
-        
   });
   function sortbyname() {
     const searchTerm = parseInt(searchep);
@@ -149,7 +156,11 @@ else{
 			gtag('config', 'G-SDZHWZSFCG');
 		</script>
 </svelte:head>
-<Header />
+<div style={divload} class="loadingb">
+                <span class="loader"></span>
+            </div>
+<div style={divmain} class="back">
+  <Header />
 <div class="container">
   <div class="banner">
     <img class="bannerimg" loading="lazy" src={data.bannerImage} alt="" width="100%" height="100%">
@@ -213,6 +224,7 @@ else{
   </div>
 <Footer />
    
+</div>
 <style>
   eps:hover{
     background-color: var(--hoverc) ;

@@ -14,6 +14,8 @@
   let epsd = '';
   let animecolor = '';
   let epd = {}
+  let divmain = 'display: block';
+  let divload = 'display:none';
   let related = {};
   let searchep = '';
   let stat = '';
@@ -42,6 +44,8 @@
   }
 
   onMount(async () => {
+    divload = 'display:block'
+    divmain = 'display:none'
     let id = window.location.search;
     id = id.replace("?", "");
     episodeid = id;
@@ -49,7 +53,7 @@
     let text = id
     const result = text.replace(regex, '');
     animeid = result;
-
+    
     const resp = await fetch(`https://api-amvstrm.nyt92.eu.org/api/v2/stream/${id}`);
      
     if (resp.ok) {
@@ -104,7 +108,8 @@
         else{
           stylefordiv = 'display:none;'
         }
-          
+      divload = 'display:none'
+    divmain = 'display:block'
   });
 
   const watchepid = (epid,id) =>{
@@ -136,8 +141,11 @@
 	<title>{title} &bull; episode : {epsd}</title>
 	<html lang="en" />
 </svelte:head>
-
-<Header/>
+<div style={divload}>
+  <span class="loader"></span>
+</div>
+<div style={divmain}>
+    <Header/>
 <br>
 <br>
 <br>
@@ -220,6 +228,7 @@
 </div>
 
 <Footer/>
+</div>
 
 
 
