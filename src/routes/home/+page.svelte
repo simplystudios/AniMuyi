@@ -3,6 +3,7 @@
   import Footer from "../../lib/Footer.svelte";
   import Swiper from 'swiper';
   import 'swiper/swiper-bundle.css'; // Import the Swiper CSS
+  import { LocalStorageStore } from "../../stores/store";
 
   import { onMount } from "svelte";
   // import function to register Swiper custom elements
@@ -13,10 +14,12 @@ import { register } from 'swiper/element/bundle';
     let divmain = 'display: block';
     let divload = 'display:none';
     let searchdata = [];
+    let loadingtxt = 'May Take Time To Load...';
     let trendslide = [];
     let swiper;
     let data = {};
     let recentdata = {};
+    let views = 4;
     let stylesfordiv = 'display: none; margin-left: auto; margin-right: auto; background-color: #2d2a2a; border-radius: 5px; padding: 10px; margin: 10px;';
 // const trendingload = async() => {
 //     const response = await fetch('https://api-amvstrm.nyt92.eu.org/api/v2/trending');
@@ -41,6 +44,12 @@ const searchanime = async() =>{
     searchdata = searchdata['results'];
     return searchdata
 }
+let currentlywatching = LocalStorageStore('currentlywatch',[])
+    export let currentw = currentlywatching.get();
+    let curlen = currentw.length;
+    const watchepid = (id) =>{
+    window.open(`/watch?${id}`,"_self")
+  }
 const searchanimepp = () =>{
     if (search.length>0){
         searchanime()
@@ -59,6 +68,23 @@ onMount(async()=>{
     loop: true, // Enable loop
   });
     register();
+    let width = screen.width;
+    if(width>1200){
+        views = 4;
+    }
+    else if(width>900){
+        views = 3;
+    }
+    else if(width>700){
+        views= 2;
+    }
+    else if(width<900){
+        views = 1;
+    }
+    swiper = new Swiper(".mySwiper", {
+      slidesPerView: views,
+      spaceBetween: 10,
+    });
         divload = 'display:block'
     divmain = 'display:none'
     const response = await fetch('https://api.anify.tv/seasonal/anime?fields=[title,bannerImage,coverImage,id,duration,totalEpisodes,description,averageRating,year]&page=1&perPage=1');
@@ -76,7 +102,7 @@ onMount(async()=>{
         }
     }
     catch(error){
-        console.log(error)
+        loadingtxt = error;
             divload = 'display:block';
     divmain = 'display:none';
     }
@@ -98,7 +124,8 @@ onMount(async()=>{
 </svelte:head>
     <div style={divload} class="loadingb">
                 <span class="loader"></span>
-            </div>
+                <h3 class="center">{loadingtxt}</h3>
+    </div>
 <div style={divmain} class="back">
             <div class="main">
                 <Header/>
@@ -138,7 +165,49 @@ onMount(async()=>{
                 </div>
                <br>
                 
+<!-- <h2 class="center">Continue Watching - {curlen}</h2>
+<div class="swiper-container2">
+    <div class="swiper-wrapper">
+            {#if currentw.length > 0}
+            {#each currentw as item}
+            <div class="swiper-slide">
                 
+            </div>
+            {/each}
+            {:else}
+            <h2 style="text-align: center;">No Anime In Currently Watching</h2>
+            {/if}
+    </div>
+</div> -->
+<div class="flex">
+    <h2 style="margin-left: 5px;">Continue Watching - {curlen}</h2>
+<a class="far" href="/currentlywatching">See All</a>
+</div>
+<div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+        {#if currentw.length > 0}
+            {#each currentw as item}
+      <div class="swiper-slide">
+                <div on:click={watchepid(item.episode)} class="gridshowlistc">
+    <div class="container">
+        <img src={item.coverImage} alt="" class="gridimgshowc">
+        <div class="bottomleftc">
+            <i class="fa-regular fa-circle-play fa-2xl" style="color: #ffffff;"></i>
+        </div>
+        <div class="bottomleftctxt">
+                <p class="center">episode : {item.epnum}</p>
+    <p class="center">{item.title}</p>
+            </div>
+    </div>
+</div>
+      </div>
+      {/each}
+            {:else}
+            <h2 style="text-align: center;">No Anime In Currently Watching</h2>
+            {/if}
+    </div>
+  </div>
+
                 <h2 style="margin-left: 2%;">
                     <i class="fa-solid fa-arrow-trend-up" style="color: #ffffff;"></i> Trending
                 </h2>

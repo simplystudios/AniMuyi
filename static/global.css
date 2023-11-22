@@ -219,13 +219,18 @@ html {
 }
 
 .loadingb{
-    display: none;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
 }
 
 .back{
     
 }
-
+.bam{
+    height:max-content;
+}
 .imgcen {
     text-align: center;
     margin-left: auto;
@@ -496,6 +501,16 @@ body {
     border-radius: 5px;
     background: 50% / cover no-repeat;
 }
+.gridimgshowc {
+    height: 190px;
+    width: 300px;
+    opacity: 0.4;
+    font-weight: bolder;
+    border: 1;
+    background-position: center;
+    border-radius: 5px;
+    object-fit: cover;
+}
 
 .crc {
     padding: 5px;
@@ -555,11 +570,36 @@ body {
     text-align: center;
     padding: 10px;
 }
+.gridshowlistc {
+    width: auto;
+    font-size: 20px;
+    text-overflow: clip;
+    cursor: pointer;
+    color: white;
+    /* optional: adds ellipsis for hidden text */
+    margin: 10px;
+    text-align: center;
+}
 
 .gridshowlist:hover {
     color: #d9f520;
 }
+.gridshowlistc:hover {
+    color: #d9f520;
+}
+.swiper {
+    width: 100%;
+    height: 100%;
+}
 
+.swiper-slide2 {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .recentmembers {
     display: grid;
     grid-gap: 0px;
@@ -570,6 +610,28 @@ body {
     white-space: nowrap;
     overflow-x: 10px;
 }
+.flex{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.far{
+    margin-left: auto;
+    font-weight: bold;
+    font-style: normal;
+    text-align: center;
+}
+.recentmembersc {
+    display: grid;
+    grid-gap: 0px;
+    grid-template-columns: repeat(4, 3fr);
+    margin-top: 10px;
+    border: 1;
+    border-radius: 10px;
+    white-space: nowrap;
+    overflow-x: 10px;
+}
+
 .relatedanimes {
     display: grid;
     grid-gap: 0px;
@@ -823,6 +885,30 @@ body {
     }
 
     width: 77%;
+}
+.bottomleftctxt {
+    bottom: 6%;
+    color: rgb(250, 243, 255);
+    padding: 0;
+    font-weight: bold;
+    font-size: 15px;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    gap: 0;
+    margin-right: 0px;
+}
+.bottomleftc {
+    bottom: 6%;
+    color: rgb(250, 243, 255);
+    padding: 0;
+    font-weight: bold;
+    font-size: 15px;
+    width: 100%;
+    position: absolute;
+    display: block;
+    gap: 0;
+    margin-bottom: 80px;
 }
 
 .infoslide {

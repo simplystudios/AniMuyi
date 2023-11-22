@@ -2,18 +2,19 @@
   import { onMount } from "svelte";
   import Header from "../../lib/Header.svelte";
   import Footer from "../../lib/Footer.svelte";
-  // import { LocalStorageStore } from "../../stores/store"
+  import { LocalStorageStore } from "../../stores/store"
   import MuxVideo from '../../lib/Videoplayer.svelte'
   import { get } from "svelte/store";
 
   let eps = []
-  // let currentlywatching = LocalStorageStore('currentlywatch',[])
-  // export let currentw = currentlywatching.get(); // This will log the data stored in 'myDataKey' in localStorage, or the initial value if not found.
+  let currentlywatching = LocalStorageStore('currentlywatch',[])
+  export let currentw = currentlywatching.get(); // This will log the data stored in 'myDataKey' in localStorage, or the initial value if not found.
   let responseData = {}; // Initialize a variable to store the response data
   let animeid;
-  let epsd = '';
+  let epnum = '';
   let animecolor = '';
   let epd = {}
+  let medimg = '';
   let divmain = 'display: block';
   let divload = 'display:none';
   let related = {};
@@ -31,6 +32,7 @@
   let images = '';
   let search = '';
   let title = '';
+  let relh = 'margin-top:0';
   let epdata = {}
   let stylefordiv = 'display:block;'
   let episodeid = ''
@@ -38,7 +40,6 @@
 
  function sortbyname() {
     const searchTerm = searchep.toLowerCase();
-    console.log(searchTerm);
 
 
   }
@@ -54,11 +55,13 @@
     const result = text.replace(regex, '');
     animeid = result;
     
-    const resp = await fetch(`https://api-amvstrm.nyt92.eu.org/api/v2/stream/${id}`);
+    const resp = await fetch(`https://api-amvstrm.nyt92.eu.org/api/v2/stream/${episodeid}`);
      
     if (resp.ok) {
       responseData = await resp.json();
-      epsd = responseData['info'].episode;
+      epnum = responseData.info.episode;
+      const regex2 = /&.+/;
+      epnum = epnum.replace(regex2,'');
       responseData = responseData['plyr']
     }
     else{
@@ -70,6 +73,7 @@
       epdata = await res.json();
       title = epdata.title.userPreferred;
       images = epdata.coverImage.large;
+      medimg = epdata.coverImage.medium;
       animecolor = epdata.coverImage.color;
       related = epdata['relation']
       totalep = epdata.episodes;
@@ -81,18 +85,39 @@
       gogo = epdata.id_provider;
       desc = epdata.description;
       // console.log(eps);
-      let epres = await fetch(`https://api.consumet.org/anime/gogoanime/info/${gogo.idGogo}`);
+      let epres = await fetch(`https://animuyiback.vercel.app/anime/gogoanime/info/${gogo.idGogo}`);
     if(epres.ok){
       epd = await epres.json();
       eps = epd['episodes'];
-      
+      if(eps.length>0){
+        relh='margin-top:0';
+      }
+      else{
+        relh='margin-top:100px'
+      }
     }
     else{
       console.log('error')
     }
-      // setcurrentwatch(epdata.title,episodeid)
-      // currentw = currentlywatching.get();
-      // console.log(currentw);   
+    currentw = currentlywatching.get();
+const cur = currentw.filter((cur) => cur.episode === episodeid);
+const curIndex = currentw.findIndex((cur) => cur.anid === animeid);
+if (cur.length > 0) {
+
+} else {
+ if (curIndex !== -1) {
+  // Anime ID already exists, update the episodeid and epnum
+  currentw[curIndex].episode = episodeid;
+  currentw[curIndex].epnum = epnum;
+
+  // Update LocalStorageStore with the modified data
+  currentlywatching.set(currentw);
+} else {
+  // Anime ID doesn't exist, add a new entry
+  setcurrentwatch(title, episodeid, images, dura, animeid, epnum);
+}
+}
+
       
       
     } else {
@@ -103,7 +128,6 @@
           stylefordiv = 'display:block;'
           rdata = await relatedanimes.json();
           ranimes = rdata['data'];
-          console.log(ranimes,rdata)
         }
         else{
           stylefordiv = 'display:none;'
@@ -118,15 +142,19 @@
   const infopg = (id) =>{
     window.open(`/info?id=${id}`)
   }
-//   export function setcurrentwatch(title, epsode){
-//   $currentlywatching = [
-//     {
-//       title:`${title}`,
-//       episode:`${epsode}`
-//     },
-//     ...$currentlywatching
-//   ]
-// }
+  export function setcurrentwatch(title, epsode, cover, dura, anid,epnum){
+  $currentlywatching = [
+    {
+      coverImage:`${cover}`,
+      title:`${title}`,
+      duration:`${dura}`,
+      anid:`${anid}`,
+      epnum:`${epnum}`,
+      episode:`${epsode}`
+    },
+    ...$currentlywatching
+  ]
+}
 </script>
 
 <svelte:head>
@@ -138,7 +166,7 @@
 
 			gtag('config', 'G-SDZHWZSFCG');
 		</script>
-	<title>{title} &bull; episode : {epsd}</title>
+	<title>{title} &bull; episode : {epnum}</title>
 	<html lang="en" />
 </svelte:head>
 <div style={divload}>
@@ -210,7 +238,8 @@
   </div>
 </div>
 </div>
-<div style={stylefordiv}>
+<div style={relh}>
+  <div style={stylefordiv}>
       <h2>For You</h2>
       <div class="relatedanimes">
                    {#if ranimes.length > 0}
@@ -225,6 +254,7 @@
                 {/if}
               </div>
       </div>
+</div>
 </div>
 
 <Footer/>

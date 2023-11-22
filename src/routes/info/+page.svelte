@@ -68,7 +68,7 @@
       episodesd = episodesd.filter((episode) => episode.providerId === "gogo")
       episodesd = episodesd.map((episode) => episode.episodes).flat();
       // Assuming episodesd is an array of objects with an 'episodes' property
-      if(episodesd.length>0){
+      if(episodesd.length){
         ep = episodesd;
         console.log(ep);
       }
@@ -128,15 +128,9 @@
         }
   });
   function sortbyname() {
-    const searchTerm = parseInt(searchep);
-    console.log(searchTerm)
-    let epn = ep;
-    ep = epn.filter((a)=>{
-      return a<searchTerm;
-    })
-    console.log(ep);
-
-
+    // let searchanimeep = ep.filter((episode) => episode.number === searchep);
+    // searchanimeep = searchanimeep.map((episode) => episode.number);
+    // ep = searchanimeep;
   }
   const watchepid = (epid,id) =>{
     epid = epid.replace("/","")
