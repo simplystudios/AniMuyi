@@ -50,8 +50,7 @@ onMount(async()=>{
 	<title>AniMuyi</title>
     
     <meta property="og:image" content="https://animuyi.vercel.app/animuyi_branding-1.png" />
-    <meta name=”description” content=”Animuyi is a anime streaming site which shows latest and trending animes for free without ads. Animuyi is regularly updated with latest animes.”/>
-    
+    <meta name="description" content="Animuyi is a anime streaming site which shows latest and trending animes for free without ads. Animuyi is regularly updated with latest animes." />
     
 	<html lang="en" />
 </svelte:head>
