@@ -85,7 +85,7 @@
       gogo = epdata.id_provider;
       desc = epdata.description;
       // console.log(eps);
-      let epres = await fetch(`https://animuyiback.vercel.app/anime/gogoanime/info/${gogo.idGogo}`);
+      let epres = await fetch(`https://api.consumet.org/anime/gogoanime/info/${gogo.idGogo}`);
     if(epres.ok){
       epd = await epres.json();
       eps = epd['episodes'];

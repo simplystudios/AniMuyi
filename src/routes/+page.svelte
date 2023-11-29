@@ -48,6 +48,7 @@ onMount(async()=>{
 			gtag('config', 'G-SDZHWZSFCG');
 		</script>
 	<title>AniMuyi</title>
+    <meta property="og:image" content="https://animuyi.vercel.app/animuyi_branding-1.png" />
 	<html lang="en" />
 </svelte:head>
 
