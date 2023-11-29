@@ -48,7 +48,14 @@ onMount(async()=>{
 			gtag('config', 'G-SDZHWZSFCG');
 		</script>
 	<title>AniMuyi</title>
+    
     <meta property="og:image" content="https://animuyi.vercel.app/animuyi_branding-1.png" />
+    <meta name="title" content="AniMuyi &bull; Latest Anime"  />
+    <meta name=”description” content=”Animuyi is a anime streaming site which shows latest and trending animes for free without ads. Animuyi is regularly updated with latest animes.”>
+    <meta name="twitter:title" content="AniMuyi &bull; Latest Anime">
+    <meta name="twitter:description" content="Animuyi is a nime streaming site which shows latest and trending animes for free without ads. AniMuyi is regularly updated with latest animes">
+    <meta name="twitter:image" content="https://animuyi.vercel.app/animuyi_branding-1.png">
+    <meta name="twitter:card" content="summary_large_image">
 	<html lang="en" />
 </svelte:head>
 
