@@ -84,8 +84,10 @@
       stat = epdata.score.decimalScore;
       gogo = epdata.id_provider;
       desc = epdata.description;
+      divload = 'display:none'
+      divmain = 'display:block'
       // console.log(eps);
-      let epres = await fetch(`https://api.consumet.org/anime/gogoanime/info/${gogo.idGogo}`);
+      let epres = await fetch(`https://api.amvstr.me/api/v2/episode/${animeid}`);
     if(epres.ok){
       epd = await epres.json();
       eps = epd['episodes'];
@@ -132,8 +134,6 @@ if (cur.length > 0) {
         else{
           stylefordiv = 'display:none;'
         }
-      divload = 'display:none'
-    divmain = 'display:block'
   });
 
   const watchepid = (epid,id) =>{
