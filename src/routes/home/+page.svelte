@@ -87,7 +87,7 @@ onMount(async()=>{
     });
         divload = 'display:block'
     divmain = 'display:none'
-    const response = await fetch('https://api.anify.tv/seasonal/anime?fields=[title,bannerImage,coverImage,id,duration,totalEpisodes,description,averageRating,year]&page=1&perPage=1');
+    const response = await fetch('https://api.anify.tv/seasonal/anime');
     try{
         if(response.ok){
             data = await response.json();
