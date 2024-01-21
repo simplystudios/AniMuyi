@@ -1549,7 +1549,9 @@ art-bottom .art-progress {
         width: 100%;
         height: 200px;
     }
-
+    .coveriframe{
+        width: 100%;
+    }
     .descr {
         display: none;
     }
@@ -1613,7 +1615,6 @@ art-bottom .art-progress {
     margin-top: 100px;
 }
 .coveriframe {
-display: block;
  width: 100%;
  height: 500px;
 }

@@ -157,11 +157,12 @@
         controls: [
             {
               position: 'right',
-              html: `Next Episode ->`,
+              html: `Next Ep ->`,
               index: 1,
               tooltip: 'Episode number',
               style: {
-                  marginRight: '20px',
+                  marginRight: '5px',
+                  marginLeft:'5px',
               },
               click: function () {
                   let neexnum = nexep-1;
