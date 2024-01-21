@@ -150,7 +150,7 @@ onMount(async()=>{
                                 <p class="descr">{slidedata.description}</p>
                                 <div class="infoslide">
                                     <!-- <button class="watchbut"><i class="fa-solid fa-play" style="color: #ffffff;"></i> Watch Now</button> -->
-                                    <button class="morebut"><i class="fa-solid fa-circle-info" style="color: #2e2c2c;"></i> More Info</button>
+                                    <button class="morebut"><i class="fa-solid fa-play" style="color: #ffffff;"></i> Watch Now</button>
                                 </div>
                                 
 

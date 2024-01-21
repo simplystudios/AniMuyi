@@ -20,7 +20,8 @@
 		"@splidejs/svelte-splide": "^0.2.9",
 		"@vime/core": "^5.4.1",
 		"@vime/svelte": "^5.4.1",
-		"hls.js": "^1.5.0-alpha.1.0.canary.9685",
+		"artplayer": "^5.0.9",
+		"hls.js": "^1.5.0-alpha.1.0.canary.9768",
 		"swiper": "^11.0.4"
 	}
 }

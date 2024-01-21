@@ -3,8 +3,10 @@
   import Header from "../../lib/Header.svelte";
   import Footer from "../../lib/Footer.svelte";
   import { LocalStorageStore } from "../../stores/store"
-  import MuxVideo from '../../lib/Videoplayer.svelte'
+  import Hls from 'hls.js'
   import { get } from "svelte/store";
+  import Artplayer from 'artplayer/dist/artplayer.js';
+
 
   let eps = []
   let currentlywatching = LocalStorageStore('currentlywatch',[])
@@ -14,6 +16,8 @@
   let epnum = '';
   let animecolor = '';
   let epd = {}
+  let banneri = '';
+  let iep = '';
   let medimg = '';
   let divmain = 'display: block';
   let divload = 'display:none';
@@ -21,6 +25,8 @@
   let searchep = '';
   let stat = '';
   let subdub = '';
+  let anid = '';
+  let nexep = '';
   let totalep = '';
   let dura = '';
   let release = '';
@@ -43,8 +49,8 @@
 
 
   }
-
   onMount(async () => {
+
     divload = 'display:block'
     divmain = 'display:none'
     let id = window.location.search;
@@ -62,7 +68,130 @@
       epnum = responseData.info.episode;
       const regex2 = /&.+/;
       epnum = epnum.replace(regex2,'');
-      responseData = responseData['plyr']
+      responseData = responseData.stream.multi.backup.url;
+      iep = parseInt(epnum); 
+      nexep = iep + 1;
+      console.log(iep);
+      console.log(nexep);
+      function playM3u8(video, url, art) {
+    if (Hls.isSupported()) {
+        if (art.hls) art.hls.destroy();
+        const hls = new Hls();
+        hls.loadSource(url);
+        hls.attachMedia(video);
+        art.hls = hls;
+        art.on('destroy', () => hls.destroy());
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = url;
+        } else {
+            art.notice.show = 'Unsupported playback format: m3u8';
+        }
+      }
+      const art = new Artplayer({
+        container: '.artplayer-app',
+        url: responseData,
+        type: 'm3u8',
+        customType: {
+        m3u8: playM3u8,
+    },
+    volume: 0.5,
+    isLive: false,
+    muted: false,
+    fastForward: true,
+    autoplay: false,
+    pip: true,
+    autoSize: false,
+    autoMini: true,
+    screenshot: true,
+    flip: true,
+    playbackRate: true,
+    aspectRatio: true,
+    fullscreen: true,
+    miniProgressBar: true,
+    backdrop: true,
+    playsInline: true,
+    autoPlayback: true,
+    airplay: true,
+    theme: '#23ade5',
+    setting: true,
+    settings: [
+        {
+            html: 'setting01',
+            selector: [
+                {
+                    html: 'setting01-01',
+                },
+                {
+                    html: 'setting01-02',
+                },
+            ],
+            onSelect: function () {
+                console.info("args");
+            },
+        },
+        {
+            html: 'setting02',
+            selector: [
+                {
+                    html: 'setting02-01',
+                },
+                {
+                    html: 'setting02-02',
+                },
+            ],
+            onSelect: function () {
+                console.info("args");
+            },
+        },
+    ],
+        contextmenu: [
+          {
+            html: 'Custom menu',
+            click: function (contextmenu) {
+                console.info('You clicked on the custom menu');
+                contextmenu.show = false;
+            },
+          },
+        ],
+   
+        controls: [
+            {
+              position: 'right',
+              html: `Next Episode ->`,
+              index: 1,
+              tooltip: 'Episode number',
+              style: {
+                  marginRight: '20px',
+              },
+              click: function () {
+                  let neexnum = nexep-1;
+                  let neeps = eps[neexnum];
+                  let neextepisodeid = neeps.id;
+                  console.log(neextepisodeid);
+            watchepid(neextepisodeid,anid)
+              },
+            },
+        ],
+        icons: {
+          loading: '<img src="/buff.gif">',
+          state: '<img width="150" heigth="150" src="/state.jpg">',
+          indicator: '<img width="16" heigth="16" src="https://www.svgrepo.com/show/407735/white-circle.svg">',
+          setting: '<i class="fa-solid fa-cog" style="color: #ffffff;"></i>',
+        },
+      });
+      art.on('video:ended', (state) => {
+        let nexnum = nexep-1;
+        let neps = eps[nexnum];
+        let nextepisodeid = neps.id;
+        console.log(nextepisodeid);
+        watchepid(nextepisodeid,anid)
+      });
+      art.on('ready', () => {
+    art.setting.show = true;
+	setTimeout(() => {
+		art.setting.show = false;
+	}, 1000);
+});
     }
     else{
       console.log("error")
@@ -72,7 +201,9 @@
     if (res.ok) {
       epdata = await res.json();
       title = epdata.title.userPreferred;
+      anid = epdata.id;
       images = epdata.coverImage.large;
+      banneri = epdata.bannerImage;
       medimg = epdata.coverImage.medium;
       animecolor = epdata.coverImage.color;
       related = epdata['relation']
@@ -116,7 +247,7 @@ if (cur.length > 0) {
   currentlywatching.set(currentw);
 } else {
   // Anime ID doesn't exist, add a new entry
-  setcurrentwatch(title, episodeid, images, dura, animeid, epnum);
+  setcurrentwatch(title, episodeid, banneri, dura, animeid, epnum);
 }
 }
 
@@ -178,13 +309,22 @@ if (cur.length > 0) {
 <br>
 <br>
 <br>
-<div>
+<br>
   <div class="watchinfo">
   <div class="coveriframe">
-    <iframe allow="autoplay; fullscreen; picture-in-picture; xr-spatial-tracking; clipboard-write" allowfullscreen class="frame" src={responseData.main} frameborder="0"></iframe>
+    <div class="artplayer-app"></div>
+<div>
+  <div class="butep">
+                        <div class="butflex">
+                            <p class="centershare">Currently Watching Episode {iep} of {title}</p>
+                            <br>
+                        </div>
+                    </div>
+                    <br>
     <div class="animeinfo">
-    <div class="anime" on:click={() => infopg(animeid)}>
+        <div class="anime" on:click={() => infopg(animeid)}>
       <img class="animeimg" loading="lazy" src={images} alt="" style="border: 1; border-radius: 3px;" height="200px">
+
       <div class="animed">
         <h2 style="margin: 0;">{title} </h2> 
         <div class="reld">
@@ -206,41 +346,35 @@ if (cur.length > 0) {
   </div>
   <div class="wdata">
     <div class="ep">
-
-<div class="epi"style=" background-color:${animecolor};">
-  <br>
-<div class="butshare">
-                        <div class="butflex">
-                            <h3 class="centershare">Share PirateTokei With Your Friends </h3>
-                            <br>
-                            <img loading="lazy" src="/chibi.gif" alt="" height="70px">
-                        </div>
-                        <p class="center">It motivates us to keep developing the site and adding more awesome content for you all</p>
-                    </div>
-                    <br>
-    <h4>More Episodes of {title} - </h4>
+      <h4 class="centerr">More Episodes of {title} : </h4>
     <div class="searchbar">
       <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
       <input bind:value={searchep} on:input={() => sortbyname()} class="bar" type="text" placeholder="Jump to an Episode...">
       
     </div>
+    <div class="epsout">
       {#if eps.length > 0}
-    {#each eps as episode}
+      {#each eps as episode}
       <div class="eps" on:click={() => watchepid(episode.id,epdata.id)}>
-        <h4 class="centerr">episode : {episode.number}</h4>
+        <h4 class="centerr">{episode.number}</h4>
       </div>
-    {/each}
+      {/each}
 {:else}
   <h2 class="centerr">Loading episodes...</h2>
 {/if}
-    <br>
+    </div>
+
+<div class="epi"style=" background-color:${animecolor};">
 </div>
   </div>
 </div>
 </div>
 <div style={relh}>
   <div style={stylefordiv}>
-      <h2>For You</h2>
+    <br>
+
+    <br>
+      <h2 class="centerr">Related Animes</h2>
       <div class="relatedanimes">
                    {#if ranimes.length > 0}
                     {#each ranimes as item}
@@ -259,7 +393,3 @@ if (cur.length > 0) {
 
 <Footer/>
 </div>
-
-
-
-
