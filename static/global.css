@@ -1100,7 +1100,7 @@ art-bottom .art-progress {
 .relatedanimes {
     display: grid;
     grid-gap: 0px;
-    grid-template-columns: repeat(3, 3fr);
+    grid-template-columns: repeat(2, 2fr);
     margin-top: 10px;
     border: 1;
     border-radius: 10px;
