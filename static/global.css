@@ -1541,6 +1541,29 @@ art-bottom .art-progress {
 .ep{
     width: auto;
 }
+.art-bottom .art-progress .art-control-progress .art-control-progress-inner .art-progress-indicator {
+    z-index: 40;
+    width: var(--art-indicator-size);
+    height: var(--art-indicator-size);
+    transform: scale(var(--art-indicator-scale));
+    margin-left: calc(var(--art-indicator-size) / -2);
+    transition: transform var(--art-transition-duration) ease;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: absolute;
+    left: 0;
+}
+.art-bottom .art-progress .art-control-progress .art-control-progress-inner .art-progress-indicator .art-icon {
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+.art-bottom:hover .art-progress .art-control-progress .art-control-progress-inner .art-progress-indicator {
+    transform: scale(1);
+}
+
 
 .eplist {}
 

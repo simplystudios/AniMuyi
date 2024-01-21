@@ -98,11 +98,11 @@
     isLive: false,
     muted: false,
     fastForward: true,
-    autoplay: false,
+    autoplay: true,
     pip: true,
     autoSize: false,
     autoMini: true,
-    screenshot: true,
+    screenshot: false,
     flip: true,
     playbackRate: true,
     aspectRatio: true,
@@ -113,7 +113,7 @@
     autoPlayback: true,
     airplay: true,
     theme: '#23ade5',
-    setting: true,
+    setting: false,
     settings: [
         {
             html: 'setting01',
@@ -144,16 +144,6 @@
             },
         },
     ],
-        contextmenu: [
-          {
-            html: 'Custom menu',
-            click: function (contextmenu) {
-                console.info('You clicked on the custom menu');
-                contextmenu.show = false;
-            },
-          },
-        ],
-   
         controls: [
             {
               position: 'right',
