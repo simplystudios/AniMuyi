@@ -104,7 +104,6 @@
         // }
               divload = 'display:none'
         divmain = 'display:block'   
-    }
     else{
       console.log("error")
     }
