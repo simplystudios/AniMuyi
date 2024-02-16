@@ -93,8 +93,8 @@ onMount(async()=>{
             data = await response.json();
         recentdata = data['results'];
         const trendd = await fetch('https://api.amvstr.me/api/v2/trending')
-        data = await trends.json()
-        data = trendd['results'];
+        data = await trendd.json()
+        data = data['results'];
         divload = 'display:none';
         divmain = 'display:block';
         }
