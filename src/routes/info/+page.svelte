@@ -84,8 +84,8 @@
         infonew.innerHTML = "Status : Completed"
       }
       else{
-        air = data.episodes.latest;
-        dateair = air.updatedAt;
+        air = data.nextair;
+        dateair = air.airingAt;
         let unixTimestamp = dateair;
         var a = new Date(unixTimestamp * 1000);
         var hour = a.getHours();
@@ -170,7 +170,7 @@
           <p>{release} </p>
         </div>
         <div class="newep" style={`background-color:${color};`}>
-            <h4 style="color: white;" bind:this={infonew} class="center"><i class="fa-solid fa-certificate" style="color: #ffffff;"></i> New Episode {air.latestEpisode} on : {nextime}</h4>
+            <h4 style="color: white;" bind:this={infonew} class="center"><i class="fa-solid fa-certificate" style="color: #ffffff;"></i> New Episode {air.episode} on : {nextime}</h4>
         </div>
         <p class="center">{desc}</p>
       </div> 
