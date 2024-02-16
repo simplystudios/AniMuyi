@@ -51,9 +51,7 @@
       titles = data.title;
       images = data.coverImage;
       color = data.color;
-      let maltemp = await fetch(`https://api-amvstrm.nyt92.eu.org/api/v2/info/${id}`);
-      let mald = await maltemp.json()
-      malid = mald.idMal;
+      malid = data.idMal;
 
       status = data.status;
       title_eng = data.title.english;
