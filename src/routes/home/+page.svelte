@@ -87,12 +87,14 @@ onMount(async()=>{
     });
         divload = 'display:block'
     divmain = 'display:none'
-    const response = await fetch('https://api.anify.tv/seasonal/anime');
+    const response = await fetch('https://api.amvstr.me/api/v2/popular');
     try{
         if(response.ok){
             data = await response.json();
-        recentdata = data['popular'];
-        data = data['trending'];
+        recentdata = data['results'];
+        const trendd = await fetch('https://api.amvstr.me/api/v2/trending')
+        data = await trends.json()
+        data = trendd['results'];
         divload = 'display:none';
         divmain = 'display:block';
         }
