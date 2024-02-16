@@ -119,11 +119,11 @@
           console.log(ranimes,rdata)
         }
   });
-  function sortbyname() {
+  //function sortbyname() {
     // let searchanimeep = ep.filter((episode) => episode.number === searchep);
     // searchanimeep = searchanimeep.map((episode) => episode.number);
     // ep = searchanimeep;
-  }
+  //}
   const watchepid = (epid,id) =>{
     epid = epid.replace("/","")
     window.open(`/watch?${epid}&${id}`,"_self")
@@ -177,7 +177,7 @@
         <br>
         <div style="margin-left:auto; margin-right:auto; width: 30rem;" class="searchbar">
           <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
-          <input bind:value={searchep} on:input={() => sortbyname()} class="bar" type="text" placeholder="Jump to an Episode...">
+          <input class="bar" type="text" placeholder="Jump to an Episode...">
         </div>
         <br>
         {#if ep.length > 0}
