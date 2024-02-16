@@ -104,9 +104,6 @@
         // }
               divload = 'display:none'
         divmain = 'display:block'   
-    else{
-      console.log("error")
-    }
     let relatedanimes = await fetch(`https://api.jikan.moe/v4/anime/${malid}/recommendations`)
         if (!relatedanimes.ok){
           stylefordiv = 'display:none;'
