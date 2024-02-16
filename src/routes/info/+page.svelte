@@ -119,11 +119,6 @@
           console.log(ranimes,rdata)
         }
   });
-  //function sortbyname() {
-    // let searchanimeep = ep.filter((episode) => episode.number === searchep);
-    // searchanimeep = searchanimeep.map((episode) => episode.number);
-    // ep = searchanimeep;
-  //}
   const watchepid = (epid,id) =>{
     epid = epid.replace("/","")
     window.open(`/watch?${epid}&${id}`,"_self")
