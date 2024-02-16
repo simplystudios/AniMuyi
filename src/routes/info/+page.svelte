@@ -43,7 +43,7 @@
 } 
             divload = 'display:block'
         divmain = 'display:none'
-    let resp = await fetch(`https://api.anify.tv/info/${id}`);
+    let resp = await fetch(`https://api-amvstrm.nyt92.eu.org/api/v2/info/${id}`);
     if (resp.ok) {
       divload = 'display:none'
       divmain = 'display:block'
@@ -59,10 +59,10 @@
       title_eng = data.title.english;
       desc = data.description;
       title_nav = data.title.native;
-      img_large = data.coverImage;
+      img_large = data.coverImage.large;
       release = data.year;
       subdub = data.format;
-      totalep = data.totalEpisodes;
+      totalep = data.episodes;
       dura = data.duration;
       let episodesd = data.episodes.data;
       episodesd = episodesd.filter((episode) => episode.providerId === "gogo")
