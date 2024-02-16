@@ -64,16 +64,7 @@
       subdub = data.format;
       totalep = data.episodes;
       dura = data.duration;
-      let episodesd = data.episodes.data;
-      episodesd = episodesd.filter((episode) => episode.providerId === "gogo")
-      episodesd = episodesd.map((episode) => episode.episodes).flat();
-      // Assuming episodesd is an array of objects with an 'episodes' property
-      if(episodesd.length){
-        ep = episodesd;
-        console.log(ep);
-      }
-      else{
-          const repo = await fetch(`https://api-amvstrm.nyt92.eu.org/api/v2/episode/${id}`)
+      const repo = await fetch(`https://api-amvstrm.nyt92.eu.org/api/v2/episode/${id}`)
           if(repo.ok){
             repod = await repo.json();
             ep = repod.episodes;
@@ -82,6 +73,9 @@
           else{
             loadingtxt = "No Episodes For This Anime..."
           }
+      }
+      else{
+          console.log("error")
         }
       stat = data.averageRating;
       if(status=="FINISHED"){
