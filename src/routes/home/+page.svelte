@@ -192,7 +192,7 @@ onMount(async()=>{
       <div class="swiper-slide">
                 <div on:click={watchepid(item.episode)} class="gridshowlistc">
     <div class="container">
-        <img src={item.coverImage.medium} alt="" class="gridimgshowc">
+        <img src={item.coverImage} alt="" class="gridimgshowc">
         <div class="bottomleftc">
             <i class="fa-regular fa-circle-play fa-2xl" style="color: #ffffff;"></i>
         </div>
@@ -245,7 +245,7 @@ onMount(async()=>{
                    {#if recentdata.length > 0}
                     {#each recentdata as item}
                             <div on:click={() => getid(item.id)} id="animeitem" class="gridshowlist">
-                                <img class="gridimgshow" src={item.coverImage} alt="" width="100px">
+                                <img class="gridimgshow" src={item.coverImage.medium} alt="" width="100px">
                                 <p class="center">{item.title.english}</p>
                         </div>
                     {/each}
