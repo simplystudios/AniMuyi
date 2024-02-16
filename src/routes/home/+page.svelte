@@ -218,7 +218,7 @@ onMount(async()=>{
                     {#each data as item}
                             <div on:click={() => getid(item.id)} class="showlist">
                                 <div class="container">
-                                    <img class="imgshow" src={item.coverImage.medium} alt="" width="100px">
+                                    <img class="imgshow" src={item.coverImage.large} alt="" width="100px">
                                 <p class="center">{item.title.english}</p>
                                 </div>
                             </div>
@@ -245,7 +245,7 @@ onMount(async()=>{
                    {#if recentdata.length > 0}
                     {#each recentdata as item}
                             <div on:click={() => getid(item.id)} id="animeitem" class="gridshowlist">
-                                <img class="gridimgshow" src={item.coverImage.medium} alt="" width="100px">
+                                <img class="gridimgshow" src={item.coverImage.large} alt="" width="100px">
                                 <p class="center">{item.title.english}</p>
                         </div>
                     {/each}
