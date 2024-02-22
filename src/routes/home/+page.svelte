@@ -39,7 +39,7 @@ const getid = (id) =>{
     window.open(`/info?id=${id}`,"_self")
 }
 const searchanime = async() =>{
-    const searchr = await fetch(`https://amvstrmapiprod-1-u6884838.deta.app//api/v2/search?q=${search}`)
+    const searchr = await fetch(`https://amvstrmapiprod-1-u6884838.deta.app/api/v2/search?q=${search}`)
     searchdata = await searchr.json();
     searchdata = searchdata['results'];
     return searchdata
