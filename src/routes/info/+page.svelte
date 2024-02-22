@@ -62,7 +62,7 @@
       subdub = data.format;
       totalep = data.episodes;
       dura = data.duration;
-      const repo = await fetch(`https://api-amvstrm.nyt92.eu.org/api/v2/episode/${id}`)
+      const repo = await fetch(`https://amvstrmapiprod-1-u6884838.deta.app//api/v2/episode/${id}`)
           if(repo.ok){
             repod = await repo.json();
             ep = repod.episodes;
