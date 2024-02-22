@@ -61,7 +61,7 @@
     const result = text.replace(regex, '');
     animeid = result;
     
-    const resp = await fetch(`https://api-amvstrm.nyt92.eu.org/api/v2/stream/${episodeid}`);
+    const resp = await fetch(`https://amvstrmapiprod-1-u6884838.deta.app//api/v2/stream/${episodeid}`);
      
     if (resp.ok) {
       responseData = await resp.json();
@@ -188,7 +188,7 @@
       console.log("error")
     }
 
-    const res = await fetch(`https://api.amvstr.me/api/v2/info/${animeid}`);
+    const res = await fetch(`https://amvstrmapiprod-1-u6884838.deta.app//api/v2/info/${animeid}`);
     if (res.ok) {
       epdata = await res.json();
       title = epdata.title.userPreferred;
@@ -209,7 +209,7 @@
       divload = 'display:none'
       divmain = 'display:block'
       // console.log(eps);
-      let epres = await fetch(`https://api.amvstr.me/api/v2/episode/${animeid}`);
+      let epres = await fetch(`https://amvstrmapiprod-1-u6884838.deta.app//api/v2/episode/${animeid}`);
     if(epres.ok){
       epd = await epres.json();
       eps = epd['episodes'];
