@@ -43,7 +43,7 @@
 } 
             divload = 'display:block'
         divmain = 'display:none'
-    let resp = await fetch(`https://api-amvstrm.nyt92.eu.org/api/v2/info/${id}`);
+    let resp = await fetch(`https://amvstrmapiprod-1-u6884838.deta.app/api/v2/info/${id}`);
     if (resp.ok) {
       divload = 'display:none'
       divmain = 'display:block'
@@ -62,7 +62,7 @@
       subdub = data.format;
       totalep = data.episodes;
       dura = data.duration;
-      const repo = await fetch(`https://amvstrmapiprod-1-u6884838.deta.app//api/v2/episode/${id}`)
+      const repo = await fetch(`https://amvstrmapiprod-1-u6884838.deta.app/api/v2/episode/${id}`)
           if(repo.ok){
             repod = await repo.json();
             ep = repod.episodes;
