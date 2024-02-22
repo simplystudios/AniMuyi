@@ -39,7 +39,7 @@ const getid = (id) =>{
     window.open(`/info?id=${id}`,"_self")
 }
 const searchanime = async() =>{
-    const searchr = await fetch(`https://api-amvstrm.nyt92.eu.org/api/v2/search?q=${search}`)
+    const searchr = await fetch(`https://amvstrmapiprod-1-u6884838.deta.app//api/v2/search?q=${search}`)
     searchdata = await searchr.json();
     searchdata = searchdata['results'];
     return searchdata
@@ -87,12 +87,12 @@ onMount(async()=>{
     });
         divload = 'display:block'
     divmain = 'display:none'
-    const response = await fetch('https://api.amvstr.me/api/v2/popular');
+    const response = await fetch('https://amvstrmapiprod-1-u6884838.deta.app//api/v2/popular');
     try{
         if(response.ok){
             data = await response.json();
         recentdata = data['results'];
-        const trendd = await fetch('https://api.amvstr.me/api/v2/trending')
+        const trendd = await fetch('https://amvstrmapiprod-1-u6884838.deta.app//api/v2/trending')
         data = await trendd.json()
         data = data['results'];
         divload = 'display:none';
