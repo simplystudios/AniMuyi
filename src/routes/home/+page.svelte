@@ -143,7 +143,7 @@ onMount(async()=>{
                                 <div class="infoslide">
                                     <p style="margin: 5px; font-size:15px;"><i class="fa-solid fa-closed-captioning" style="color: #ffffff;"></i> {slidedata.episodes}</p>
                                     <br>
-                                    <p style="margin: 5px; font-size:15px;"><i class="fa-solid fa-star" style="color: #ff3d64;"></i> {slidedata.score.decimalScore}</p>
+                                    <p style="margin: 5px; font-size:15px;"><i class="fa-solid fa-star" style="color: #ff3d64;"></i> {Number(slidedata.score.averageScore)÷10}</p>
                                     <br>
                                     <p style="margin: 5px; font-size:15px;"><i class="fa-solid fa-calendar" style="color: #ffffff;"></i> {slidedata.year}</p>
                                     <br>
