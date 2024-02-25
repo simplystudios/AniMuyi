@@ -141,9 +141,9 @@ onMount(async()=>{
                             <div class="bottomleft">
                                 <h1 style="color: #ffffff; font-size: 180%;">{slidedata.title.english}</h1>
                                 <div class="infoslide">
-                                    <p style="margin: 5px; font-size:15px;"><i class="fa-solid fa-closed-captioning" style="color: #ffffff;"></i> {slidedata.totalEpisodes}</p>
+                                    <p style="margin: 5px; font-size:15px;"><i class="fa-solid fa-closed-captioning" style="color: #ffffff;"></i> {slidedata.episodes}</p>
                                     <br>
-                                    <p style="margin: 5px; font-size:15px;"><i class="fa-solid fa-star" style="color: #ff3d64;"></i> {slidedata.averageRating}</p>
+                                    <p style="margin: 5px; font-size:15px;"><i class="fa-solid fa-star" style="color: #ff3d64;"></i> {slidedata.score.decimalScore}</p>
                                     <br>
                                     <p style="margin: 5px; font-size:15px;"><i class="fa-solid fa-calendar" style="color: #ffffff;"></i> {slidedata.year}</p>
                                     <br>
