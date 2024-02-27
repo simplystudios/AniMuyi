@@ -55,7 +55,8 @@
     divmain = 'display:none'
     let id = window.location.search;
     id = id.replace("?", "");
-    episodeid = id;
+    episodeid = id
+    console.log(episodeid)
     const regex = /^.+&/;
     let text = id
     const result = text.replace(regex, '');
