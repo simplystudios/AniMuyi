@@ -69,7 +69,7 @@
       epnum = responseData.info.episode;
       const regex2 = /&.+/;
       epnum = epnum.replace(regex2,'');
-      responseData = responseData.stream.multi.backup.url;
+      responseData = responseData.stream.multi.main.url;
       iep = parseInt(epnum); 
       nexep = iep + 1;
       console.log(iep);
