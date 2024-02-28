@@ -12,6 +12,7 @@ import { register } from 'swiper/element/bundle';
   import { slide } from "svelte/transition";
     let search = '';
     let divmain = 'display: block';
+    let bannerim = '';
     let divload = 'display:none';
     let searchdata = [];
     let loadingtxt = 'May Take Time To Load...';
@@ -137,15 +138,15 @@ onMount(async()=>{
                         {#each data as slidedata }
                     <div class="swiper-slide" on:click={()=> getid(slidedata.id)}  style="height: 500px; magrin:0;">
                             <div class="container">
-                            <img class="imgslide" src={slidedata.bannerImage} alt="Cinque Terre" width="100%" height="400px">
+                            <img class="imgslide" src={slidedata.coverImage.extraLarge} alt="Cinque Terre" width="100%" height="400px">
                             <div class="bottomleft">
                                 <h1 style="color: #ffffff; font-size: 180%;">{slidedata.title.english}</h1>
                                 <div class="infoslide">
                                     <p style="margin: 5px; font-size:15px;"><i class="fa-solid fa-closed-captioning" style="color: #ffffff;"></i> {slidedata.episodes}</p>
                                     <br>
-                                    <p style="margin: 5px; font-size:15px;"><i class="fa-solid fa-star" style="color: #ff3d64;"></i> {slidedata.meanScore}</p>
+                                    <p style="margin: 5px; font-size:15px;"><i class="fa-solid fa-star" style="color: #ff3d64;"></i>{slidedata.meanScore}/100</p>
                                     <br>
-                                    <p style="margin: 5px; font-size:15px;"><i class="fa-solid fa-calendar" style="color: #ffffff;"></i> {slidedata.year}</p>
+                                    <p style="margin: 5px; font-size:15px;"><i class="fa-solid fa-calendar" style="color: #ffffff;"></i> {slidedata.seasonYear}</p>
                                     <br>
                                     <p style="font-weight:100; font-size:15px; margin: 5px;"><i class="fa-solid fa-clock" style="color: #ffffff;"></i> {slidedata.duration} mins</p>
                                 </div>

@@ -171,15 +171,17 @@
           <input class="bar" type="text" placeholder="Jump to an Episode...">
         </div>
         <br>
-        {#if ep.length > 0}
+        <div class="epsout">
+          {#if ep.length > 0}
           {#each ep as episode}
           <div style="--hoverc:{color}" on:click={() => watchepid(episode.id,id)}  class="eps">
-            <h4 class="center">episode : {episode.number}</h4>
+            <h4 class="centerr">{episode.number}</h4>
           </div>
           {/each}
         {:else}
           <h2 class="center">{loadingtxt}</h2>
         {/if}
+        </div>
     </div>
 </div>
 </div>
