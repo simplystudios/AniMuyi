@@ -20,6 +20,7 @@
   let subdub = '';
   let totalep = '';
   let dura = '';
+  let epnumse = '';
   let title_eng = '';
   let title_nav = '';
   let release = '';
@@ -34,6 +35,7 @@
   let dateair = '';
   let getid;
   let status = '';
+
   onMount(async () => {
     id = window.location.search;
     id = id.replace("?id=", "");
@@ -93,7 +95,7 @@
         var year = a.getFullYear();
         var month = months[a.getMonth()];
         var date = a.getDate();
-        nextime = date + ' ' + month + ' ' + hour + ':' + min + ' ' +ampm;
+        nextime = date + ' ' + month + ' ' + hour+  ' '+ampm;
       }
 
         // const repo = await fetch(`https://api.anify.tv/episodes/${id}`)
@@ -119,6 +121,31 @@
     epid = epid.replace("/","")
     window.open(`/watch?${epid}&${id}`,"_self")
   }
+  const searcheps = () => {
+    if (epnumse !== null) {
+        const sea = parseInt(epnumse.trim()); // Parse user input to an integer after trimming whitespace
+
+        if (!isNaN(sea)) {
+            const foundEpisode = ep.find(episode => episode.number === sea);
+            if (foundEpisode !== undefined) {
+                console.log("Episode found:", foundEpisode);
+                // Update the ep array to contain only the found episode
+                ep = [foundEpisode];
+            } else {
+                console.log("Episode not found.");
+                // If episode not found, reset ep array to the original list of episodes
+                ep = repod.episodes;
+            }
+        } else {
+            console.log("Invalid input. Please enter a valid episode number.");
+            ep = repod.episodes;
+        }
+    } else {
+        console.log("User canceled the prompt.");
+        ep = repod.episodes;
+    }
+}
+
 </script>
 
 <svelte:head>
@@ -168,7 +195,7 @@
         <br>
         <div style="margin-left:auto; margin-right:auto; width: 30rem;" class="searchbar">
           <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
-          <input class="bar" type="text" placeholder="Jump to an Episode...">
+          <input bind:value={epnumse} class="bar" on:input={searcheps} type="text" placeholder="Jump to an Episode...">
         </div>
         <br>
         <div class="epsout">

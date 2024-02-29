@@ -17,6 +17,7 @@
   let animecolor = '';
   let epd = {}
   let banneri = '';
+  let epnumse = '';
   let iep = '';
   let medimg = '';
   let divmain = 'display: block';
@@ -265,6 +266,30 @@ if (cur.length > 0) {
   const infopg = (id) =>{
     window.open(`/info?id=${id}`)
   }
+   const searcheps = () => {
+    if (epnumse !== null) {
+        const sea = parseInt(epnumse.trim()); // Parse user input to an integer after trimming whitespace
+
+        if (!isNaN(sea)) {
+            const foundEpisode = eps.find(episode => episode.number === sea);
+            if (foundEpisode !== undefined) {
+                console.log("Episode found:", foundEpisode);
+                // Update the ep array to contain only the found episode
+                eps = [foundEpisode];
+            } else {
+                console.log("Episode not found.");
+                // If episode not found, reset ep array to the original list of episodes
+                eps = epd.episodes;
+            }
+        } else {
+            console.log("Invalid input. Please enter a valid episode number.");
+            eps = epd.episodes;
+        }
+    } else {
+        console.log("User canceled the prompt.");
+        eps = epd.episodes;
+    }
+}
   export function setcurrentwatch(title, epsode, cover, dura, anid,epnum){
   $currentlywatching = [
     {
@@ -341,7 +366,7 @@ if (cur.length > 0) {
       <h4 class="centerr">More Episodes of {title} : </h4>
     <div class="searchbar">
       <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
-      <input bind:value={searchep} on:input={() => sortbyname()} class="bar" type="text" placeholder="Jump to an Episode...">
+      <input bind:value={epnumse} on:input={searcheps} class="bar" type="text" placeholder="Jump to an Episode...">
       
     </div>
     <div class="epsout">
