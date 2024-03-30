@@ -202,7 +202,7 @@
           {#if ep.length > 0}
           {#each ep as episode}
           <div style="--hoverc:{color}" on:click={() => watchepid(episode.id,id)}  class="eps">
-            <h4 class="centerr">{episode.number}</h4>
+            <h4 class="centerr">{episode.episode}</h4>
           </div>
           {/each}
         {:else}

@@ -373,7 +373,7 @@ if (cur.length > 0) {
       {#if eps.length > 0}
       {#each eps as episode}
       <div class="eps" on:click={() => watchepid(episode.id,epdata.id)}>
-        <h4 class="centerr">{episode.number}</h4>
+        <h4 class="centerr">{episode.episode}</h4>
       </div>
       {/each}
 {:else}
