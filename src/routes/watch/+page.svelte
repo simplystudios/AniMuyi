@@ -271,7 +271,7 @@ if (cur.length > 0) {
         const sea = parseInt(epnumse.trim()); // Parse user input to an integer after trimming whitespace
 
         if (!isNaN(sea)) {
-            const foundEpisode = eps.find(episode => episode.number === sea);
+            const foundEpisode = eps.find(episode => episode.episode === sea);
             if (foundEpisode !== undefined) {
                 console.log("Episode found:", foundEpisode);
                 // Update the ep array to contain only the found episode
