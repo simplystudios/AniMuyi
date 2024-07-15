@@ -12,7 +12,7 @@ const getid = (id) =>{
     window.open(`/info?id=${id}`,"_self")
 }
 const searchanime = async() =>{
-    const searchr = await fetch(`https://api-amvstrm.nyt92.eu.org/api/v2/search?q=${search}`)
+    const searchr = await fetch(`https://api.amvstr.me/api/v2/search?q=${search}`)
     searchdata = await searchr.json();
     searchdata = searchdata['results'];
     console.log(searchdata)

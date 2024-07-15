@@ -1,6 +1,7 @@
 <script>
   import Header from "../../lib/Header.svelte";
   import Footer from "../../lib/Footer.svelte";
+  import { Pulse } from 'svelte-loading-spinners';
   import { onMount } from "svelte";
   
   let color = '';
@@ -126,7 +127,7 @@
         const sea = parseInt(epnumse.trim()); // Parse user input to an integer after trimming whitespace
 
         if (!isNaN(sea)) {
-            const foundEpisode = ep.find(episode => episode.episode === sea);
+            const foundEpisode = ep.find(episode => episode.number === sea);
             if (foundEpisode !== undefined) {
                 console.log("Episode found:", foundEpisode);
                 // Update the ep array to contain only the found episode
@@ -161,7 +162,8 @@
 		</script>
 </svelte:head>
 <div style={divload} class="loadingb">
-                <span class="loader"></span>
+
+                <Pulse class="" size="60" color="rgb(112, 0, 198)" unit="px" duration="1s" />
             </div>
 <div style={divmain} class="back">
   <Header />
@@ -202,11 +204,12 @@
           {#if ep.length > 0}
           {#each ep as episode}
           <div style="--hoverc:{color}" on:click={() => watchepid(episode.id,id)}  class="eps">
-            <h4 class="centerr">{episode.episode}</h4>
+            <h4 class="centerr">{episode.number}</h4>
           </div>
           {/each}
         {:else}
           <h2 class="center">{loadingtxt}</h2>
+          <Pulse class="" size="60" color="rgb(112, 0, 198)" unit="px" duration="1s" />
         {/if}
         </div>
     </div>
@@ -223,6 +226,7 @@
                         </div>
                     {/each}
                     {:else}
+                    <Pulse class="" size="60" color="rgb(112, 0, 198)" unit="px" duration="1s" />
                     <h2 class="center">Loading Related Animes/Mangas...</h2>
                 {/if}
               </div>

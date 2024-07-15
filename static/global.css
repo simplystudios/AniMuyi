@@ -224,10 +224,14 @@ html {
 }
 
 .loadingb{
-    height: 100%;
+    display: flex;
     width: 100%;
     align-items: center;
     justify-content: center;
+}
+.loadingc{
+    margin-left: 50%;
+    margin-right: 50%;
 }
 
 .back{
@@ -1414,6 +1418,9 @@ art-bottom .art-progress {
 .animeinfo{
     display: block;
 }
+.animeinfo:hover{
+    background-color: #000000;
+}
 .animed{
     display: block;
     margin-left: 10px;
@@ -1431,6 +1438,10 @@ art-bottom .art-progress {
 }
 .anime:hover{
     cursor: pointer;
+    background-color: #211e1e;
+        border-radius: 10px;
+        border: 1;
+        padding: 10px;
 }
 .descr {
     max-width: 500px;

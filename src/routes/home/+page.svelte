@@ -1,6 +1,7 @@
 <script>
   import Header from "../../lib/Header.svelte";
   import Footer from "../../lib/Footer.svelte";
+  import { Pulse } from 'svelte-loading-spinners';
   import Swiper from 'swiper';
   import 'swiper/swiper-bundle.css'; // Import the Swiper CSS
   import { LocalStorageStore } from "../../stores/store";
@@ -15,7 +16,7 @@ import { register } from 'swiper/element/bundle';
     let bannerim = '';
     let divload = 'display:none';
     let searchdata = [];
-    let loadingtxt = 'May Take Time To Load...';
+    let loadingtxt = 'Loading...';
     let trendslide = [];
     let swiper;
     let data = {};
@@ -86,28 +87,28 @@ onMount(async()=>{
       slidesPerView: views,
       spaceBetween: 10,
     });
-        divload = 'display:block'
+        divload = 'display:flex display: block height: 100% width: 100% margin-top:30% align-items: center justify-content: center'
     divmain = 'display:none'
-    const response = await fetch('https://api.amvstr.me/api/v2/popular');
+    const response = await fetch('https://consumetmuyi.vercel.app/meta/anilist/popular');
     try{
         if(response.ok){
             data = await response.json();
         recentdata = data['results'];
-        const trendd = await fetch('https://api.amvstr.me/api/v2/trending')
+        const trendd = await fetch('https://consumetmuyi.vercel.app/meta/anilist/trending')
         data = await trendd.json()
         data = data['results'];
         divload = 'display:none';
         divmain = 'display:block';
         }
         else{
-                       divload = 'display:block';
+                       divload = 'display:flex height: 100% width: 100% margin-top:30% align-items: center justify-content: center';
     divmain = 'display:none';
         }
     }
     catch(error){
         loadingtxt = error;
-            divload = 'display:block';
-    divmain = 'display:none';
+            divload = 'display:flex height: 100% width: 100% margin-top:30% align-items: center justify-content: center'; 
+            divmain = 'display:none';
     }
     
     return data;
@@ -125,9 +126,11 @@ onMount(async()=>{
 	<title>AniMuyi &bull; Home</title>
 	<html lang="en" />
 </svelte:head>
-    <div style={divload} class="loadingb">
-                <span class="loader"></span>
+    <div style={divload}>
                 <h3 class="center">{loadingtxt}</h3>
+                <div class="loadingb">
+                    <Pulse class="" size="60" color="rgb(112, 0, 198)" unit="px" duration="1s" />
+                </div>
     </div>
 <div style={divmain} class="back">
             <div class="main">
@@ -138,15 +141,15 @@ onMount(async()=>{
                         {#each data as slidedata }
                     <div class="swiper-slide" on:click={()=> getid(slidedata.id)}  style="height: 500px; magrin:0;">
                             <div class="container">
-                            <img class="imgslide" src={slidedata.coverImage.extraLarge} alt="Cinque Terre" width="100%" height="400px">
+                            <img class="imgslide" src={slidedata.image} alt="Cinque Terre" width="100%" height="400px">
                             <div class="bottomleft">
                                 <h1 style="color: #ffffff; font-size: 180%;">{slidedata.title.english}</h1>
                                 <div class="infoslide">
-                                    <p style="margin: 5px; font-size:15px;"><i class="fa-solid fa-closed-captioning" style="color: #ffffff;"></i> {slidedata.episodes}</p>
+                                    <p style="margin: 5px; font-size:15px;"><i class="fa-solid fa-closed-captioning" style="color: #ffffff;"></i> {slidedata.totalEpisodes}</p>
                                     <br>
-                                    <p style="margin: 5px; font-size:15px;"><i class="fa-solid fa-star" style="color: #ff3d64;"></i>{slidedata.meanScore}/100</p>
+                                    <p style="margin: 5px; font-size:15px;"><i class="fa-solid fa-star" style="color: #ff3d64;"></i>{slidedata.rating}/100</p>
                                     <br>
-                                    <p style="margin: 5px; font-size:15px;"><i class="fa-solid fa-calendar" style="color: #ffffff;"></i> {slidedata.seasonYear}</p>
+                                    <p style="margin: 5px; font-size:15px;"><i class="fa-solid fa-calendar" style="color: #ffffff;"></i> {slidedata.releaseDate}</p>
                                     <br>
                                     <p style="font-weight:100; font-size:15px; margin: 5px;"><i class="fa-solid fa-clock" style="color: #ffffff;"></i> {slidedata.duration} mins</p>
                                 </div>
@@ -182,6 +185,7 @@ onMount(async()=>{
             {/if}
     </div>
 </div> -->
+{#if currentw.length>0}
 <div class="flex">
     <h2 style="margin-left: 5px;">Continue Watching - {curlen}</h2>
 <a class="far" href="/currentlywatching">See All</a>
@@ -210,6 +214,7 @@ onMount(async()=>{
             {/if}
     </div>
   </div>
+  {/if}
 
                 <h2 style="margin-left: 2%;">
                     <i class="fa-solid fa-arrow-trend-up" style="color: #ffffff;"></i> Trending
@@ -219,7 +224,7 @@ onMount(async()=>{
                     {#each data as item}
                             <div on:click={() => getid(item.id)} class="showlist">
                                 <div class="container">
-                                    <img class="imgshow" src={item.coverImage.large} alt="" width="100px">
+                                    <img class="imgshow" src={item.image} alt="" width="100px">
                                 <p class="center">{item.title.english}</p>
                                 </div>
                             </div>
@@ -246,7 +251,7 @@ onMount(async()=>{
                    {#if recentdata.length > 0}
                     {#each recentdata as item}
                             <div on:click={() => getid(item.id)} id="animeitem" class="gridshowlist">
-                                <img class="gridimgshow" src={item.coverImage.large} alt="" width="100px">
+                                <img class="gridimgshow" src={item.image} alt="" width="100px">
                                 <p class="center">{item.title.english}</p>
                         </div>
                     {/each}

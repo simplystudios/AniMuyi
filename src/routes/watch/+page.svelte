@@ -271,7 +271,7 @@ if (cur.length > 0) {
         const sea = parseInt(epnumse.trim()); // Parse user input to an integer after trimming whitespace
 
         if (!isNaN(sea)) {
-            const foundEpisode = eps.find(episode => episode.episode === sea);
+            const foundEpisode = eps.find(episode => episode.number === sea);
             if (foundEpisode !== undefined) {
                 console.log("Episode found:", foundEpisode);
                 // Update the ep array to contain only the found episode
@@ -338,7 +338,7 @@ if (cur.length > 0) {
                         </div>
                     </div>
                     <br>
-    <div class="animeinfo">
+<div class="animeinfo">
         <div class="anime" on:click={() => infopg(animeid)}>
       <img class="animeimg" loading="lazy" src={images} alt="" style="border: 1; border-radius: 3px;" height="200px">
 
@@ -357,7 +357,7 @@ if (cur.length > 0) {
         </div>
         <p class="desp">{desc}</p>
       </div>
-    </div>
+</div>
 
   </div>
   </div>
@@ -366,14 +366,14 @@ if (cur.length > 0) {
       <h4 class="centerr">More Episodes of {title} : </h4>
     <div class="searchbar">
       <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
-      <input bind:value={epnumse} on:input={searcheps} class="bar" type="text" placeholder="Jump to an Episode...">
+      <input bind:value={epnumse} style="width:max-content" on:input={searcheps} class="bar" type="text" placeholder="Jump to an Episode...">
       
     </div>
     <div class="epsout">
       {#if eps.length > 0}
       {#each eps as episode}
-      <div class="eps" on:click={() => watchepid(episode.id,epdata.id)}>
-        <h4 class="centerr">{episode.episode}</h4>
+      <div class="eps" on:click={() => watchepid(episode.number,epdata.id)}>
+        <h4 class="centerr">{episode.number}</h4>
       </div>
       {/each}
 {:else}
