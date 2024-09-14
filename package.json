@@ -22,6 +22,7 @@
 		"@vime/core": "^5.4.1",
 		"@vime/svelte": "^5.4.1",
 		"artplayer": "^5.0.9",
+		"artplayer-plugin-chapter": "^1.0.0",
 		"hls.js": "^1.5.0-alpha.1.0.canary.9768",
 		"swiper": "^11.0.4"
 	}

@@ -6,6 +6,7 @@
   import Hls from 'hls.js'
   import { get } from "svelte/store";
   import Artplayer from 'artplayer/dist/artplayer.js';
+  import artplayerPluginChapter from 'artplayer-plugin-chapter';
 
 
   let eps = []
@@ -28,6 +29,7 @@
   let subdub = '';
   let anid = '';
   let nexep = '';
+  let genre = [];
   let totalep = '';
   let dura = '';
   let release = '';
@@ -75,7 +77,8 @@
       nexep = iep + 1;
       console.log(iep);
       console.log(nexep);
-      function playM3u8(video, url, art) {
+
+function playM3u8(video, url, art) {
     if (Hls.isSupported()) {
         if (art.hls) art.hls.destroy();
         const hls = new Hls();
@@ -116,6 +119,7 @@
     airplay: true,
     theme: '#23ade5',
     setting: false,
+    
     settings: [
         {
             html: 'setting01',
@@ -206,6 +210,7 @@
       malid = epdata.idMal;
       dura = epdata.duration;
       stat = epdata.score.decimalScore;
+      genre = epdata.genres;
       gogo = epdata.id_provider;
       desc = epdata.description;
       divload = 'display:none'
@@ -332,10 +337,12 @@ if (cur.length > 0) {
     <div class="artplayer-app"></div>
 <div>
   <div class="butep">
+
                         <div class="butflex">
                             <p class="centershare">Currently Watching Episode {iep} of {title}</p>
                             <br>
                         </div>
+
                     </div>
                     <br>
 <div class="animeinfo">
@@ -355,6 +362,12 @@ if (cur.length > 0) {
           <p>&bull;</p>
           <p>{release} </p>
         </div>
+         <div class="reldg">
+          {#each genre as gn}
+            <p>{gn} </p>
+            <p>&bull;</p>
+          {/each}
+        </div>
         <p class="desp">{desc}</p>
       </div>
 </div>
@@ -363,7 +376,9 @@ if (cur.length > 0) {
   </div>
   <div class="wdata">
     <div class="ep">
-      <h4 class="centerr">More Episodes of {title} : </h4>
+      <div class="prp">
+        <h4 class="centerr">More Episodes of {title} : </h4>
+      </div>
     <div class="searchbar">
       <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
       <input bind:value={epnumse} style="width:max-content" on:input={searcheps} class="bar" type="text" placeholder="Jump to an Episode...">

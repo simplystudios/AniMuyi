@@ -1,6 +1,7 @@
 <script>
     import Header from "../../lib/Header.svelte";
     import Footer from "../../lib/Footer.svelte";
+    import { baseurl } from '$lib/ss';
     import { onMount } from "svelte";
     let search = '';
     let searchdata = [];
@@ -10,7 +11,7 @@ const getid = (id) =>{
     window.open(`/info?id=${id}`,"_self")
 }
 const searchanime = async() =>{
-    const searchr = await fetch(`https://consumetmuyi.vercel.app/meta/anilist/${search}`)
+    const searchr = await fetch(`${baseurl}/meta/anilist/${search}`)
     searchdata = await searchr.json();
     searchdata = searchdata['results'];
     console.log(searchdata)

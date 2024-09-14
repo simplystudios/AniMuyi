@@ -16,6 +16,7 @@
     let divload = 'display:none';
   let loadingtxt = 'Loading...';
   let desc = '';
+  let genre =[];
   let malid = '';
   let stat = '';
   let subdub = '';
@@ -54,6 +55,7 @@
       titles = data.title;
       images = data.coverImage;
       color = data.color;
+      genre = data.genres;
       malid = data.idMal;
 
       status = data.status;
@@ -78,7 +80,7 @@
       else{
           console.log("error")
         }
-      stat = data.averageRating;
+      stat = data.score.decimalScore;
       if(status=="FINISHED"){
         air = "completed"
         dateair = "completed"
@@ -186,6 +188,12 @@
           <p style="margin-right: 10px;"><i class="fa-regular fa-clock" style="color: #ffffff;"></i> {dura}m </p>
           <br>
           <p>{release} </p>
+        </div>
+        <div class="ireld">
+          {#each genre as gn}
+            <p>{gn} </p>
+            <p>&bull;</p>
+          {/each}
         </div>
         <div class="newep" style={`background-color:${color};`}>
             <h4 style="color: white;" bind:this={infonew} class="center"><i class="fa-solid fa-certificate" style="color: #ffffff;"></i> New Episode {air.episode} on : {nextime}</h4>

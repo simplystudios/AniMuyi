@@ -3,6 +3,7 @@
   import Footer from "../../lib/Footer.svelte";
   import { Pulse } from 'svelte-loading-spinners';
   import Swiper from 'swiper';
+  import { baseurl } from '$lib/ss';
   import 'swiper/swiper-bundle.css'; // Import the Swiper CSS
   import { LocalStorageStore } from "../../stores/store";
 
@@ -89,12 +90,12 @@ onMount(async()=>{
     });
         divload = 'display:flex display: block height: 100% width: 100% margin-top:30% align-items: center justify-content: center'
     divmain = 'display:none'
-    const response = await fetch('https://consumetmuyi.vercel.app/meta/anilist/popular');
+    const response = await fetch(`${baseurl}/meta/anilist/popular`);
     try{
         if(response.ok){
             data = await response.json();
         recentdata = data['results'];
-        const trendd = await fetch('https://consumetmuyi.vercel.app/meta/anilist/trending')
+        const trendd = await fetch(`${baseurl}/meta/anilist/trending`)
         data = await trendd.json()
         data = data['results'];
         divload = 'display:none';

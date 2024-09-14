@@ -22,7 +22,7 @@ const opensearch = () =>{
     window.open('/search', '_self')
 }
 const searchanime = async() =>{
-    const searchr = await fetch(`https://api.amvstr.me/api/v2/search?q=${search}`)
+    const searchr = await fetch(`https://consumetmuyi.vercel.app/meta/anilist/${search}`)
     searchdata = await searchr.json();
     searchdata = searchdata['results'];
     console.log(searchdata)
@@ -88,8 +88,9 @@ const searchanimepp = () =>{
                                 <img loading="lazy" class="imgres" src={searchitem.coverImage.medium} alt="" width="100px">
                                 <div class="datali">
                                     <h4 class="datalitxt">{searchitem.title.userPreferred}</h4>
-                                    <h5>Episodes : {searchitem.episodes}</h5>
-                                    <h5>Mal Score : {searchitem.averageScore}</h5>
+                                    <h5>Episodes : {searchitem.totalEpisodes}</h5>
+                                    <h5>Mal Score : {searchitem.rating}</h5>
+                                    <h5>Released : {searchitem.releaseDate}</h5>
                                 </div>
                             </div>
                         </div>
