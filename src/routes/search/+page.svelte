@@ -5,21 +5,22 @@
     import { onMount } from "svelte";
     let search = '';
     let searchdata = [];
+    let id =''
     let stylesfordiv = 'display: none; margin-left: auto; margin-right: auto; background-color: #2d2a2a; border-radius: 5px; padding: 10px; margin: 10px;';
 
 const getid = (id) =>{
     window.open(`/info?id=${id}`,"_self")
 }
-const searchanime = async() =>{
-    const searchr = await fetch(`${baseurl}/meta/anilist/${search}`)
+const searchanime = async(s) =>{
+    const searchr = await fetch(`${baseurl}/meta/anilist/${s}`)
     searchdata = await searchr.json();
     searchdata = searchdata['results'];
     console.log(searchdata)
     return searchdata
 }
-const searchanimepp = () =>{
+let searchanimepp = (s) =>{
     if (search.length>0){
-        searchanime()
+        searchanime(s)
     stylesfordiv = 'width: auto; display: block; background-color: #2d2a2a; border-radius: 5px; padding: 10px; margin: 10px;';
     }
     else{
@@ -31,7 +32,17 @@ const openhome = () =>{
 }
 
 onMount(async()=>{
-    
+    id = window.location.search;
+    id = id.replace("?query=", "");
+    if(id.length>0){
+        searchanime(id)
+        stylesfordiv = 'width: auto; display: block; background-color: #2d2a2a; border-radius: 5px; padding: 10px; margin: 10px;';
+
+    }
+    else{
+        stylesfordiv = 'display: none; background-color: #2d2a2a; border-radius: 5px; padding: 10px; margin: 10px;';
+    }
+    console.log(id)
 })
 </script>
 
@@ -60,7 +71,7 @@ onMount(async()=>{
                
                 <div class="searchbarmain">
                     <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
-                    <input class="bar" on:change={searchanimepp} type="text" bind:value={search} placeholder="Search Anime"> 
+                    <input class="bar" on:change={()=>searchanimepp(search)} type="text" bind:value={search} placeholder="Search Anime"> 
                 </div>
                 <div style={stylesfordiv} id="results">
                     <h3 class="center">Results</h3>

@@ -136,13 +136,14 @@ onMount(async()=>{
 <div style={divmain} class="back">
             <div class="main">
                 <Header/>
+            <div class="imgslider">
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
                         {#if data.length > 0}
                         {#each data as slidedata }
                     <div class="swiper-slide" on:click={()=> getid(slidedata.id)}  style="height: 500px; magrin:0;">
                             <div class="container">
-                            <img class="imgslide" src={slidedata.image} alt="Cinque Terre" width="100%" height="400px">
+                            <img class="imgslide" src={slidedata.image} alt="Cinque Terre" width="100%" height="100%">
                             <div class="bottomleft">
                                 <h1 style="color: #ffffff; font-size: 180%;">{slidedata.title.english}</h1>
                                 <div class="infoslide">
@@ -170,6 +171,7 @@ onMount(async()=>{
                     {/if}
                     </div>
                 </div>
+            </div>
                <br>
                 
 <!-- <h2 class="center">Continue Watching - {curlen}</h2>
@@ -220,14 +222,23 @@ onMount(async()=>{
                 <h2 style="margin-left: 2%;">
                     <i class="fa-solid fa-arrow-trend-up" style="color: #ffffff;"></i> Trending
                 </h2>
-                <div class="members">
-                {#if data.length > 0}
-                    {#each data as item}
-                            <div on:click={() => getid(item.id)} class="showlist">
+                
+                <div class="maind">
+                    <div class="innerd">
+
+                        {#if data.length > 0}
+                        {#each data as item}
+                            <div class="scroll">
+                                <div on:click={() => getid(item.id)} class="showlist">
                                 <div class="container">
-                                    <img class="imgshow" src={item.image} alt="" width="100px">
-                                <p class="center">{item.title.english}</p>
+                                    <div class="card">
+                                        <img class="imgshow" src={item.image} alt="" width="100px">
+                                        <div class="cardbody">
+                                            <p class="cardtitle">{item.title.english}</p>
+                                        </div>
+                                    </div>
                                 </div>
+                            </div>
                             </div>
                     {/each}
                     {:else}
@@ -235,6 +246,7 @@ onMount(async()=>{
                 {/if}
             </div>
         </div>
+                    </div>
             <div class="recentmain">
                 <br>
 <div class="butshare">
