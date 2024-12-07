@@ -70,7 +70,7 @@
       const repo = await fetch(`https://api.amvstr.me/api/v2/episodes/${id}`)
           if(repo.ok){
             repod = await repo.json();
-            ep = repod.episodes;
+            ep = repod.results;
             console.log(ep)
           }
           else{
@@ -87,8 +87,14 @@
         infonew.innerHTML = "Status : Completed"
       }
       else{
-        air = data.nextair;
+        if(data.nextair==null){
+          air = "none"
+          dateair="none"
+        }
+        else{
+          air = data.nextair;
         dateair = air.airingAt;
+        }
         let unixTimestamp = dateair;
         var a = new Date(unixTimestamp * 1000);
         var hour = a.getHours();
@@ -209,7 +215,7 @@
         </div>
         <br>
         <div class="epsout">
-          {#if ep.length > 0}
+        {#if ep.length >= 0}
           {#each ep as episode}
           <div style="--hoverc:{color}" on:click={() => watchepid(episode.id,id)}  class="eps">
             <h4 class="centerr">{episode.number}</h4>
@@ -226,7 +232,7 @@
 <div style={stylefordiv}>
       <h2>For You</h2>
       <div class="relatedanimes">
-                   {#if ranimes.length > 0}
+                   {#if ranimes.length >= 0}
                     {#each ranimes as item}
                             <div on:click={() => getid(item.entry.mal_id)} id="animeitem" class="watchgridshowlist">
                                 <img loading="lazy" class="gridimgshow" src={item.entry.images.webp.image_url} alt="" width="100px">
