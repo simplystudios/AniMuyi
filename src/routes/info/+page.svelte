@@ -67,7 +67,7 @@
       subdub = data.format;
       totalep = data.episodes;
       dura = data.duration;
-      const repo = await fetch(`https://api.amvstr.me/api/v2/episode/${id}`)
+      const repo = await fetch(`https://api.amvstr.me/api/v2/episodes/${id}`)
           if(repo.ok){
             repod = await repo.json();
             ep = repod.episodes;
