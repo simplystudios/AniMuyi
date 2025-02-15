@@ -22,7 +22,7 @@ const opensearch = () =>{
     window.open(`/search?query=${search}`, '_self')
 }
 const searchanime = async() =>{
-    const searchr = await fetch(`https://api.amvstr.me/api/v2/search?q=${search}`)
+    const searchr = await fetch(`https://api.jikan.moe/v4/anime?q=${search}`)
     searchdata = await searchr.json();
     searchdata = searchdata['results'];
     console.log(searchdata)

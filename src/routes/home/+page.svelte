@@ -90,14 +90,14 @@ onMount(async()=>{
     });
         divload = 'display:flex display: block height: 100% width: 100% margin-top:30% align-items: center justify-content: center'
     divmain = 'display:none'
-    const response = await fetch(`${baseurl}/meta/anilist/popular`);
+    const response = await fetch(`${baseurl}/seasons/now`);
     try{
         if(response.ok){
             data = await response.json();
-        recentdata = data['results'];
-        const trendd = await fetch(`${baseurl}/meta/anilist/trending`)
+        recentdata = data['data'];
+        const trendd = await fetch(`${baseurl}/top/anime`)
         data = await trendd.json()
-        data = data['results'];
+        data = data['data'];
         divload = 'display:none';
         divmain = 'display:block';
         }
@@ -141,21 +141,22 @@ onMount(async()=>{
                     <div class="swiper-wrapper">
                         {#if data.length > 0}
                         {#each data as slidedata }
-                    <div class="swiper-slide" on:click={()=> getid(slidedata.id)}  style="height: 500px; magrin:0;">
+                    <div class="swiper-slide" on:click={()=> getid(slidedata.mal_id)}  style="height: 500px; magrin:0;">
                             <div class="container">
-                            <img class="imgslide" src={slidedata.image} alt="Cinque Terre" width="100%" height="100%">
+                            <img class="imgslide" src={slidedata.images.jpg.large_image_url} alt="Cinque Terre" width="100%" height="100%">
+                            
                             <div class="bottomleft">
-                                <h1 style="color: #ffffff; font-size: 180%;">{slidedata.title.english}</h1>
+                                <h1 style="color: #ffffff; font-size: 180%;">{slidedata.title_english}</h1>
                                 <div class="infoslide">
-                                    <p style="margin: 5px; font-size:15px;"><i class="fa-solid fa-closed-captioning" style="color: #ffffff;"></i> {slidedata.totalEpisodes}</p>
+                                    <p style="margin: 5px; font-size:15px;"><i class="fa-solid fa-closed-captioning" style="color: #ffffff;"></i> {slidedata.episodes}</p>
                                     <br>
-                                    <p style="margin: 5px; font-size:15px;"><i class="fa-solid fa-star" style="color: #ff3d64;"></i>{slidedata.rating}/100</p>
+                                    <p style="margin: 5px; font-size:15px;"><i class="fa-solid fa-star" style="color: #ff3d64;"></i>{slidedata.score}/10</p>
                                     <br>
-                                    <p style="margin: 5px; font-size:15px;"><i class="fa-solid fa-calendar" style="color: #ffffff;"></i> {slidedata.releaseDate}</p>
+                                    <p style="margin: 5px; font-size:15px;"><i class="fa-solid fa-calendar" style="color: #ffffff;"></i> {slidedata.year}</p>
                                     <br>
-                                    <p style="font-weight:100; font-size:15px; margin: 5px;"><i class="fa-solid fa-clock" style="color: #ffffff;"></i> {slidedata.duration} mins</p>
+                                    <p style="font-weight:100; font-size:15px; margin: 5px;"><i class="fa-solid fa-clock" style="color: #ffffff;"></i> {slidedata.duration}</p>
                                 </div>
-                                <p class="descr">{slidedata.description}</p>
+                                <p class="descr">{slidedata.synopsis}</p>
                                 <div class="infoslide">
                                     <!-- <button class="watchbut"><i class="fa-solid fa-play" style="color: #ffffff;"></i> Watch Now</button> -->
                                     <button class="morebut"><i class="fa-solid fa-play" style="color: #ffffff;"></i> Watch Now</button>
@@ -229,12 +230,16 @@ onMount(async()=>{
                         {#if data.length > 0}
                         {#each data as item}
                             <div class="scroll">
-                                <div on:click={() => getid(item.id)} class="showlist">
+                                <div role="button" tabindex="0" on:click={() => getid(item.mal_id)} on:keydown={(e) => e.key === 'Enter' && getid(item.mal_id)} class="showlist">
                                 <div class="container">
                                     <div class="card">
-                                        <img class="imgshow" src={item.image} alt="" width="100px">
+                                        <img class="imgshow" src={item.images.jpg.image_url} alt="" width="100px">
                                         <div class="cardbody">
-                                            <p class="cardtitle">{item.title.english}</p>
+                                            {#if item.title_english}
+                                            <p class="cardtitle">{item.title_english}</p>
+                                            {:else}
+                                            <p class="cardtitle">{item.title_japanese}</p>
+                                            {/if}
                                         </div>
                                     </div>
                                 </div>
@@ -263,9 +268,13 @@ onMount(async()=>{
                 <div class="recentmembers">
                    {#if recentdata.length > 0}
                     {#each recentdata as item}
-                            <div on:click={() => getid(item.id)} id="animeitem" class="gridshowlist">
-                                <img class="gridimgshow" src={item.image} alt="" width="100px">
-                                <p class="center">{item.title.english}</p>
+                            <div role="button" tabindex="0" on:click={() => getid(item.mal_id)} on:keydown={(e) => e.key === 'Enter' && getid(item.mal_id)} id="animeitem" class="gridshowlist">
+                                <img class="gridimgshow" src={item.images.jpg.image_url} alt="" width="100px">
+                                {#if item.title_english}
+                                            <p class="cardtitle">{item.title_english}</p>
+                                            {:else}
+                                            <p class="cardtitle">{item.title_japanese}</p>
+                                            {/if}
                         </div>
                     {/each}
                     {:else}

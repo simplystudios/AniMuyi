@@ -194,15 +194,15 @@ function playM3u8(video, url, art) {
       console.log("error")
     }
 
-    const res = await fetch(`https://api.amvstr.me/api/v2/info/${animeid}`);
+    const res = await fetch(`https://api.jikan.moe/v4/anime/${animeid}`);
     if (res.ok) {
       epdata = await res.json();
-      title = epdata.title.userPreferred;
+      title = epdata.title;
       anid = epdata.id;
-      images = epdata.coverImage.large;
+      images = epdata.image.jpg.large_image_url;
       banneri = epdata.bannerImage;
       medimg = epdata.coverImage.medium;
-      animecolor = epdata.coverImage.color;
+      animecolor = "#0000";
       related = epdata['relation']
       totalep = epdata.episodes;
       release = epdata.year;
@@ -216,7 +216,7 @@ function playM3u8(video, url, art) {
       divload = 'display:none'
       divmain = 'display:block'
       // console.log(eps);
-      let epres = await fetch(`https://api.amvstr.me/api/v2/episode/${animeid}`);
+      let epres = await fetch(`https://api.jikan.moe/v4/anime/${animeid}/episodes`);
     if(epres.ok){
       epd = await epres.json();
       eps = epd['episodes'];

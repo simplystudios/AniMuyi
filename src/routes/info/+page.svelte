@@ -10,6 +10,7 @@
   let id = '';
   let stylefordiv = 'display:block;'
   let repod = {};
+  let pages = 0;
   let img_large = '';
   let searchep = '';
   let divmain = 'display: block';
@@ -26,6 +27,7 @@
   let title_eng = '';
   let title_nav = '';
   let release = '';
+  let currentpage = 0
   let ep = [];
   let titles = {};
   let images = {};
@@ -47,30 +49,42 @@
 } 
             divload = 'display:block'
         divmain = 'display:none'
-    let resp = await fetch(`https://api.amvstr.me/api/v2/info/${id}`);
+    let resp = await fetch(`https://api.jikan.moe/v4/anime/${id}`);
     if (resp.ok) {
       divload = 'display:none'
       divmain = 'display:block'
       data = await resp.json();
-      titles = data.title;
-      images = data.coverImage;
+      data = data.data;
+      // let respr = await fetch(`https://api.malsync.moe/mal/anime/${id}`);
+      // if (respr.ok) {
+      //   pro = await respr.json();
+      //   pro = pro.data;
+      //   id = pro.Sites.Gogoanime.
+      //   console.log(pro)
+      // }
+      // else{
+      //   console.log("error")
+      // }
+      titles = data.title_english;
+      images = data.images.jpg.image_url;
       color = data.color;
       genre = data.genres;
-      malid = data.idMal;
+      malid = data.id_mal;
 
       status = data.status;
-      title_eng = data.title.english;
-      desc = data.description;
-      title_nav = data.title.native;
-      img_large = data.coverImage.large;
+      title_eng = data.title_english;
+      desc = data.synopsis;
+      title_nav = data.title_japanese;
+      img_large = data.images.jpg.large_image_url;
       release = data.year;
-      subdub = data.format;
+      subdub = data.type;
       totalep = data.episodes;
       dura = data.duration;
-      const repo = await fetch(`https://api.amvstr.me/api/v2/episodes/${id}`)
+      const repo = await fetch(`https://api.jikan.moe/v4/anime/${id}/episodes`)
           if(repo.ok){
             repod = await repo.json();
-            ep = repod.results;
+            pages = repod['pagination'];
+            ep = repod['data'];
             console.log(ep)
           }
           else{
@@ -80,7 +94,7 @@
       else{
           console.log("error")
         }
-      stat = data.score.decimalScore;
+      stat = data.score;
       if(status=="FINISHED"){
         air = "completed"
         dateair = "completed"
@@ -95,16 +109,6 @@
           air = data.nextair;
         dateair = air.airingAt;
         }
-        let unixTimestamp = dateair;
-        var a = new Date(unixTimestamp * 1000);
-        var hour = a.getHours();
-        var min = a.getMinutes();
-        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-        var ampm = hour >= 12 ? 'pm' : 'am';
-        var year = a.getFullYear();
-        var month = months[a.getMonth()];
-        var date = a.getDate();
-        nextime = date + ' ' + month + ' ' + hour+  ' '+ampm;
       }
 
         // const repo = await fetch(`https://api.anify.tv/episodes/${id}`)
@@ -115,7 +119,7 @@
         // }
               divload = 'display:none'
         divmain = 'display:block'   
-    let relatedanimes = await fetch(`https://api.jikan.moe/v4/anime/${malid}/recommendations`)
+    let relatedanimes = await fetch(`https://api.jikan.moe/v4/anime/${id}/recommendations`)
         if (!relatedanimes.ok){
           stylefordiv = 'display:none;'
         }
@@ -127,8 +131,20 @@
         }
   });
   const watchepid = (epid,id) =>{
-    epid = epid.replace("/","")
+    // epid = epid.replace("/","")
     window.open(`/watch?${epid}&${id}`,"_self")
+  }
+  const changepage = async (page) => {
+    currentpage = page;
+    const repo = await fetch(`https://api.jikan.moe/v4/anime/${id}/episodes?page=${page}`);
+    if (repo.ok) {
+      repod = await repo.json();
+      ep = repod['data'];
+      console.log("page changed", ep);
+    } else {
+      loadingtxt = "No Episodes For This Anime...";
+    }
+
   }
   const searcheps = () => {
     if (epnumse !== null) {
@@ -177,7 +193,7 @@
   <Header />
 <div class="container">
   <div class="banner">
-    <img class="bannerimg" loading="lazy" src={data.bannerImage} alt="" width="100%" height="100%">
+    <img class="bannerimg" loading="lazy" src={data.image} alt="" width="100%" height="100%">
   </div>
   <div>
     <div class="info">
@@ -191,18 +207,18 @@
           <br>
           <p style="margin-right: 10px;"><i class="fa-solid fa-star" style="color: #ff3d64;"></i> {stat} </p>
           <br>
-          <p style="margin-right: 10px;"><i class="fa-regular fa-clock" style="color: #ffffff;"></i> {dura}m </p>
+          <p style="margin-right: 10px;"><i class="fa-regular fa-clock" style="color: #ffffff;"></i> {dura} </p>
           <br>
           <p>{release} </p>
         </div>
         <div class="ireld">
           {#each genre as gn}
-            <p>{gn} </p>
+            <p>{gn.name} </p>
             <p>&bull;</p>
           {/each}
         </div>
         <div class="newep" style={`background-color:${color};`}>
-            <h4 style="color: white;" bind:this={infonew} class="center"><i class="fa-solid fa-certificate" style="color: #ffffff;"></i> New Episode {air.episode} on : {nextime}</h4>
+            <h4 style="color: white;" bind:this={infonew} class="center"><i class="fa-solid fa-certificate" style="color: #ffffff;"></i> {status}</h4>
         </div>
         <p class="center">{desc}</p>
       </div> 
@@ -213,13 +229,29 @@
           <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
           <input bind:value={epnumse} class="bar" on:input={searcheps} type="text" placeholder="Jump to an Episode...">
         </div>
-        <br>
-        <div class="epsout">
+        <div style="display:flex; padding:10px; align-items: center;">
+
+          <div style="width: 20px; height:20px; background-color: rgb(112, 0, 198); margin-right: 2px;"></div>
+          <p>Filler</p>
+        </div>
+        {#if pages.has_next_page === true}
+          <div style="display: flex; justify-content: space-between;">
+            <button class="center" on:click={() => changepage(currentpage - 1)} disabled={currentpage <= 1}><i class="fa-regular fa-clock" style="color: #ffffff;"></i> Previous Page</button>
+<button class="center" on:click={() => changepage(currentpage + 1)}><i class="fa-regular fa-clock" style="color: #ffffff;"></i> Next Page</button>
+          </div>
+        {/if}
+      <div class="epsout">
         {#if ep.length >= 0}
           {#each ep as episode}
-          <div style="--hoverc:{color}" on:click={() => watchepid(episode.id,id)}  class="eps">
-            <h4 class="centerr">{episode.number}</h4>
+            {#if episode.filler === true}
+              <div style="--hoverc:{color}; background-color:rgb(112, 0, 198);" on:click={() => watchepid(episode.mal_id,id)}  class="eps">
+            <h4 class="centerr">{episode.mal_id}</h4>
           </div>
+            {:else}
+              <div style="--hoverc:{color};" on:click={() => watchepid(episode.mal_id,id)}  class="eps">
+            <h4 class="centerr">{episode.mal_id}</h4>
+          </div>
+            {/if}
           {/each}
         {:else}
           <h2 class="center">{loadingtxt}</h2>
@@ -228,6 +260,7 @@
         </div>
     </div>
 </div>
+
 </div>
 <div style={stylefordiv}>
       <h2>For You</h2>
@@ -252,5 +285,9 @@
 <style>
   eps:hover{
     background-color: var(--hoverc) ;
+  }
+  .center{
+    text-align: center;
+    background-color: blueviolet;
   }
 </style>

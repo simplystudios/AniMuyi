@@ -1,1 +1,1 @@
-export const baseurl = "https://muyiback.up.railway.app"
+export const baseurl = "https://api.jikan.moe/v4"

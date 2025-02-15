@@ -6,15 +6,15 @@
     let search = '';
     let searchdata = [];
     let id =''
-    let stylesfordiv = 'display: none; margin-left: auto; margin-right: auto; background-color: #2d2a2a; border-radius: 5px; padding: 10px; margin: 10px;';
+    let stylesfordiv = 'display: none;  background-color: #2d2a2a; border-radius: 5px; padding: 10px; margin: 10px;';
 
 const getid = (id) =>{
     window.open(`/info?id=${id}`,"_self")
 }
 const searchanime = async(s) =>{
-    const searchr = await fetch(`${baseurl}/meta/anilist/${s}`)
+    const searchr = await fetch(`${baseurl}/anime?q=${s}`)
     searchdata = await searchr.json();
-    searchdata = searchdata['results'];
+    searchdata = searchdata.data;
     console.log(searchdata)
     return searchdata
 }
@@ -77,14 +77,14 @@ onMount(async()=>{
                     <h3 class="center">Results</h3>
                     {#if searchdata.length > 0}
                     {#each searchdata as searchitem }
-                        <div on:click={() => getid(searchitem.id)}>
+                        <div on:click={() => getid(searchitem.mal_id)}>
                             <div class="resultlist">
-                                <img loading="lazy" class="imgres" src={searchitem.image} alt="" width="100px">
+                                <img loading="lazy" class="imgres" src={searchitem.images.jpg.image_url} alt="" width="100px">
                                 <div class="datali">
-                                    <h4 class="datalitxt">{searchitem.title.userPreferred}</h4>
-                                    <h5>Episodes : {searchitem.totalEpisodes}</h5>
-                                    <h5>Mal Score : {searchitem.rating}</h5>
-                                    <h5>Released : {searchitem.releaseDate}</h5>
+                                    <h4 class="datalitxt">{searchitem.title}</h4>
+                                    <h5>Type: {searchitem.type}</h5>
+                                    <h5>Mal Score : {searchitem.score}</h5>
+                                    <h5>Released : {searchitem.year}</h5>
                                 </div>
                             </div>
                         </div>
