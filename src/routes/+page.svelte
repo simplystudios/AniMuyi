@@ -78,7 +78,7 @@ onMount(async()=>{
                     <p class="center">
                      <img loading="lazy" class="toptext" src="/crampedanimuyi.png" alt="" width="230px">
                 </p>
-                <blockquote style="text-align:center;  font-style: italic;">"Animuyi Has More Than {stats.anime} Animes..."</blockquote>
+                <blockquote style="text-align:center;  font-style: italic;">"Animuyi Has More Than 14000 Animes..."</blockquote>
                 <br>
                
                 <div class="searchbarmain">

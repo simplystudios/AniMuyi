@@ -140,7 +140,7 @@ onMount(async()=>{
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
                         {#if data.length > 0}
-                        {#each data as slidedata }
+                        {#each recentdata as slidedata }
                     <div class="swiper-slide" on:click={()=> getid(slidedata.mal_id)}  style="height: 500px; magrin:0;">
                             <div class="container">
                             <img class="imgslide" src={slidedata.images.jpg.large_image_url} alt="Cinque Terre" width="100%" height="100%">
@@ -227,8 +227,8 @@ onMount(async()=>{
                 <div class="maind">
                     <div class="innerd">
 
-                        {#if data.length > 0}
-                        {#each data as item}
+                        {#if recentdata.length > 0}
+                        {#each recentdata as item}
                             <div class="scroll">
                                 <div role="button" tabindex="0" on:click={() => getid(item.mal_id)} on:keydown={(e) => e.key === 'Enter' && getid(item.mal_id)} class="showlist">
                                 <div class="container">
@@ -266,8 +266,8 @@ onMount(async()=>{
                    <i class="fa-solid fa-fire" style="color: #ffffff;"></i> Popular
                 </h2>
                 <div class="recentmembers">
-                   {#if recentdata.length > 0}
-                    {#each recentdata as item}
+                   {#if data.length > 0}
+                    {#each data as item}
                             <div role="button" tabindex="0" on:click={() => getid(item.mal_id)} on:keydown={(e) => e.key === 'Enter' && getid(item.mal_id)} id="animeitem" class="gridshowlist">
                                 <img class="gridimgshow" src={item.images.jpg.image_url} alt="" width="100px">
                                 {#if item.title_english}
